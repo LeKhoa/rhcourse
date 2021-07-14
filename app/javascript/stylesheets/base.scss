@@ -1,0 +1,27 @@
+.main-wrapper {
+  min-height: 1000px;
+
+  .video-frame {
+    background-image: url('/assets/bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 584px !important;
+    height: 583px !important;
+  
+    .video-thumb {
+      padding-top: 180px;
+      padding-left: 56px;
+    }
+  }
+
+  .welcome {
+    width: 484px;
+    height: 303px;
+    margin-top: 180px;
+  }
+
+  .next-arrow {
+    width: 15px;
+    height: 12px;
+  }
+}

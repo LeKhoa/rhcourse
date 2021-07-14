@@ -1,0 +1,24 @@
+<%= javascript_pack_tag 'hello_vue' %>
+
+<div id="app" class="text-black-50">
+</div>
+
+<div class="container main-wrapper">
+  <div class="row">
+    <div class="col-6 welcome">
+      <img src="<%= image_path('welcome.png') %>">
+    </div>
+
+    <div class="col-6 ms-5 video-frame">
+      <div class="video-thumb">
+        <img src="<%= image_path('thumbnail.png') %>">
+      </div>
+      <div class="mt-5 text-end">
+        <button class="btn btn-md btn-dark rounded-0 align-items-center"> 
+          <span> Next step </span>
+          <img src="<%= image_path('next-arrow.png') %>" class="next-arrow">
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

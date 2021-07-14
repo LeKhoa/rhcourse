@@ -1,0 +1,46 @@
+.top-nav {
+  .navbar-brand {
+    color: white;
+  }
+
+  .navbar-nav {
+    .nav-item {
+      a {
+        color: white;
+        font-size: 18px;
+        font-family: 'Futura';
+      }
+    }
+  }
+  .form-control {
+    border-radius: 0;
+    border: none;
+  }
+
+  .brand {
+    height: 25px;
+  }
+
+  .search-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  .input-group-text {
+    border-radius: 0;
+    border: 0;
+    padding: 0.8rem 1rem;
+  }
+  .user-icon {
+    width: 33px;
+    height: 33px;
+  }
+
+  .bell{
+    width: 20px;
+    height: 25px;
+  }
+  .notification {
+    height: 30px;
+  }
+}

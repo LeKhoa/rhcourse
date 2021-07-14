@@ -3,14 +3,9 @@
     color: white;
   }
 
-  .navbar-nav {
-    .nav-item {
-      a {
-        color: white;
-        font-size: 18px;
-        font-family: 'Futura';
-      }
-    }
+  .navbar-nav li > a {
+    color: white !important;
+    font-size: 18px;
   }
   .form-control {
     border-radius: 0;
@@ -42,5 +37,13 @@
   }
   .notification {
     height: 30px;
+  }
+  .navbar-toggler {
+    background-color: white;
+  }
+
+  ul > li > a:hover{
+    background-color: white;
+    color: black !important;
   }
 }

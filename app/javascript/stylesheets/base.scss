@@ -3,21 +3,19 @@
 
   .video-frame {
     background-image: url('/assets/bg.png');
+    background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
-    width: 584px !important;
-    height: 583px !important;
+    background-size: contain;
   
     .video-thumb {
-      padding-top: 180px;
-      padding-left: 56px;
+      margin-top: 180px;
     }
   }
 
-  .welcome {
-    width: 484px;
-    height: 303px;
+  .welcome-img {
     margin-top: 180px;
+    max-width: 484px;
+    max-height: 350px;
   }
 
   .next-arrow {

@@ -5,19 +5,23 @@
 
 <div class="container main-wrapper">
   <div class="row">
-    <div class="col-6 welcome">
-      <img src="<%= image_path('welcome.png') %>" class="h-100 w-100">
+    <div class="col-md-10 col-lg-5">
+      <div class="welcome-img px-3 ms-4">
+        <img src="<%= image_path('welcome.png') %>" class="h-100 w-100">
+      </div>
     </div>
 
-    <div class="col-6 mx-5 video-frame">
-      <div class="video-thumb">
-        <img src="<%= image_path('thumbnail.png') %>" class="h-100 w-100">
-      </div>
-      <div class="mt-5 text-end">
-        <button class="btn btn-md btn-dark rounded-0 align-items-center"> 
-          <span> Next step </span>
-          <img src="<%= image_path('next-arrow.png') %>" class="next-arrow">
-        </button>
+    <div class="col-md-12 col-lg-6 ps-5 video-frame">
+      <div class="ms-5">
+        <div class="video-thumb">
+          <img src="<%= image_path('thumbnail.png') %>" class="h-100 w-100">
+        </div>
+        <div class="mt-5 text-end">
+          <button class="btn btn-md btn-dark rounded-0">
+            <span> Next step </span>
+            <img src="<%= image_path('next-arrow.png') %>" class="next-arrow">
+          </button>
+        </div>
       </div>
     </div>
   </div>

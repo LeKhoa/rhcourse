@@ -9,26 +9,30 @@
 
         <div class="col-lg-8 col-xs-9">
           <div class="d-flex flex-wrap">
-            <div class="col-lg-2 col-sm-6 col-12 col-md-4 px-2">
-              <img :src="checkedStepImg">
-              <span> Join Rohan </span>
+            <div class="d-flex my-auto me-5 py-1">
+              <div class="checked-circle">
+                <img :src="checkedStepImg">
+              </div>
+              <span class="ps-2"> Join Rohan </span>
             </div>
 
-            <div class="col-lg-2 col-sm-6 col-12 col-md-4 px-2">
-              <img :src="checkedStepImg">
-              <span> Watch Lessons </span>
+            <div class=" d-flex my-auto me-5 py-1">
+              <div class="checked-circle">
+                <img :src="checkedStepImg">
+              </div>
+              <span class="ps-2"> Watch Lessons </span>
             </div>
-            <div class="col-lg-2 col-sm-6 col-12 col-md-4 px-2">
-              <img :src="checkedStepImg">
-              <span> Set up Website </span>
+            <div class="d-flex my-auto me-5 py-1">
+              <span class="white-circle-25px"> </span>
+              <span class="ps-2"> Set up Website </span>
             </div>
-            <div class="col-lg-3 col-sm-6 col-12 col-md-4 ps-2">
-              <img :src="checkedStepImg">
-              <span> Set up Operations </span>
+            <div class="d-flex my-auto me-5 py-1">
+              <span class="white-circle-25px"> </span>
+              <span class="ps-2"> Set up Operations </span>
             </div>
-            <div class="col-lg-3 col-sm-6 col-12 col-md-4 ps-2">
-              <img :src="checkedStepImg">
-              <span> Get First Customer </span>
+            <div class="d-flex my-auto py-2">
+              <span class="white-circle-25px"> </span>
+              <span class="ps-2"> Get First Customer </span>
             </div>
           </div>
         </div>
@@ -61,6 +65,19 @@ export default {
 
   .step-wrapper {
     width: 20%;
+  }
+
+  .white-circle-25px {
+    height: 25px;
+    width: 25px;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .checked-circle {
+    height: 25px;
+    width: 25px;
   }
 }
 

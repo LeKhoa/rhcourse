@@ -6,7 +6,7 @@
 // All it does is render <div>Hello Vue</div> at the bottom of the page.
 
 import { createApp } from 'vue'
-import App from '../app.vue'
+import App from '../components/App.vue'
 const app = createApp(App)
 
 // The above code uses Vue without the compiler, which means you cannot

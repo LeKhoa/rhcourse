@@ -1,10 +1,10 @@
 <template>
   <div class="message-container">
     <div class="row">
-      <div class="col-2 col-sm-1">
+      <div class="col-2">
         <img :src="defaultChatIcon">
       </div>
-      <div class="col-10 col-sm-11 ps-4">
+      <div class="col-10 ps-1">
         <div class="message-owner"> Miki Smith </div>
         <span class="message-text mt-3"> I really enjoyed the class, your stories and the dope customer service </span>
         <div class="message-action mt-2">
@@ -27,10 +27,10 @@
         <!-- Start add_reply -->
         <div class="add-reply-container mt-2">
           <div class="row">
-            <div class="col-2 col-sm-1">
+            <div class="col-2">
               <img :src="defaultChatIcon">
             </div>
-            <div class="col-10 col-sm-11 ps-4">
+            <div class="col-10 ps-1">
               <div class="add-reply-content">
                 <textarea class="w-100" rows="2" value="" placeholder="Leave a reply...">
                 </textarea>
@@ -68,6 +68,10 @@ export default {
 
 <style scoped lang="scss">
 .message-container {
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
   .message-owner {
     font-size: 16px;
     font-weight: bold;

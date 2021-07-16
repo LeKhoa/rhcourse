@@ -1,10 +1,10 @@
 <template>
   <div class="reply-container">
     <div class="row">
-      <div class="col-2 col-sm-1">
+      <div class="col-2">
         <img :src="defaultChatIcon">
       </div>
-      <div class="col-10 col-sm-11 ps-4">
+      <div class="col-10 ps-1">
         <div class="reply-content">
           <div class="reply-owner"> Miki Smith </div>
           <span class="reply-text mt-3"> I really enjoyed the class, your stories and the dope customer service </span>
@@ -37,6 +37,11 @@ export default {
 
 <style scoped lang="scss">
 .reply-container {
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
   .reply-content {
     background-color: #fbfcfd;
     padding: 10px;

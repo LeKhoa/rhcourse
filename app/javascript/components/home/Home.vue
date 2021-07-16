@@ -6,38 +6,40 @@
 
     <div class="main">
       <div class="row">
-        <div class="col-md-8 col-12 ps-3 pe-5">
+        <!-- LEFT -->
+        <div class="col-lg-8 col-md-7 col-12 ps-3 pe-5 mw-100" style="height: 100%;">
           <div class="row">
             <span class="title"> How to choose a domain </span>
           </div>
-          <div class="video-frame w-100 mt-3">
+          <div class="video-frame mt-3">
             <img :src="thumbnailImg" class="h-100 w-100">
           </div>
         </div>
+        <!-- LEFT -->
 
-        <div class="col-md-4 col-12 ps-3 pe-5 tab-container">
-          <ul class="d-flex justify-content-between ps-0" v-if="tabIndex != 0">
+        <!-- RIGHT -->
+        <div class="col-lg-4 col-md-5 mt-3 col-12 tab-container">
+          <ul class="d-flex justify-content-between ps-2 pe-5" v-if="tabIndex != 0">
             <li v-for="(name, index) in tabList">
               <a href="#" @click.prevent="setTabIndex(index)" :class="{ 'tab-active': index == tabIndex }"> {{ name }} </a>
             </li>
           </ul>
 
-          <div class="tab-content mt-5 overflow-scroll" style="max-height: 505px;">
+          <div class="tab-content w-100 mt-5 pe-5 ps-2 overflow-scroll">
             <Videos v-if="tabIndex == 0"/>
             <Chat v-if="tabIndex == 1"/>
             <Notes v-if="tabIndex == 2"/>
             <Resources v-if="tabIndex == 3"/>
           </div>
         </div>
+        <!-- RIGHT -->
       </div>
       
-      <div class="row mt-5 justify-content-center">
-        <div class="col-md-3 col-8">
-          <button class="btn btn-md btn-dark rounded-0" @click="nextStep">
-            <span> Choose a Domain </span>
-            <img :src="nextArrowImg" class="next-arrow">
-          </button>
-        </div>
+      <div class="text-center mt-5">
+        <button class="btn btn-md btn-dark rounded-0 text-cnet" @click="nextStep">
+          <span> Choose a Domain </span>
+          <img :src="nextArrowImg" class="next-arrow">
+        </button>
       </div>
     </div>
   </div>
@@ -88,7 +90,7 @@ export default {
       background-image: url('/assets/video-bg.png');
       background-position: center;
       background-repeat: no-repeat;
-      background-size: cover;
+      background-size: contain;
     }
   }
   .main {
@@ -110,6 +112,7 @@ export default {
         .tab-content {
           padding: 10px;
         }
+
       }
     }
     ul > li {
@@ -120,6 +123,25 @@ export default {
         font-size: 19px;
         color: #000000;
       }
+    }
+  }
+
+  .tab-container {
+    overflow: hidden;
+    position: relative;
+
+    @media only screen and (max-width: 767px) {
+      overflow: unset;
+      position: unset;
+    }
+  }
+
+  .tab-content {
+    position: absolute;
+    height: 100%;
+    @media only screen and (max-width: 767px) {
+      height: unset;
+      position: unset;
     }
   }
 }

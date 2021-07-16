@@ -1,53 +1,53 @@
 <template>
   <div class="video-container mt-5">
-    <div class="col-12 py-3 pe-4">
+    <div class="py-3">
       <span class="video-label"> 5 Lessons (30m) </span>
       <ul class="video-list mt-3"> 
         <li class="row mt-3 watched">
-          <div class="col-md-8">
+          <div class="col-8">
             <span class="title"> 1.Introduction </span>
           </div>
-          <div class="col-md-4 d-flex align-items-center justify-content-end">
+          <div class="col-4 d-flex align-items-center justify-content-end">
             <img :src="watchedVideoIcon">
             <span class="ms-2"> 1:30 </span>
           </div>
         </li>
 
         <li class="row mt-3 watched">
-          <div class="col-md-8">
+          <div class="col-8">
             <span class="title"> 2.Cooking Your Story </span>
           </div>
-          <div class="col-md-4 d-flex align-items-center justify-content-end">
+          <div class="col-4 d-flex align-items-center justify-content-end">
             <img :src="watchedVideoIcon">
             <span class="ms-2"> 1:30 </span>
           </div>
         </li>
 
         <li class="row mt-3 watching">
-          <div class="col-md-8">
+          <div class="col-8">
             <span class="title"> 3.How to choose a domain </span>
           </div>
-          <div class="col-md-4 d-flex align-items-center justify-content-end">
+          <div class="col-4 d-flex align-items-center justify-content-end">
             <img :src="watchingVideoIcon">
             <span class="ms-2"> 2:05 </span>
           </div>
         </li>
 
         <li class="row mt-3">
-          <div class="col-md-8">
+          <div class="col-8">
             <span class="title"> 4.Making Salad Dressing </span>
           </div>
-          <div class="col-md-4 text-end">
+          <div class="col-4 text-end">
             <span class="ms-2"> 4:55 </span>
           </div>
         </li>
 
 
         <li class="row mt-3">
-          <div class="col-md-8">
+          <div class="col-8">
             <span class="title"> 5.Making Jerk Sauce </span>
           </div>
-          <div class="col-md-4 text-end">
+          <div class="col-4 text-end">
             <span class="ms-2"> 8:59 </span>
           </div>
         </li>

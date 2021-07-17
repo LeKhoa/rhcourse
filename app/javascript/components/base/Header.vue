@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header" :style="backgroundImage">
     <div class="container-fluid">
       <div class="row h-100 py-2 ps-5 align-items-center">
         <div class="label col-lg-4 col-xl-3">
@@ -49,6 +49,7 @@ export default {
     return {
       message: "Wecome Rohan!",
       checkedStepImg: checkedStepImg,
+      backgroundImage: { backgroundImage: "url('/assets/header-bg.png')" }
     }
   }
 }
@@ -56,7 +57,6 @@ export default {
 
 <style scoped lang="scss">
 .header {
-  background-image: url('/assets/header-bg.png');
   font-size: 15px;
 
   .label {

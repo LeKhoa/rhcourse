@@ -99,7 +99,7 @@ export default {
     top: -760px;
 
     .tab-container {
-        ul {
+      ul {
         list-style-type: none;
 
         .tab-active {
@@ -112,7 +112,6 @@ export default {
         .tab-content {
           padding: 10px;
         }
-
       }
     }
     ul > li {

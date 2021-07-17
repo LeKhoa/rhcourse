@@ -1,7 +1,7 @@
 <template>
   <div id="home" class="row mt-5">
     <div class="bg-container">
-      <div class="bg w-100 h-100"></div>
+      <div class="w-100 h-100" :style="backgroundImage"></div>
     </div>
 
     <div class="main">
@@ -65,6 +65,14 @@ export default {
       thumbnailImg: thumbnailImg,
       nextArrowImg: nextArrowImg,
       tabIndex: -1,
+
+      backgroundImage: {
+        backgroundImage: 'url(' + require('images/video-bg.png') + ')',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+      },
+
     }
   },
 
@@ -85,14 +93,8 @@ export default {
   .bg-container {
     width: 42%;
     height: 762px;
-
-    .bg {
-      background-image: url('/assets/video-bg.png');
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: contain;
-    }
   }
+
   .main {
     position: relative;
     left: 20px;

@@ -49,7 +49,7 @@ export default {
     return {
       message: "Wecome Rohan!",
       checkedStepImg: checkedStepImg,
-      backgroundImage: { backgroundImage: "url('/assets/header-bg.png')" }
+      backgroundImage: { backgroundImage: 'url(' + require('images/header-bg.png') + ')'}
     }
   }
 }

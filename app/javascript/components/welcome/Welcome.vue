@@ -8,7 +8,7 @@
           </div>
         </div>
 
-        <div class="col-md-12 col-lg-6 ps-5 video-container">
+        <div class="col-md-12 col-lg-6 ps-5 video-container" :style="backgroundImage">
           <div class="ms-5">
             <div class="video-thumb">
               <img :src="thumbnailImg" class="h-100 w-100">
@@ -43,6 +43,12 @@ export default {
       welcomeImg: welcomeImg,
       thumbnailImg: thumbnailImg,
       nextArrowImg: nextArrowImg,
+      backgroundImage: {
+        backgroundImage: 'url(' + require('images/welcome-bg.png') + ')',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'contain',
+      }
     }
   },
   methods: { 
@@ -59,10 +65,6 @@ export default {
   min-height: 1000px;
 
   .video-container {
-    background-image: url('/assets/bg.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
   
     .video-thumb {
       margin-top: 180px;

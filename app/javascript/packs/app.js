@@ -7,7 +7,6 @@
 
 import { createApp } from 'vue'
 import App from '../components/App.vue'
-const app = createApp(App)
 
 // The above code uses Vue without the compiler, which means you cannot
 // use Vue to target elements in your existing html templates. You would
@@ -26,9 +25,16 @@ const app = createApp(App)
 // import Vue from 'vue/dist/vue.esm'
 // import App from '../app.vue'
 //
-document.addEventListener('DOMContentLoaded', () => {
+let app;
+document.addEventListener('turbolinks:load', () => {
+  app = createApp(App)
   app.mount('#app');
-})
+});
+
+document.addEventListener('turbolinks:before-render', () => {
+  if (app)
+    app.unmount();
+});
 //
 //
 //

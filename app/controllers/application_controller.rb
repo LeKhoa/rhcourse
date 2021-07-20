@@ -5,14 +5,13 @@ class ApplicationController < ActionController::Base
   protected
 
   def layout_by_resource
-    if current_user
-      if action_name == 'onboard'
-        'onboard'
-      else
-        'home'
-      end
+    return 'admin' if devise_controller? && resource_name == :admin_user
+    return 'application' unless current_user
+
+    if action_name == 'onboard'
+      'onboard'
     else
-      'application'
+      'home'
     end
   end
 

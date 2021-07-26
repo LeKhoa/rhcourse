@@ -8,25 +8,25 @@
         </div>
 
         <div class="col-lg-8 col-xs-9">
-          <div class="d-flex flex-wrap">
-            <div class="d-flex my-auto me-5 py-1">
+          <div class="d-flex flex-wrap justify-content-between">
+            <div class="d-flex my-auto me-5">
               <div class="checked-circle">
                 <img :src="checkedStepImg">
               </div>
               <span class="ps-2"> Join Rohan </span>
             </div>
 
-            <div class=" d-flex my-auto me-5 py-1">
+            <div class=" d-flex my-auto py-1">
               <div class="checked-circle">
                 <img :src="checkedStepImg">
               </div>
               <span class="ps-2"> Watch Lessons </span>
             </div>
-            <div class="d-flex my-auto me-5 py-1">
+            <div class="d-flex my-auto py-1">
               <span class="white-circle-25px"> </span>
               <span class="ps-2"> Set up Website </span>
             </div>
-            <div class="d-flex my-auto me-5 py-1">
+            <div class="d-flex my-auto py-1">
               <span class="white-circle-25px"> </span>
               <span class="ps-2"> Set up Operations </span>
             </div>

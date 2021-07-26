@@ -1,5 +1,5 @@
 <template>
-  <div id="onboarding-2">
+  <div id="page-4">
     <div class="row justify-content-center">
       <div class="col-lg-5 col-md-9 col-12 p-3">
         <img :src="christinaImg" class="w-100 h-100"/>
@@ -8,23 +8,9 @@
       <div class="col-lg-7 col-md-9 col-12 mt-5 p-5 text-center">
         <span class="title text-center"> Where are you in your business journey right now? </span>
         <div class="d-flex flex-wrap justify-content-center">
-          <div class="grey-box mt-3 mx-2">
-            <button class="btn w-100 h-100"> I just started my business </button>
-          </div>
-
-          <div class="grey-box mt-3 mx-2">
-            <button class="btn w-100 h-100"> I’m trying to grow my business </button>
-          </div>
-
-          <div class="grey-box mt-3 mx-2">
-            <button class="btn w-100 h-100"> I’m not trying to grow, just maintain </button>
-          </div>
-
-          <div class="grey-box mt-3 mx-2">
-            <button class="btn w-100 h-100"> I’m looking to sell my company </button>
-          </div>
-          <div class="grey-box mt-3 mx-2">
-            <button class="btn w-100 h-100"> I haven’t started yet </button>
+          
+          <div class="grey-box mt-3 mx-2" v-for="(status, index) in businessJourneys">
+            <button class="btn w-100 h-100" @click="setStatus(index)"> {{status}} </button>
           </div>
         </div>
 
@@ -63,6 +49,8 @@ import previousArrowImg from '../../images/previous-arrow.png'
 import BottomBrand from './BottomBrand.vue'
 import JoinText from './JoinText.vue'
 
+import { mapState, mapActions } from 'vuex';
+
 export default {
   components: {
     BottomBrand, JoinText
@@ -73,23 +61,34 @@ export default {
       christinaImg: christinaImg,
       nextArrowImg: nextArrowImg,
       previousArrowImg: previousArrowImg,
+      businessJourneys: [
+        "I just started my business",
+        "I’m trying to grow my business",
+        "I’m not trying to grow, just maintain",
+        "I’m looking to sell my company",
+        "I haven’t started yet",
+      ],
     }
   },
 
   methods: {
+    ...mapActions({
+      setStatus: 'setBusinessStatus',
+    }),
+
     nextStep: function() {
       this.$emit('next');
     },
 
     prevStep: function() {
       this.$emit('back');
-    }
+    },
   }
 }
 </script>
 
 <style scoped lang="scss">
-#onboarding-2 {
+#page-4 {
 
 }
 

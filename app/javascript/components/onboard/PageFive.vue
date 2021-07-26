@@ -1,5 +1,5 @@
 <template>
-  <div id="onboarding-4">
+  <div id="page-5">
     <div class="row justify-content-center">
       <div class="elena-wrapper p-3">
         <div class="w-100 h-100 p-3">
@@ -13,30 +13,8 @@
       <div class="col-lg-7 col-md-9 col-12 mt-5 pt-3 text-center">
         <span class="title text-center"> What’s the biggest challenge Rohan can help you with right now?  </span>
         <div class="d-flex flex-wrap justify-content-center">
-          <div class="grey-box mt-3 mx-2">
-            <button class="btn w-100 h-100"> Start my business</button>
-          </div>
-
-          <div class="grey-box mt-3 mx-2">
-            <button class="btn w-100 h-100"> Build my team </button>
-          </div>
-
-          <div class="grey-box mt-3 mx-2">
-            <button class="btn w-100 h-100"> Raise capital </button>
-          </div>
-
-          <div class="grey-box mt-3 mx-2">
-            <button class="btn w-100 h-100"> Grow my network </button>
-          </div>
-          <div class="grey-box mt-3 mx-2">
-            <button class="btn w-100 h-100"> Build awareness </button>
-          </div>
-
-          <div class="grey-box mt-3 mx-2">
-            <button class="btn w-100 h-100"> Acquire customers </button>
-          </div>
-          <div class="grey-box mt-3 mx-2">
-            <button class="btn w-100 h-100"> Operate my business </button>
+          <div class="grey-box mt-3 mx-2" v-for="(challenge, index) in challenges">
+            <button class="btn w-100 h-100" @click="setChallenge(index)"> {{challenge}}</button>
           </div>
         </div>
 
@@ -76,6 +54,9 @@ import previousArrowImg from '../../images/previous-arrow.png'
 import BottomBrand from './BottomBrand.vue'
 import JoinText from './JoinText.vue'
 
+// Vuex
+import { mapState, mapActions } from 'vuex';
+
 export default {
   components: {
     BottomBrand, JoinText
@@ -83,6 +64,15 @@ export default {
 
   data: function () {
     return {
+      challenges: [
+        "Start my business",
+        "Build my team",
+        "Raise capital",
+        "Grow my network",
+        "Build awareness",
+        "Acquire customers",
+        "Operate my business"
+      ],
       elenaImg: elenaImg,
       elenaDetail: elenaDetail,
       nextArrowImg: nextArrowImg,
@@ -91,19 +81,23 @@ export default {
   },
 
   methods: {
-    nextStep: function() {
+    ...mapActions({
+      setChallenge: 'setBiggestChallenge',
+    }),
+
+    nextStep() {
       this.$emit('next');
     },
 
-    prevStep: function() {
+    prevStep() {
       this.$emit('back');
-    }
+    },
   }
 }
 </script>
 
 <style scoped lang="scss">
-#onboarding-4 {
+#page-5 {
   .elena-wrapper {
     width: 600px;
     height: 630px;

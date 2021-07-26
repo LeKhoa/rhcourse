@@ -14,6 +14,7 @@ class UserDashboard < Administrate::BaseDashboard
     reset_password_token: Field::String,
     reset_password_sent_at: Field::DateTime,
     remember_created_at: Field::DateTime,
+    settings: Field::Text,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -39,6 +40,7 @@ class UserDashboard < Administrate::BaseDashboard
     reset_password_token
     reset_password_sent_at
     remember_created_at
+    settings
     created_at
     updated_at
   ].freeze

@@ -1,5 +1,5 @@
 <template>
-  <div id="onboarding-1">
+  <div id="page-2">
     <div class="col-md-6 col-sm-8 col-10 mt-5 mx-auto text-center">
       <div class="checked-circle mx-auto">
         <img :src="checkedStepImg" class="w-100 h-100">

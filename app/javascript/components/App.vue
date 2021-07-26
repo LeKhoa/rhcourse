@@ -1,22 +1,24 @@
 <template>
-  <div id="main_app">
-    <Header />
-    <Welcome v-if="step == 0"
-      @continue="nextStep"
-    />
-    <Home v-if="step == 1" /> 
-  </div>
+  <Home  v-if="isOnboarded == true"/>
+  <OnBoard v-else/>
 </template>
 
 <script>
-import Header from './base/Header.vue'
-import Welcome from './welcome/Welcome.vue'
+
+// Home
 import Home from './home/Home.vue'
+
+//Onboarding
+import OnBoard from './onboard/Onboard.vue'
+
+import { mapState, mapActions } from 'vuex';
 
 export default {
   components: {
-    Header, Welcome, Home
+    Home, OnBoard,
   },
+
+  props: ['dataCurrentUser'],
 
   data: function () {
     return {
@@ -25,9 +27,25 @@ export default {
   },
 
   methods: {
+    ...mapActions(['setCurrentUser']),
+
     nextStep() {
       this.step++;
+    },
+  },
+
+  computed: {
+    ...mapState(['currentUser','userSettings', 'concerns']),
+
+    isOnboarded() {
+      if (this.currentUser === null)
+        return false;
+      return Object.keys(this.currentUser.settings).length != 0
     }
+  },
+
+  mounted() {
+    this.setCurrentUser(this.dataCurrentUser);
   }
 }
 </script>

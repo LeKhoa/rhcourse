@@ -27,15 +27,12 @@
 </template>
 
 <script>
-import Header from '../base/Header.vue'
-
 import welcomeImg from '../../images/welcome.png'
 import thumbnailImg from '../../images/thumbnail.png'
 import nextArrowImg from '../../images/next-arrow.png'
 
 export default {
   components: {
-    Header
   },
 
   data: function () {

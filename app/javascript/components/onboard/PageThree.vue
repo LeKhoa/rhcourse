@@ -1,5 +1,5 @@
 <template>
-  <div id="onboarding-3">
+  <div id="page-3">
     <div class="col-xl-4 col-lg-6 col-md-7 col-10 mt-5 mx-auto text-center">
       <div class="location-box mx-auto">
         <img :src="locationImg" class="w-100 h-100">
@@ -24,7 +24,7 @@
             </button>
           </div>
 
-          <div class="col-6 col-sm-5 btn-box">
+          <div class="col-5 col-sm-5 btn-box">
             <button class="btn btn-md btn-dark rounded-0 w-100 h-100" @click="nextStep">
               <span> Next </span>
               <img :src="nextArrowImg" class="next-arrow">
@@ -76,7 +76,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#onboarding-3 {
+#page-3 {
   .location-box {
     height: 74px;
     width: 54px;

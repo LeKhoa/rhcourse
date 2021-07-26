@@ -1,5 +1,5 @@
 <template>
-  <div id="onboarding-7">
+  <div id="page-7">
     <div class="row justify-content-center">
       <div class="col-lg-5 col-md-9 col-10 pe-5 ms-n3">
         <img :src="videoBgImg" class="w-100"/>
@@ -93,7 +93,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#onboarding-7 {
+#page-7 {
   .grey-box-flex {
     background: #f1f1f1;
     border-radius: 5px;

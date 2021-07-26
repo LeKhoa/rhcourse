@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   root to: 'home#index'
   get 'onboard', to: 'home#onboard', as: :onboard
 
-  devise_for :users do
-  end
+  devise_for :users, controllers: { 
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

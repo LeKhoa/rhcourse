@@ -1,5 +1,5 @@
 <%= stylesheet_pack_tag 'app' %>
 <%= javascript_pack_tag 'app', 'data-turbolinks-track': 'reload' %>
 
-<div id="app">
+<div id="app" data-current-user=<%= current_user.to_json %> >
 </div>

@@ -1,17 +1,16 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   layout :layout_by_resource
 
   protected
 
   def layout_by_resource
     return 'admin' if devise_controller? && resource_name == :admin_user
-    return 'application' unless current_user
 
-    if action_name == 'onboard'
-      'onboard'
-    else
+    if current_user && current_user.settings.present?
       'home'
+    else
+      'application'
     end
   end
 

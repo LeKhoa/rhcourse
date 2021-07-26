@@ -1,63 +1,41 @@
 <template>
   <div id="page-7">
-    <div class="row justify-content-center">
-      <div class="col-lg-5 col-md-9 col-10 pe-5 ms-n3">
-        <img :src="videoBgImg" class="w-100"/>
-
-        <div class="col-lg-5 col-md-9 col-10 video-thumb position-absolute me-3">
-          <img :src="thumbnailImg" class="h-100 w-100">
-        </div>
-      </div>
-
-      <div class="col-lg-6 col-md-9 col-12 mt-5 p-5 text-center">
-        <span class="title text-center"> Watch this 5 minute video and then proceed to the final page </span>
-        <div class="mt-3" stype="font-size: 18px;"> Thanks, we qualify you based on 4 criteria. Check off each box that applies. </div>
-        <div class="d-flex flex-wrap mt-3 justify-content-center">
-          <div class="grey-box-flex mt-3 mx-2">
-            <button class="btn w-100 h-100">
-              <span class="fw-bold"> Motivation </span> <br>
-              <span> I'm committed to doing </span> <br> <span>the work </span>
-            </button>
-          </div>
-
-          <div class="grey-box-flex mt-3 mx-2">
-            <button class="btn w-100 h-100"> 
-              <span class="fw-bold"> Commitment </span> <br>
-              <span>  I will show up for myself </span> <br> <span> consistently  </span>
-            </button>
-          </div>
-
-          <div class="grey-box-flex mt-3 mx-2">
-            <button class="btn w-100 h-100"> 
-              <span class="fw-bold"> Coachability </span> <br>
-              <span>  I'm open new ideas, and </span> <br> <span> ready to learn and implement </span>
-            </button>
-          </div>
-
-          <div class="grey-box-flex mt-3 mx-2">
-            <button class="btn w-100 h-100"> 
-              <span class="fw-bold"> Finances </span> <br>
-              <span>  I can afford $997 setup fee (website & tech) </span> <br> <span> and $197 per month for software and support </span>
-            </button>
-          </div>
-        </div>
-
-        <div class="mt-4"> If you checked off all 4 boxes... </div> 
-
-        <div class="col-10 col-sm-8 col-md-7 col-xl-5 btn-box bg-green text-center mt-2 mx-auto">
-          <button class="btn btn-md rounded-0 w-100 h-100 text-white" @click=""> PAY TO GET STARTED INSTANTLY
-          </button>
-
-          <div class="mt-2"> or </div>
-          <div class="btn-box">
-            <button class="btn btn-md rounded-0 w-100 h-100" @click=""> BOOK A CALL
-            </button>
-          </div>
-        </div>
-      </div>
+    <div class="bg col-10 col-md-9 col-lg-6 ms-5">
+      <img :src="videoBgImg" class="w-100"/>
     </div>
 
-    <BottomBrand />
+    <div class="position-absolute page-content col-11 text-center mx-auto">
+      <div class="col-12 col-md-10 col-xl-6 title mx-auto title mx-auto"> Watch this 5 minute video and then proceed to the final step </div>
+      <div class="row align-items-center px-5">
+        <!-- Left -->
+        <div class="col-12 col-md-10 col-lg-7 mx-auto mt-5">
+          <img :src="thumbnailImg" class="h-100 w-100">
+        </div>
+        <!-- Right -->
+
+        <div class="col-12 col-md-10 col-lg-5 mt-5">
+          <div class="row justify-content-center">
+            <div class="col-5 col-xl-4 btn-box">
+              <button class="btn back-btn w-100 h-100" @click="prevStep">
+                <img :src="previousArrowImg" class="next-arrow">
+                <span class="text-black-50"> Back </span>
+              </button>
+            </div>
+
+            <div class="col-6 btn-box">
+              <button class="btn btn-md btn-dark-50 rounded-0 w-100 h-100" @click="nextStep">
+                <span class="text-white"> Final step </span>
+                <img :src="nextArrowImg" class="next-arrow">
+              </button>
+            </div>
+          </div>
+          <JoinText />
+        </div>
+        <!-- Right -->
+      </div>
+
+      <BottomBrand />
+    </div>
   </div>
 </template>
 
@@ -65,18 +43,23 @@
 
 import videoBgImg from '../../images/video-bg.png'
 import thumbnailImg from '../../images/thumbnail.png'
+import nextArrowImg from '../../images/next-arrow.png'
+import previousArrowImg from '../../images/previous-arrow.png'
 
+import JoinText from './JoinText.vue'
 import BottomBrand from './BottomBrand.vue'
 
 export default {
   components: {
-    BottomBrand
+    JoinText, BottomBrand
   },
 
   data: function () {
     return {
       videoBgImg: videoBgImg,
       thumbnailImg: thumbnailImg,
+      previousArrowImg: previousArrowImg,
+      nextArrowImg: nextArrowImg,
     }
   },
 
@@ -94,24 +77,19 @@ export default {
 
 <style scoped lang="scss">
 #page-7 {
+  .page-content {
+    top: 10%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+
   .grey-box-flex {
     background: #f1f1f1;
     border-radius: 5px;
   }
   .bg-green {
     background-color: #89c731;
-  }
-  .video-thumb {
-    top: 100px;
-    left: 4%;
-
-    @media only screen and (max-width: 991px) {
-      left: 10%;
-    }
-
-    @media only screen and (max-width: 767px) {
-      left: 8%;
-    }
   }
 }
 

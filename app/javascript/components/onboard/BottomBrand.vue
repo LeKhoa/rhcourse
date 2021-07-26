@@ -25,7 +25,7 @@ export default {
 
 <style scoped lang="scss">
 .bottom-brand-logo {
-  margin-top: 80px;
+  margin-top: 70px;
   width: 77px;
   height: 17px;
 }

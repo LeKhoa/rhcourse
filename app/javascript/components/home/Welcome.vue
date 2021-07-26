@@ -1,6 +1,6 @@
 <template>
   <div id="welcome">
-    <div class="container welcome-wrapper">
+    <div class="container welcome-container">
       <div class="row">
         <div class="col-md-10 col-lg-5">
           <div class="welcome-img px-3 ms-4">
@@ -58,11 +58,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.welcome-wrapper {
-  min-height: 1000px;
-
+.welcome-container {
   .video-container {
-  
     .video-thumb {
       margin-top: 180px;
     }

@@ -1,7 +1,7 @@
 <template>
   <div id="page-6">
     <div class="row jusity-content-center">
-      <div class="ryan-wrapper col-lg-6 col-xl-5 pe-5 ms-n4">
+      <div class="ryan-wrapper col-lg-6 col-xl-5 pe-5 ms-n5">
         <img :src="ryanImg" class="w-100 ryanImg"/>
 
         <div class="col-7 col-sm-5 ryan-detail shadow rounded px-3 py-2 position-relative">
@@ -11,17 +11,17 @@
           <div class="sale fw-bold"> OVER $2 MILLION IN SALES </div>
         </div>
       </div>
-      <div class="col-12 col-md-9 col-lg-6 col-xl-7 mt-5 px-3 pt-5 mx-auto text-center">
-        <span class="title text-center"> What objections, hesitations, or concerns do you have about joining this program and changing your life?  </span>
-        <div class="d-flex flex-wrap justify-content-center">
+      <div class="col-12 col-md-9 col-lg-6 col-xl-7 mt-5 px-0 pt-5 mx-auto text-center">
+        <span class="title text-center ms-n3">What objections, hesitations, or concerns do you have about joining this program and changing your life?</span>
+        <div class="d-flex flex-wrap justify-content-center px-5">
           <div class="grey-box mt-3 mx-2" v-for="(concern, index) in concernTexts">
             <button class="btn w-100 h-100" :class="{ selected: concerns[index] }" @click="setConcerns(index)"> {{concern}}</button>
           </div>
         </div>
 
-        <div class="col-10 col-md-8 col-lg-6 col-xl-5 mx-auto">
+        <div class="col-10 col-md-8 col-lg-7 col-xl-6 mx-auto">
           <div class="row mt-5">
-            <div class="col-5 col-md-4 btn-box">
+            <div class="col-5 col-md-4 col-lg-5 btn-box">
               <button class="btn back-btn w-100 h-100" @click="prevStep">
                 <img :src="previousArrowImg" class="next-arrow">
                 <span> Back </span>

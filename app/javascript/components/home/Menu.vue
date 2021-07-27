@@ -70,7 +70,7 @@ export default {
         backgroundImage: 'url(' + require('images/video-bg.png') + ')',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
+        backgroundSize: 'contain',
       },
 
     }

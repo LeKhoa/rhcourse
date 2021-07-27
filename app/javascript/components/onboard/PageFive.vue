@@ -18,16 +18,16 @@
           </div>
         </div>
 
-        <div class="col-10 col-md-8 col-lg-6 col-xl-5 mx-auto">
+        <div class="col-10 col-md-8 col-lg-7 col-xl-6 mx-auto">
           <div class="row mt-5">
-            <div class="col-5 col-md-4 btn-box">
+            <div class="col-5 col-md-5 btn-box">
               <button class="btn back-btn w-100 h-100" @click="prevStep">
                 <img :src="previousArrowImg" class="next-arrow">
                 <span> Back </span>
               </button>
             </div>
 
-            <div class="col-6 col-md-8 btn-box">
+            <div class="col-6 col-md-7 btn-box">
               <button class="btn btn-md btn-dark rounded-0 w-100 h-100" @click="nextStep">
                 <span> Next </span>
                 <img :src="nextArrowImg" class="next-arrow">

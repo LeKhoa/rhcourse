@@ -1,34 +1,45 @@
 <template>
-  <div class="container welcome-container">
-    <div class="row">
-      <div class="col-md-10 col-lg-5">
-        <div class="welcome-img px-3 ms-4">
-          <img :src="welcomeImg" class="h-100 w-100">
+  <div class="welcome container">
+    <div class="bg-layer">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-5 mx-auto">
+          <img :src="welcomeImg1" class="w-100">
         </div>
-      </div>
 
-      <div class="col-md-12 col-lg-6 ps-5 video-container" :style="backgroundImage">
-        <div class="ms-5">
-          <div class="video-thumb">
-            <img :src="thumbnailImg" class="h-100 w-100">
-          </div>
-
-          <div class="mt-5 text-end">
-            <button class="btn btn-lg btn-dark rounded-0" @click="nextStep">
-              <span> Next step </span>
-              <img :src="nextArrowImg" class="next-arrow">
-            </button>
-          </div>
+        <div class="col-7 mx-auto">
+          <img :src="welcomeImg2" class="w-100">
         </div>
       </div>
     </div>
+
+    <div class="row justify-content-end position-relative mb-5 me-2">
+      <div class="col-7 video-frame ps-5">
+        <div class="wistia_responsive_padding" style="padding:55.94% 0 0 0;position:relative;">
+          <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+            <iframe :src="defaultWistiaVideo" title="Welcome Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen msallowfullscreen width="100%" height="100%"></iframe>
+          </div>
+        </div>
+        <script src="https://fast.wistia.net/assets/external/E-v1.js" async></script>
+      </div>
+
+      <div class="mt-5 text-end">
+        <button class="btn btm-sm btn-md btn-lg btn-dark rounded-0" @click="nextStep">
+          <span> Next step </span>
+          <img :src="nextArrowImg" class="next-arrow">
+        </button>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
-import welcomeImg from '../../images/welcome.png'
-import thumbnailImg from '../../images/thumbnail.png'
 import nextArrowImg from '../../images/next-arrow.png'
+
+import welcomeImg1 from '../../images/welcome.png'
+import welcomeImg2 from 'images/welcome-bg.png'
+
+import { mapState, mapActions } from 'vuex';
 
 export default {
   components: {
@@ -36,38 +47,34 @@ export default {
 
   data: function () {
     return {
-      welcomeImg: welcomeImg,
-      thumbnailImg: thumbnailImg,
       nextArrowImg: nextArrowImg,
-      backgroundImage: {
-        backgroundImage: 'url(' + require('images/welcome-bg.png') + ')',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'contain',
-      }
+      welcomeImg1: welcomeImg1,
+      welcomeImg2: welcomeImg2,
     }
   },
   methods: { 
     nextStep: function() {
       this.$emit('continue');
     }
+  },
+
+  computed: {
+    ...mapState(['defaultWistiaVideo']),
   }
   
 }
 </script>
 
 <style scoped lang="scss">
-.welcome-container {
-  .video-container {
-    .video-thumb {
-      margin-top: 180px;
-    }
+.welcome {
+  .bg-layer {
+    position: absolute;
+    left: 10%;
+    right: 10%;
   }
 
-  .welcome-img {
-    margin-top: 180px;
-    max-width: 484px;
-    max-height: 350px;
+  .video-frame {
+    margin-top: 15%;
   }
 
   .next-arrow {

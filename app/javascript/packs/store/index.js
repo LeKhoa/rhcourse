@@ -8,7 +8,8 @@ const store = createStore({
       businessStatus: -1,
       biggestChallenge: -1,
     },
-    concerns: [false, false, false, false, false, false]
+    concerns: [false, false, false, false, false, false],
+    defaultWistiaVideo: "https://fast.wistia.com/embed/medias/lhr14k41n2",
   },
 
   getters: {

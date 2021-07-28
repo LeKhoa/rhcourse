@@ -71,13 +71,14 @@
 <script>
 import thumbnailImg from '../../images/thumbnail.png'
 import nextArrowImg from '../../images/next-arrow.png'
-
 import backgroundImage from 'images/video-bg.png'
 
 import Videos from './VideoTab.vue'
 import Chat from './ChatTab.vue'
 import Notes from './NoteTab.vue'
 import Resources from './ResourceTab.vue'
+
+import { mapState, mapActions } from 'vuex';
 
 export default {
   components: {
@@ -89,7 +90,7 @@ export default {
       tabList: ["Videos", "Chat", "Notes", "Resources"],
       thumbnailImg: thumbnailImg,
       nextArrowImg: nextArrowImg,
-      wistiaVideoUrl: "https://fast.wistia.net/embed/iframe/g5pnf59ala",
+      wistiaVideoUrl: '',
       tabIndex: -1,
       backgroundImage: backgroundImage,
     }
@@ -104,6 +105,14 @@ export default {
       var lesson = data.lesson;
       this.wistiaVideoUrl = lesson.attributes.video;
     }
+  },
+
+  computed: {
+    ...mapState(['defaultWistiaVideo']),
+  },
+
+  created() {
+    this.wistiaVideoUrl = this.defaultWistiaVideo;
   }
 }
 </script>

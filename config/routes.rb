@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'lessons/index'
   namespace :admin do
     resources :admin_users
     resources :users
@@ -17,5 +18,17 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
+
+  resources :courses do
+    collection do
+      get 'my_course'
+    end
+  end
+
+  resources :lessons do
+    collection do
+      post 'watched'
+    end
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

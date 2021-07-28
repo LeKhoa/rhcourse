@@ -1,32 +1,55 @@
 <template>
-  <div id="menu" class="row mt-5">
-    <div class="bg-container">
-      <div class="w-100 h-100" :style="backgroundImage"></div>
+  <div id="menu" class="row w-100 mt-4 mb-5">
+    <div class="bg-container position-absolute col-lg-6 col-md-6 col-10">
+      <img :src="backgroundImage" class="w-100 h-100">
     </div>
 
-    <div class="main">
-      <div class="row">
+    <div class="page-content">
+      <div class="row p-4">
         <!-- LEFT -->
-        <div class="col-lg-8 col-md-7 col-12 ps-3 pe-5 mw-100" style="height: 100%;">
+        <div class="col-lg-8 col-md-7 col-12 px-4 mw-100">
           <div class="row">
             <span class="title"> How to choose a domain </span>
           </div>
+
           <div class="video-frame mt-3">
-            <img :src="thumbnailImg" class="h-100 w-100">
+
+            <!-- Wistia standard inline script 
+            <script src="https://fast.wistia.com/embed/medias/1c421giono.jsonp" async></script>
+            <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+            <div class="wistia_responsive_padding" style="padding:55.94% 0 0 0;position:relative;">
+              <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+                <div class="wistia_embed wistia_async_1c421giono videoFoam=true" style="height:100%;position:relative;width:100%">
+                  <div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;">
+                    <img src="https://fast.wistia.com/embed/medias/1c421giono/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            -->
+
+            <!-- Wistia fallback script -->
+            <div class="wistia_responsive_padding" style="padding:55.94% 0 0 0;position:relative;">
+              <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+                <iframe :src="wistiaVideoUrl" title="Fallback Embed Final Proof 1 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen msallowfullscreen width="100%" height="100%"></iframe>
+              </div>
+            </div>
+            <script src="https://fast.wistia.net/assets/external/E-v1.js" async></script>
+            
+
           </div>
         </div>
-        <!-- LEFT -->
 
         <!-- RIGHT -->
         <div class="col-lg-4 col-md-5 mt-3 col-12 tab-container">
-          <ul class="d-flex justify-content-between ps-2 pe-5" v-if="tabIndex != 0">
+          <ul class="d-flex justify-content-between ps-3" v-if="tabIndex != 0">
             <li v-for="(name, index) in tabList">
               <a href="#" @click.prevent="setTabIndex(index)" :class="{ 'tab-active': index == tabIndex }"> {{ name }} </a>
             </li>
           </ul>
 
-          <div class="tab-content w-100 mt-5 pe-5 ps-2 overflow-scroll">
-            <Videos v-if="tabIndex == 0"/>
+          <div class="tab-content w-100 mt-5 px-3 overflow-scroll">
+            <Videos v-if="tabIndex == 0" @selectLesson="setVideoUrl"/>
             <Chat v-if="tabIndex == 1"/>
             <Notes v-if="tabIndex == 2"/>
             <Resources v-if="tabIndex == 3"/>
@@ -35,8 +58,8 @@
         <!-- RIGHT -->
       </div>
       
-      <div class="text-center mt-5">
-        <button class="btn btn-md btn-dark rounded-0 text-cnet" @click="nextStep">
+      <div class="col-9 col-sm-5 col-md-4 col-lg-3 col-xl-2 mx-auto mt-4">
+        <button class="btn btn-lg btn-dark rounded-0 w-100" @click="nextStep">
           <span> Choose a Domain </span>
           <img :src="nextArrowImg" class="next-arrow">
         </button>
@@ -48,6 +71,8 @@
 <script>
 import thumbnailImg from '../../images/thumbnail.png'
 import nextArrowImg from '../../images/next-arrow.png'
+
+import backgroundImage from 'images/video-bg.png'
 
 import Videos from './VideoTab.vue'
 import Chat from './ChatTab.vue'
@@ -64,21 +89,20 @@ export default {
       tabList: ["Videos", "Chat", "Notes", "Resources"],
       thumbnailImg: thumbnailImg,
       nextArrowImg: nextArrowImg,
+      wistiaVideoUrl: "https://fast.wistia.net/embed/iframe/g5pnf59ala",
       tabIndex: -1,
-
-      backgroundImage: {
-        backgroundImage: 'url(' + require('images/video-bg.png') + ')',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'contain',
-      },
-
+      backgroundImage: backgroundImage,
     }
   },
 
   methods: {
-    setTabIndex: function(index) {
+    setTabIndex(index) {
       this.tabIndex = index;
+    },
+
+    setVideoUrl(data = {}) {
+      var lesson = data.lesson;
+      this.wistiaVideoUrl = lesson.attributes.video;
     }
   }
 }
@@ -88,17 +112,23 @@ export default {
 #menu {
   .title {
     font-size: 35px;
+
+    @media only screen and (max-width: 575px) {
+      font-size: 19px;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+      font-size: 30px;
+    }
   }
 
   .bg-container {
-    width: 42%;
-    height: 762px;
+    margin-top: -3%;
+    margin-left: -13%;
   }
 
-  .main {
+  .page-content {
     position: relative;
-    left: 20px;
-    top: -760px;
 
     .tab-container {
       ul {
@@ -121,8 +151,11 @@ export default {
 
       a {
         text-decoration: none;
-        font-size: 19px;
         color: #000000;
+
+        @media only screen and (min-width: 576px) {
+          font-size: 19px;
+        }
       }
     }
   }

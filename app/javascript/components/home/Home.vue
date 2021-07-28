@@ -1,5 +1,5 @@
 <template>
-  <div id="home_page">
+  <div class="home-page">
     <Header />
     <Welcome v-if="step == 0" @continue="nextStep" />
     <Menu v-if="step == 1" />

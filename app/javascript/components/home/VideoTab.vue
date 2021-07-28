@@ -5,8 +5,8 @@
       <span class="video-label"> {{lessons.length}} Lessons (30m) </span>
       <ul class="video-list mt-3">
 
-        <li class="row mt-1" 
-          :class="{ 'watched': lesson.attributes.watched, 'watching': index == watchingIndex }" 
+        <li class="row mt-1"
+          :class="{ 'watched': lesson.attributes.watched, 'watching': index == watchingIndex }"
           v-for="(lesson, index) in lessons"
           @click="selectLesson(index, lesson)">
 
@@ -15,7 +15,7 @@
           </div>
           <div class="col-4 d-flex align-items-center justify-content-end">
             <img :src="videoIcon(index, lesson)">
-            <span class="ms-2"> 1:30 </span>
+            <span class="ms-2"> {{lesson.attributes.length}} </span>
           </div>
         </li>
 

@@ -33,6 +33,10 @@ const store = createStore({
       return state.concerns;
     },
 
+    getDefaultWistiaVideo(state) {
+      return state.defaultWistiaVideo;
+    },
+
   },
 
   mutations: {

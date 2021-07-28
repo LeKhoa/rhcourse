@@ -76,7 +76,7 @@ import Chat from './ChatTab.vue'
 import Notes from './NoteTab.vue'
 import Resources from './ResourceTab.vue'
 
-import { mapState, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -102,16 +102,14 @@ export default {
     setVideoUrl(data = {}) {
       var lesson = data.lesson;
       this.wistiaVideoUrl = lesson.attributes.video;
-    }
-  },
-
-  computed: {
-    ...mapState(['defaultWistiaVideo']),
+    },
+    ...mapGetters(['getDefaultWistiaVideo'])
   },
 
   created() {
-    this.wistiaVideoUrl = this.defaultWistiaVideo;
-  }
+    this.wistiaVideoUrl = this.getDefaultWistiaVideo();
+  },
+
 }
 </script>
 

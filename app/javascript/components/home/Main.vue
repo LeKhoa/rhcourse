@@ -40,16 +40,16 @@
 
         <!-- RIGHT -->
         <div class="col-lg-4 col-md-5 mt-3 col-12 tab-container">
-          <ul class="d-flex justify-content-between ps-3" v-if="tabIndex != 0">
+          <ul class="d-flex justify-content-between ps-3">
             <li v-for="(name, index) in tabList">
               <a href="#" @click.prevent="setTabIndex(index)" :class="{ 'tab-active': index == tabIndex }"> {{ name }} </a>
             </li>
           </ul>
 
           <div class="tab-content w-100 mt-5 px-3 overflow-scroll">
-            <Videos v-if="tabIndex == 0" @selectLesson="setVideoUrl"/>
+            <Videos v-if="tabIndex == 0" @selectLesson="setVideoUrl" :selectedLesson="selectedLesson"/>
             <Chat v-if="tabIndex == 1"/>
-            <Notes v-if="tabIndex == 2"/>
+            <Notes v-if="tabIndex == 2" :lesson="selectedLesson" />
             <Resources v-if="tabIndex == 3"/>
           </div>
         </div>
@@ -89,6 +89,7 @@ export default {
       thumbnailImg: thumbnailImg,
       nextArrowImg: nextArrowImg,
       wistiaVideoUrl: '',
+      selectedLesson: null,
       tabIndex: -1,
       backgroundImage: backgroundImage,
     }
@@ -100,8 +101,8 @@ export default {
     },
 
     setVideoUrl(data = {}) {
-      var lesson = data.lesson;
-      this.wistiaVideoUrl = lesson.attributes.video;
+      this.selectedLesson = data.lesson;
+      this.wistiaVideoUrl =  this.selectedLesson.attributes.video;
     },
     ...mapGetters(['getDefaultWistiaVideo'])
   },

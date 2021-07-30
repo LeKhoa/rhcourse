@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'lessons/index'
   namespace :admin do
     resources :admin_users
     resources :users
@@ -29,6 +28,7 @@ Rails.application.routes.draw do
     collection do
       post 'watched'
     end
+    resources :notes
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

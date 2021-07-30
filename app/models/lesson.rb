@@ -4,6 +4,8 @@ class Lesson < ApplicationRecord
   has_many :user_lessons, dependent: :destroy
   has_many :users, through: :user_lessons
 
+  has_many :notes
+
   def watched_by?(user)
     users.where(id: user.id).first.present?
   end

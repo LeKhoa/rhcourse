@@ -32,8 +32,10 @@
   }
 
   .notification {
-    height: 27px;
+    width: 35px;
+    height: 33px;
   }
+
   .navbar-toggler {
     background-color: white;
   }
@@ -43,9 +45,18 @@
     color: black !important;
   }
 
+  ul > li > a:hover {
+    line.cls-1, svg .cls-2 {
+      stroke: #000;
+    }
+  }
+
+  .dropdown-menu {
+    min-width: 8rem;
+  }
+
   .dropdown-menu.account-box {
     right: 0;
     left: unset;
-    min-width: 8rem;
   }
 }

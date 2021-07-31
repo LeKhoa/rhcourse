@@ -4,13 +4,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :notes
+  has_many :notes, dependent: :destroy
 
   has_many :user_courses, dependent: :destroy
   has_many :courses, through: :user_courses
 
   has_many :user_lessons, dependent: :destroy
   has_many :watched_lessons, through: :user_lessons, source: :lesson
+
+  # TBD: for testing purpose, assign user to first course after signed_up
+
+  after_create :asign_course
 
   store :settings, accessors: [:business_status, :biggest_challenge, :concerns]
 
@@ -37,5 +41,9 @@ class User < ApplicationRecord
 
   def skip_password_validation
     true
+  end
+
+  def asign_course
+    Course.first.users << self if Course.first.present?
   end
 end

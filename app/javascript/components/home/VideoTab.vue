@@ -1,26 +1,23 @@
 <template>
-  <div class="video-container mt-5">
-    <div class="py-3">
-      <div class="mt-3 text-danger" v-if="error">{{ error }} </div>
-      <span class="video-label"> {{lessons.length}} Lessons (30m) </span>
-      <ul class="video-list mt-3">
+  <div class="video-container">
+    <div class="mt-3 text-danger" v-if="error">{{ error }} </div>
+    <span class="video-label"> {{lessons.length}} Lessons (30m) </span>
 
-        <li class="row mt-1"
-          :class="{ 'watched': lesson.attributes.watched, 'watching': isWatching(lesson) }"
-          v-for="(lesson, index) in lessons"
-          @click="selectLesson(index, lesson)">
+    <ul class="video-list mt-3">
+      <li class="row mt-1"
+        :class="{ 'watched': lesson.attributes.watched, 'watching': isWatching(lesson) }"
+        v-for="(lesson, index) in lessons"
+        @click="selectLesson(index, lesson)">
 
-          <div class="col-8">
-            <span class="title"> {{index}}.{{lesson.attributes.title}} </span>
-          </div>
-          <div class="col-4 d-flex align-items-center justify-content-end">
-            <img :src="videoIcon(lesson)">
-            <span class="ms-2"> {{lesson.attributes.length}} </span>
-          </div>
-        </li>
-
-      </ul>
-    </div>
+        <div class="col-8">
+          <span class="title"> {{index}}.{{lesson.attributes.title}} </span>
+        </div>
+        <div class="col-4 d-flex align-items-center justify-content-end">
+          <img :src="videoIcon(lesson)">
+          <span class="ms-2"> {{lesson.attributes.length}} </span>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -102,7 +99,7 @@ export default {
     padding-left: 0;
 
     li {
-      padding: 10px 0;
+      padding: 10px 10px 10px 0;
 
       span.title {
         padding-left: 20px;

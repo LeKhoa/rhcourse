@@ -1,22 +1,17 @@
 <template>
   <div id="note_tab">
     <div v-if="error" class="text-danger"> {{error}} </div>
-    <textarea id="add_note" class="w-100 mt-2" name="add_note" rows="3"
+    <textarea id="add_note" class="w-100 mt-3 px-3 py-2" name="add_note" rows="3"
       placeholder="Add a note..."
       v-model="body"
       @keydown.enter.prevent="addNote"
     >
     </textarea>
-    <!--
-    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore </p><hr>
-    <p> Lorem ipsum dolor sit amet, consectetur</p><hr>
-    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p><hr>
-    <p> Lorem ipsum dolor sit amet, consectetur</p><hr>
-    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit </p><hr>
-    -->
-    <div v-for="note in notes"> 
-      <p> {{note.body}}</p>
-      <hr >
+    <div class="mt-3">
+      <div v-for="note in notes">
+        <p> {{note.body}}</p>
+        <hr >
+      </div>
     </div>
   </div>
 </template>

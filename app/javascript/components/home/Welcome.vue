@@ -73,7 +73,7 @@ export default {
   }
 
   .video-frame {
-    margin-top: 15%;
+    margin-top: 14%;
   }
 
   .next-arrow {

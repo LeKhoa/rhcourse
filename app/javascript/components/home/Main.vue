@@ -47,7 +47,7 @@
           </ul>
 
           <div class="tab-content w-100 mt-5 px-3 overflow-scroll">
-            <Videos v-if="tabIndex == 0" @selectLesson="setVideoUrl" :selectedLesson="selectedLesson"/>
+            <Videos ref="videoRef" v-if="tabIndex == 0" @selectLesson="setVideoUrl" :selectedLesson="selectedLesson"/>
             <Chat v-if="tabIndex == 1"/>
             <Notes v-if="tabIndex == 2" :lesson="selectedLesson" />
             <Resources v-if="tabIndex == 3"/>
@@ -104,12 +104,37 @@ export default {
       this.selectedLesson = data.lesson;
       this.wistiaVideoUrl =  this.selectedLesson.attributes.video;
     },
-    ...mapGetters(['getDefaultWistiaVideo'])
+
+    updateWatchedLesson() {
+      if (!this.selectedLesson.attributes.watched) {
+        let params = { id: this.selectedLesson.id }
+        this.$http.post('/lessons/watched', params)
+          .then(response => {
+            this.$refs.videoRef.updateWatchedLesson();
+          }).catch(error => {
+            // this.error = error.response.data.message;
+        });
+      }
+    },
+    ...mapGetters(['getDefaultWistiaVideo']),
   },
 
   created() {
     this.wistiaVideoUrl = this.getDefaultWistiaVideo();
   },
+
+  mounted() {
+    window._wq = window._wq || [];
+    let context = this;
+    _wq.push({ id: '_all', onReady: function(video) {
+      // video.bind('play', function() {
+      // });
+
+      video.bind('end', function() {
+        context.updateWatchedLesson();
+      });
+    }});
+  }
 
 }
 </script>

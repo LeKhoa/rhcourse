@@ -59,9 +59,9 @@
             </a>
 
             <div class="dropdown-menu account-box" aria-labelledby="accountDropdown">
-              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
-              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Account</a>
+              <div class="dropdown-divider"></div>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
             </div>
           </li>
         </ul>

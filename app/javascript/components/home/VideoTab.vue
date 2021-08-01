@@ -50,17 +50,14 @@ export default {
 
     selectLesson(index, lesson) {
       this.$emit('selectLesson', { lesson: lesson });
-      this.updateWatchedLesson(index, lesson);
     },
 
-    updateWatchedLesson(index, lesson) {
-      let params = { id: lesson.id }
-      this.$http.post('/lessons/watched', params)
-        .then(response => {
-          this.lessons[index].attributes.watched = true;
-        }).catch(error => {
-          this.error = error.response;
-      });
+    updateWatchedLesson() {
+      for(let i=0; i < this.lessons.length; i++) {
+        if(this.lessons[i].id == this.selectedLesson.id){
+          return this.lessons[i].attributes.watched = true;
+        }
+      }
     },
 
     isWatching(lesson) {

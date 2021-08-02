@@ -25,7 +25,7 @@
           </div>
           <div class="col-6">
             <select class="form-select shadow-none rounded-0" aria-label="Default select example" v-model="budgetType">
-              <option value="0"> Monthly Budget </option>
+              <option selected disabled hidden value="0"> Monthly Budget </option>
               <option value="1"> $200-$500 </option>
               <option value="2"> $500-$2,000 </option>
               <option value="3"> $2,000-$5,000 </option>

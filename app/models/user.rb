@@ -19,9 +19,11 @@ class User < ApplicationRecord
   store :settings, accessors: [:business_status, :challenges, :concerns, :criterias]
 
   enum budget_type: {
-    weekly: 0,
-    monthly: 1,
-    yearly: 2,
+    '$200-$500' => 1,
+    '$500-$2,000'=> 2,
+    '$2,000-$5,000'=> 3,
+    '$5,000-$10,000' => 4,
+    '$10,000+' => 5
   }
 
   def watched?(lesson)

@@ -126,7 +126,6 @@ export default {
     this.$http.get("/courses/my_course")
       .then(response => {
         this.course = response.data.data;
-        console.log(this.course);
       }).catch(error => {
         this.error = error.response;
     });

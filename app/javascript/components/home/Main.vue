@@ -47,10 +47,10 @@
           </ul>
 
           <div class="tab-content w-100 mt-5 px-3 overflow-scroll">
-            <Videos ref="videoRef" v-if="tabIndex == 0" @selectLesson="setVideoUrl" :selectedLesson="selectedLesson"/>
+            <Videos ref="videoRef" v-if="tabIndex == 0" @selectLesson="setVideoUrl" :course="course" :selectedLesson="selectedLesson"/>
             <Chat v-if="tabIndex == 1"/>
-            <Notes v-if="tabIndex == 2" :lesson="selectedLesson" />
-            <Resources v-if="tabIndex == 3"/>
+            <Notes v-if="tabIndex == 2" :course="course" :lesson="selectedLesson" />
+            <Resources v-if="tabIndex == 3" :course="course" />
           </div>
         </div>
         <!-- RIGHT -->
@@ -89,6 +89,7 @@ export default {
       thumbnailImg: thumbnailImg,
       nextArrowImg: nextArrowImg,
       wistiaVideoUrl: '',
+      course: null,
       selectedLesson: null,
       tabIndex: -1,
       backgroundImage: backgroundImage,
@@ -108,7 +109,7 @@ export default {
     updateWatchedLesson() {
       if (!this.selectedLesson.attributes.watched) {
         let params = { id: this.selectedLesson.id }
-        this.$http.post('/lessons/watched', params)
+        this.$http.post(`/courses/${this.course.id}/lessons/watched`, params)
           .then(response => {
             this.$refs.videoRef.updateWatchedLesson();
           }).catch(error => {
@@ -121,6 +122,14 @@ export default {
 
   created() {
     this.wistiaVideoUrl = this.getDefaultWistiaVideo();
+
+    this.$http.get("/courses/my_course")
+      .then(response => {
+        this.course = response.data.data;
+        console.log(this.course);
+      }).catch(error => {
+        this.error = error.response;
+    });
   },
 
   mounted() {

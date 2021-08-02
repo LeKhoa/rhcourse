@@ -21,6 +21,7 @@
 export default {
   props: {
     lesson: Object,
+    course: Object,
   },
 
   data: function () {
@@ -45,7 +46,7 @@ export default {
         body: this.body,
       };
 
-      this.$http.post(`/lessons/${lesson_id}/notes`, params)
+      this.$http.post(`/courses/${this.course.id}/lessons/${lesson_id}/notes`, params)
         .then(response => {
           this.createNoteSuccessfull(response.data.note);
         }).catch(error => {
@@ -75,7 +76,7 @@ export default {
       return;
     }
     let lesson_id = this.lesson ? this.lesson.id : 0;
-    this.$http.get(`/lessons/${lesson_id}/notes`)
+    this.$http.get(`/courses/${this.course.id}/lessons/${lesson_id}/notes`)
       .then(response => {
         this.notes = response.data.notes;
       }).catch(error => {

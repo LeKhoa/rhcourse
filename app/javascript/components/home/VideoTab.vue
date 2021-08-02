@@ -29,6 +29,7 @@ import watchingVideoIcon from '../../images/watching-icon.png'
 export default {
   props: {
     selectedLesson: Object,
+    course: Object,
   },
 
   data: function () {
@@ -68,10 +69,10 @@ export default {
   },
 
   created() {
-    const headers = { "Content-Type": "application/json" };
-    this.$http.get("/courses/my_course.json", { headers })
+    this.$http.get(`/courses/${this.course.id}/lessons`,)
       .then(response => {
-        this.lessons = response.data.data.attributes.lessons.data;
+        this.lessons = response.data.data;
+        console.log(this.lessons);
       }).catch(error => {
         this.error = error.response;
     });

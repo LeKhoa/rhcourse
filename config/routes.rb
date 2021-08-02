@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   devise_for :admin_users
 
   root to: 'home#index'
-  get 'onboard', to: 'home#onboard', as: :onboard
 
   devise_for :users, controllers: { 
     sessions: 'users/sessions',
@@ -22,13 +21,13 @@ Rails.application.routes.draw do
     collection do
       get 'my_course'
     end
-  end
 
-  resources :lessons do
-    collection do
-      post 'watched'
+    resources :lessons do
+      collection do
+        post 'watched'
+      end
+      resources :notes
     end
-    resources :notes
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

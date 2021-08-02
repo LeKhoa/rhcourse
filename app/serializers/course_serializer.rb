@@ -1,8 +1,8 @@
 class CourseSerializer
   include JSONAPI::Serializer
-  attributes :name
+  attributes :id, :name
 
-  attribute :lessons do |obj, params|
-    LessonSerializer.new(obj.lessons, { params: params })
-  end
+  # attribute :lessons do |obj, params|
+  #   LessonSerializer.new(obj.lessons, { params: params })
+  # end
 end

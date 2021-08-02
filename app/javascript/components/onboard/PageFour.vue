@@ -10,7 +10,7 @@
         <div class="d-flex flex-wrap justify-content-center">
           
           <div class="grey-box mt-3 mx-2" v-for="(status, index) in businessJourneys">
-            <button class="btn w-100 h-100" @click="setStatus(index)"> {{status}} </button>
+            <button class="btn w-100 h-100" :class="{ selected: index == userSettings.businessStatus }" @click="setStatus(index)"> {{status}} </button>
           </div>
         </div>
 
@@ -83,6 +83,10 @@ export default {
     prevStep: function() {
       this.$emit('back');
     },
+  },
+
+  computed: {
+    ...mapState(['userSettings']),
   }
 }
 </script>

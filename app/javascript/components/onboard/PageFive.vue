@@ -14,7 +14,7 @@
         <span class="title text-center"> What’s the biggest challenge Rohan can help you with right now?  </span>
         <div class="d-flex flex-wrap justify-content-center">
           <div class="grey-box mt-3 mx-2" v-for="(challenge, index) in challenges">
-            <button class="btn w-100 h-100" @click="setChallenge(index)"> {{challenge}}</button>
+            <button class="btn w-100 h-100" :class="{ selected: userSettings.challenges[index] }" @click="setChallenges(index)"> {{challenge}}</button>
           </div>
         </div>
 
@@ -82,7 +82,7 @@ export default {
 
   methods: {
     ...mapActions({
-      setChallenge: 'setBiggestChallenge',
+      setChallenges: 'setChallenges',
     }),
 
     nextStep() {
@@ -92,6 +92,10 @@ export default {
     prevStep() {
       this.$emit('back');
     },
+  },
+
+  computed: {
+    ...mapState(['userSettings']),
   }
 }
 </script>

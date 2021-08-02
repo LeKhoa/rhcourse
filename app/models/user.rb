@@ -16,7 +16,7 @@ class User < ApplicationRecord
 
   after_create :asign_course
 
-  store :settings, accessors: [:business_status, :biggest_challenge, :concerns]
+  store :settings, accessors: [:business_status, :challenges, :concerns, :criterias]
 
   enum budget_type: {
     weekly: 0,

@@ -25,15 +25,18 @@
           </div>
           <div class="col-6">
             <select class="form-select shadow-none rounded-0" aria-label="Default select example" v-model="budgetType">
-              <option value="0"> Weekly Business Budget </option>
-              <option value="1"> Monthly Business Budget</option>
-              <option value="2"> Yearly Business Budget</option>
+              <option value="0"> Monthly Budget </option>
+              <option value="1"> $200-$500 </option>
+              <option value="2"> $500-$2,000 </option>
+              <option value="3"> $2,000-$5,000 </option>
+              <option value="4"> $5,000-$10,000 </option>
+              <option value="5"> $10,000+ </option>
             </select>
           </div>
         </div>
 
         <div class="col-6 col-sm-5 mx-auto btn-box mt-5">
-          <button class="btn btn-dark w-100 h-100" @click.prevent="signUp"> BOOK A CALL!</button>
+          <button class="btn btn-dark w-100 h-100" @click.prevent="signUp"> Let's Get Started</button>
         </div>
 
         <JoinText />

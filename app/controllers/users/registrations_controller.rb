@@ -86,7 +86,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: [
       :name, :email, :phone, :budget_type, :password, :password_confirmation, :current_password,
-      :business_status, :biggest_challenge, concerns: [],
+      :business_status, challenges: [], concerns: [], criterias: [],
     ])
   end
 

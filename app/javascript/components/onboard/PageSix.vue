@@ -15,7 +15,7 @@
         <span class="title text-center ms-n3">What objections, hesitations, or concerns do you have about joining this program and changing your life?</span>
         <div class="d-flex flex-wrap justify-content-center px-5">
           <div class="grey-box mt-3 mx-2" v-for="(concern, index) in concernTexts">
-            <button class="btn w-100 h-100" :class="{ selected: concerns[index] }" @click="setConcerns(index)"> {{concern}}</button>
+            <button class="btn w-100 h-100" :class="{ selected: userSettings.concerns[index] }" @click="setConcerns(index)"> {{concern}}</button>
           </div>
         </div>
 
@@ -77,8 +77,6 @@ export default {
         "I don’t want to start a local service business",
         "I have no objections let’s get moving",
       ],
-
-      error: '',
     }
   },
 
@@ -88,56 +86,22 @@ export default {
     ]),
 
     nextStep() {
-      this.updateUser();
+      this.$emit('next');
     },
 
     prevStep() {
       this.$emit('back');
     },
-
-    updateUser() {
-      let params = this.userParams();
-      this.$http.put('/users.json', params)
-        .then(response => {
-          this.updateSuccessfull(response);
-        }).catch(error => {
-          this.updateFailed(error);
-      });
-    },
-
-    updateSuccessfull(response) {
-      this.$emit('next');
-    },
-
-    updateFailed(error) {
-      this.error = error.response.data.message;
-    },
-
-    userParams() {
-      return { 
-        user: {
-          business_status: this.userSettings.businessStatus,
-          biggest_challenge: this.userSettings.biggestChallenge,
-          concerns: [...this.concerns.keys()].filter(i => this.concerns[i]),
-        }
-      }
-    },
-
   },
 
   computed: {
-    ...mapState(['concerns', 'userSettings', 'address']),
+    ...mapState(['userSettings']),
   }
 }
 </script>
 
 <style scoped lang="scss">
 #page-6 {
-
-  .selected {
-    box-shadow: 0 0 0 0.25rem #8ac832;
-  }
-
   .ryanImg {
     height: 85%;
   }

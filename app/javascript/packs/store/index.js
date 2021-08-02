@@ -6,9 +6,11 @@ const store = createStore({
     address: {},
     userSettings: {
       businessStatus: -1,
-      biggestChallenge: -1,
+      challenges: [false, false, false, false, false, false],
+      concerns: [false, false, false, false, false, false],
+      criterias: [false, false, false, false],
     },
-    concerns: [false, false, false, false, false, false],
+
     defaultWistiaVideo: "https://fast.wistia.com/embed/medias/lhr14k41n2",
   },
 
@@ -25,8 +27,8 @@ const store = createStore({
       return state.userSettings.businessStatus;
     },
 
-    getBiggestChallenge(state) {
-      return state.userSettings.biggestChallenge;
+    getChallenges(state) {
+      return state.userSettings.challenges;
     },
 
     getConcerns(state) {
@@ -56,18 +58,21 @@ const store = createStore({
       state.userSettings.businessStatus = status;
     },
 
-    SET_BIGGEST_CHALLENGE(state, challenge) {
-      state.userSettings.biggestChallenge = challenge;
+    SET_CHALLENGES(state, index) {
+      state.userSettings.challenges[index] = !state.userSettings.challenges[index];
     },
 
     SET_CONCERNS(state, index) {
-      state.concerns[index] = !state.concerns[index];
+      state.userSettings.concerns[index] = !state.userSettings.concerns[index];
 
-      if(state.concerns[state.concerns.length -1] == true){
-        state.concerns = [false, false, false, false, false, true];
+      if(state.userSettings.concerns[state.userSettings.concerns.length -1] == true){
+        state.userSettings.concerns = [false, false, false, false, false, true];
       }
     },
 
+    SET_CRITERIAS(state, index) {
+      state.userSettings.criterias[index] = !state.userSettings.criterias[index];
+    }
   },
 
   actions: {
@@ -83,12 +88,16 @@ const store = createStore({
       commit("SET_BUSINESS_STATUS", status);
     },
 
-    setBiggestChallenge({ commit }, challenge) {
-      commit("SET_BIGGEST_CHALLENGE", challenge);
+    setChallenges({ commit }, index) {
+      commit("SET_CHALLENGES", index);
     },
 
     setConcerns({ commit }, index) {
       commit("SET_CONCERNS", index);
+    },
+
+    setCriterias({ commit }, index) {
+      commit("SET_CRITERIAS", index);
     }
   }
 })

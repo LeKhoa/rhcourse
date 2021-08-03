@@ -6,6 +6,8 @@ class Lesson < ApplicationRecord
 
   has_many :notes
 
+  validates_presence_of :video, :title
+
   def watched_by?(user)
     users.where(id: user.id).first.present?
   end

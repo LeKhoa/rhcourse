@@ -1,30 +1,15 @@
 <template>
   <div id="resource_tab">
     <label class="title"> Resources </label>
-    <ul class="mt-3">
-      <li>Download Rohan's PDF files
-        <ul class="pdf-list">
-          <li>
-            <a href="#">Lorem ipsum dolor sit amet.pdf</a>
-          </li>
-          <li> 
-            <a href="#">Consectetur adipiscing elit.pdf </a>
-          </li>
-          <li> 
-            <a href="#">Sed do eiusmod tempor </a>
+    <ul class="mt-3" v-for="(resource, index) in resources">
+      <li>{{resource.attributes.title}}
+        <ul class="pdf-list" v-if="resource.attributes.attachments.data">
+          <li v-for="attachment in resource.attributes.attachments.data">
+            <a :href="attachment.attributes.link">{{attachment.attributes.name}}</a>
           </li>
         </ul>
       </li>
-      <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</li>
-      <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip</li>
-      <li>Sed ut perspiciatis, unde omnis iste natus error sit </li>
-      <li>Quae ab illo inventore veritatis et quasi architecto
-        <div>- Lorem ipsum dolor sit amet</div>
-        <div>- Aspernatur aut odit aut fugit</div>
-        <div>- Sed quia consequuntur magni dolores</div>
-        <div>- Qui ratione voluptatem sequi nesciunt</div>
-        <div>- Neque porro quisquam est</div>
-      </li>
+      <p style="white-space: pre-line">{{resource.attributes.description}}</p>
     </ul>
   </div>
 </template>
@@ -33,13 +18,30 @@
 
 export default {
 
+  props: {
+    course: Object,
+  },
+
   data: function () {
     return {
+      resources: [],
+      error: '',
     }
   },
 
   methods: {
-  }
+
+  },
+
+  created() {
+    this.$http.get(`/courses/${this.course.id}/resources`,)
+      .then(response => {
+        this.resources = response.data.data;
+        console.log(this.resources);
+      }).catch(error => {
+        this.error = error.response;
+    });
+  },
 }
 </script>
 

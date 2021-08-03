@@ -73,7 +73,7 @@ export default {
       .then(response => {
         this.lessons = response.data.data;
       }).catch(error => {
-        this.error = error.response;
+        console.log(error);
     });
   },
 

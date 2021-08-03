@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_30_075344) do
+ActiveRecord::Schema.define(version: 2021_08_03_140921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 2021_07_30_075344) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "attachments", force: :cascade do |t|
+    t.bigint "resource_id", null: false
+    t.string "name"
+    t.string "link"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resource_id"], name: "index_attachments_on_resource_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -51,6 +60,15 @@ ActiveRecord::Schema.define(version: 2021_07_30_075344) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["lesson_id"], name: "index_notes_on_lesson_id"
     t.index ["user_id"], name: "index_notes_on_user_id"
+  end
+
+  create_table "resources", force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_resources_on_course_id"
   end
 
   create_table "user_courses", force: :cascade do |t|
@@ -87,9 +105,11 @@ ActiveRecord::Schema.define(version: 2021_07_30_075344) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "attachments", "resources"
   add_foreign_key "lessons", "courses"
   add_foreign_key "notes", "lessons"
   add_foreign_key "notes", "users"
+  add_foreign_key "resources", "courses"
   add_foreign_key "user_courses", "courses"
   add_foreign_key "user_courses", "users"
   add_foreign_key "user_lessons", "lessons"

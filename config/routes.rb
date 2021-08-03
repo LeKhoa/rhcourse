@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'resources/index'
   namespace :admin do
     resources :admin_users
     resources :users
     resources :lessons
     resources :courses
+    resources :resources
+    resources :attachments
 
     root to: "courses#index"
   end
@@ -28,6 +31,7 @@ Rails.application.routes.draw do
       end
       resources :notes
     end
+    resources :resources
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

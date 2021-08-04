@@ -1,5 +1,5 @@
 <template>
-  <div id="menu" class="row w-100 mt-4 mb-5">
+  <div id="main" class="row w-100 mt-4 mb-5">
     <div class="bg-container position-absolute col-lg-6 col-md-6 col-10">
       <img :src="backgroundImage" class="w-100 h-100">
     </div>
@@ -41,16 +41,16 @@
         <!-- RIGHT -->
         <div class="col-lg-4 col-md-5 mt-3 col-12 tab-container">
           <ul class="d-flex justify-content-between ps-3">
-            <li v-for="(name, index) in tabList">
-              <a href="#" @click.prevent="setTabIndex(index)" :class="{ 'tab-active': index == tabIndex }"> {{ name }} </a>
+            <li v-for="key in Object.keys(tabList)">
+              <a href="#" @click.prevent="setTabIndex(key)" :class="{ 'tab-active': key == tabIndex }"> {{ tabList[key] }} </a>
             </li>
           </ul>
 
           <div class="tab-content w-100 mt-5 px-3 overflow-scroll">
-            <Videos ref="videoRef" v-if="tabIndex == 0" @selectLesson="setVideoUrl" :course="course" :selectedLesson="selectedLesson"/>
-            <Chat v-if="tabIndex == 1"/>
-            <Notes v-if="tabIndex == 2" :course="course" :lesson="selectedLesson" />
-            <Resources v-if="tabIndex == 3" :course="course" />
+            <Videos ref="videoRef" v-if="tabList[tabIndex] == 'Videos'" @selectLesson="setVideoUrl" :course="course" :selectedLesson="selectedLesson"/>
+            <Chat v-if="tabList[tabIndex] == 'Chat'"/>
+            <Notes v-if="tabList[tabIndex] == 'Notes'" :course="course" :lesson="selectedLesson" />
+            <Resources v-if="tabList[tabIndex] == 'Resources'" :course="course" />
           </div>
         </div>
         <!-- RIGHT -->
@@ -83,15 +83,23 @@ export default {
     Videos, Chat, Notes, Resources
   },
 
+  props: {
+    course: Object,
+  },
+
   data: function () {
     return {
-      tabList: ["Videos", "Chat", "Notes", "Resources"],
+      tabList: {
+        '1': 'Videos',
+        // 2: "Chat",
+        '3': 'Notes',
+        '4': "Resources"
+      },
       thumbnailImg: thumbnailImg,
       nextArrowImg: nextArrowImg,
       wistiaVideoUrl: '',
-      course: null,
       selectedLesson: null,
-      tabIndex: -1,
+      tabIndex: '1',
       backgroundImage: backgroundImage,
     }
   },
@@ -122,13 +130,6 @@ export default {
 
   created() {
     this.wistiaVideoUrl = this.getDefaultWistiaVideo();
-
-    this.$http.get("/courses/my_course")
-      .then(response => {
-        this.course = response.data.data;
-      }).catch(error => {
-        this.error = error.response;
-    });
   },
 
   mounted() {
@@ -148,7 +149,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#menu {
+#main {
   .title {
     font-size: 35px;
 

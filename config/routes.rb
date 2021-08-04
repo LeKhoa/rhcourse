@@ -21,10 +21,6 @@ Rails.application.routes.draw do
   }
 
   resources :courses do
-    collection do
-      get 'my_course'
-    end
-
     resources :lessons do
       collection do
         post 'watched'

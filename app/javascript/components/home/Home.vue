@@ -2,7 +2,7 @@
   <div class="home-page">
     <Header />
     <Welcome v-if="step == 0" @continue="nextStep" />
-    <Main v-if="step == 1" />
+    <Main v-if="step == 1" :course="courses[0]"/>
   </div>
 </template>
 
@@ -22,6 +22,7 @@ export default {
   data: function () {
     return {
       step: 0,
+      courses: [],
     }
   },
 
@@ -32,6 +33,12 @@ export default {
   },
 
   mounted() {
+    this.$http.get("/courses")
+      .then(response => {
+        this.courses = response.data.data;
+      }).catch(error => {
+        this.error = error.response;
+    });
   }
 }
 </script>

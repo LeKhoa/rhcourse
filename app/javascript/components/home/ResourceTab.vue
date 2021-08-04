@@ -37,7 +37,6 @@ export default {
     this.$http.get(`/courses/${this.course.id}/resources`,)
       .then(response => {
         this.resources = response.data.data;
-        console.log(this.resources);
       }).catch(error => {
         this.error = error.response;
     });

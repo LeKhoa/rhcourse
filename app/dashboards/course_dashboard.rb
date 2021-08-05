@@ -11,6 +11,8 @@ class CourseDashboard < Administrate::BaseDashboard
     id: Field::Number,
     name: Field::String,
     sections: Field::HasMany,
+    active: Field::Boolean,
+    priority: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -23,16 +25,18 @@ class CourseDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     id
     name
-    created_at
-    updated_at
+    active
+    priority
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     id
-    name
     sections
+    name
+    active
+    priority
     created_at
     updated_at
   ].freeze
@@ -43,6 +47,8 @@ class CourseDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     name
     sections
+    active
+    priority
   ].freeze
 
   # COLLECTION_FILTERS

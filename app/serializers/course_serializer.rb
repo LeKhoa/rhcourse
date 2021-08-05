@@ -3,7 +3,7 @@ class CourseSerializer
   attributes :id, :name
 
   attribute :sections do |obj|
-    SectionSerializer.new(obj.sections.order(:priority))
+    SectionSerializer.new(obj.sections.active.order(:priority))
   end
 
   # attribute :lessons do |obj, params|

@@ -35,7 +35,7 @@ export default {
   },
 
   created() {
-    this.$http.get(`/courses/${this.course.id}/sections/${this.section.id}/resources`,)
+    this.$http.get(`/sections/${this.section.id}/resources`)
       .then(response => {
         this.resources = response.data.data;
       }).catch(error => {

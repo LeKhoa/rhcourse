@@ -3,7 +3,7 @@
     <Header />
     <Welcome v-if="step == 0" @continue="nextStep" />
     <div v-if="step == 1" v-for="(section, index) in sections">
-      <Main :course="my_first_course" :section="section" v-if="index == sectionIndex" @nextSection="nextSection"/>
+      <Main :section="section" v-if="index == sectionIndex" @nextSection="nextSection"/>
     </div>
   </div>
 </template>

@@ -26,15 +26,20 @@ Rails.application.routes.draw do
     collection do
       get 'my_first_course'
     end
-    resources :sections do
-      resources :lessons do
-        collection do
-          post 'watched'
-        end
-        resources :notes
+    resources :sections
+  end
+
+  resources :sections do
+    resources :lessons do
+      member do
+        post 'watched'
       end
-      resources :resources
     end
+    resources :resources
+  end
+
+  resources :lessons do
+    resources :notes
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

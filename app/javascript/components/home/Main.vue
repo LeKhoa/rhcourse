@@ -9,7 +9,7 @@
         <!-- LEFT -->
         <div class="col-lg-8 col-md-7 col-12 px-4 mw-100">
           <div class="row">
-            <span class="title"> How to choose a domain </span>
+            <span class="title"> {{section.attributes.name}} </span>
           </div>
 
           <div class="video-frame mt-3">

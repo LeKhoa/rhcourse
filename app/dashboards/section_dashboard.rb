@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class LessonDashboard < Administrate::BaseDashboard
+class SectionDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,11 +8,13 @@ class LessonDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    section: Field::BelongsTo,
+    course: Field::BelongsTo,
+    lessons: Field::HasMany,
+    resources: Field::HasMany,
     id: Field::Number,
-    video: Field::String,
-    title: Field::String,
-    length: Field::Number,
+    name: Field::String,
+    active: Field::Boolean,
+    priority: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -23,21 +25,23 @@ class LessonDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    section
+    course
     id
-    video
-    title
-    length
+    name
+    active
+    priority
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-    section
+    course
+    lessons
+    resources
     id
-    video
-    title
-    length
+    name
+    active
+    priority
     created_at
     updated_at
   ].freeze
@@ -46,10 +50,12 @@ class LessonDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    section
-    video
-    title
-    length
+    course
+    lessons
+    resources
+    name
+    active
+    priority
   ].freeze
 
   # COLLECTION_FILTERS
@@ -64,10 +70,10 @@ class LessonDashboard < Administrate::BaseDashboard
   #   }.freeze
   COLLECTION_FILTERS = {}.freeze
 
-  # Overwrite this method to customize how lessons are displayed
+  # Overwrite this method to customize how sections are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(lesson)
-  #   "Lesson ##{lesson.id}"
+  # def display_resource(section)
+  #   "Section ##{section.id}"
   # end
 end

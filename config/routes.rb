@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'sections/index'
   get 'resources/index'
   namespace :admin do
     resources :admin_users
     resources :users
-    resources :lessons
     resources :courses
+    resources :sections
+    resources :lessons
     resources :resources
     resources :attachments
 
@@ -21,13 +23,15 @@ Rails.application.routes.draw do
   }
 
   resources :courses do
-    resources :lessons do
-      collection do
-        post 'watched'
+    resources :sections do
+      resources :lessons do
+        collection do
+          post 'watched'
+        end
+        resources :notes
       end
-      resources :notes
+      resources :resources
     end
-    resources :resources
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -10,7 +10,7 @@ class CourseDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     name: Field::String,
-    lessons: Field::HasMany,
+    sections: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -32,7 +32,7 @@ class CourseDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
     id
     name
-    lessons
+    sections
     created_at
     updated_at
   ].freeze
@@ -42,7 +42,7 @@ class CourseDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     name
-    lessons
+    sections
   ].freeze
 
   # COLLECTION_FILTERS

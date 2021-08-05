@@ -1,18 +1,5 @@
 module Admin
-  class ResourcesController < Admin::ApplicationController
-
-    def create
-      resource = Resource.new(resource_params)
-      if resource.save
-        redirect_to admin_resource_path(resource), notice: translate_with_resource("create.success")
-      else
-        flash[:notice] = resource.errors.full_messages.first
-        render :new, locals: {
-          page: Administrate::Page::Form.new(dashboard, requested_resource),
-        }
-      end
-    end
-
+  class SectionsController < Admin::ApplicationController
     # Overwrite any of the RESTful controller actions to implement custom behavior
     # For example, you may want to send an email after a foo is updated.
     #
@@ -55,22 +42,5 @@ module Admin
 
     # See https://administrate-prototype.herokuapp.com/customizing_controller_actions
     # for more information
-
-    private
-
-    def resource_params
-      params.require(:resource).permit(
-        :id,
-        :section_id,
-        :title,
-        :description,
-        attachments_attributes: [
-          :id,
-          :_destroy,
-          :name,
-          :link,
-        ],
-      )
-    end
   end
 end

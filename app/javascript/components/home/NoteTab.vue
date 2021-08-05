@@ -4,13 +4,13 @@
     <textarea id="add_note" class="w-100 mt-3 px-3 py-2" name="add_note" rows="3"
       placeholder="Add a note..."
       v-model="body"
-      @keydown.enter.prevent="addNote"
+      @keydown.enter.exact.prevent="addNote"
     >
     </textarea>
     <div class="mt-3">
       <div v-for="note in notes">
         <p> {{note.body}}</p>
-        <hr >
+        <hr>
       </div>
     </div>
   </div>
@@ -21,7 +21,7 @@
 export default {
   props: {
     lesson: Object,
-    course: Object,
+    section: Object,
   },
 
   data: function () {
@@ -46,7 +46,7 @@ export default {
         body: this.body,
       };
 
-      this.$http.post(`/courses/${this.course.id}/lessons/${lesson_id}/notes`, params)
+      this.$http.post(`/courses/1/sections/${this.section.id}/lessons/${lesson_id}/notes`, params)
         .then(response => {
           this.createNoteSuccessfull(response.data.note);
         }).catch(error => {
@@ -61,7 +61,6 @@ export default {
 
     createNoteFailed(error) {
       this.error = error.response.data.message;
-      this.body = '';
     },
 
   },
@@ -76,7 +75,7 @@ export default {
       return;
     }
     let lesson_id = this.lesson ? this.lesson.id : 0;
-    this.$http.get(`/courses/${this.course.id}/lessons/${lesson_id}/notes`)
+    this.$http.get(`/courses/1/sections/${this.section.id}/lessons/${lesson_id}/notes`)
       .then(response => {
         this.notes = response.data.notes;
       }).catch(error => {

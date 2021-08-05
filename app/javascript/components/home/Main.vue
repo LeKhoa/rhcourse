@@ -47,17 +47,17 @@
           </ul>
 
           <div class="tab-content w-100 mt-5 px-3 overflow-scroll">
-            <Videos ref="videoRef" v-if="tabList[tabIndex] == 'Videos'" @selectLesson="setVideoUrl" :course="course" :selectedLesson="selectedLesson"/>
+            <Videos v-if="tabList[tabIndex] == 'Videos'" @selectLesson="setVideoUrl" :lessons="lessons" :selectedLesson="selectedLesson"/>
             <Chat v-if="tabList[tabIndex] == 'Chat'"/>
-            <Notes v-if="tabList[tabIndex] == 'Notes'" :course="course" :lesson="selectedLesson" />
-            <Resources v-if="tabList[tabIndex] == 'Resources'" :course="course" />
+            <Notes v-if="tabList[tabIndex] == 'Notes'" :section="section" :lesson="selectedLesson" />
+            <Resources v-if="tabList[tabIndex] == 'Resources'" :section="section" />
           </div>
         </div>
         <!-- RIGHT -->
       </div>
       
       <div class="col-9 col-sm-5 col-md-4 col-lg-3 col-xl-2 mx-auto mt-4">
-        <button class="btn btn-lg btn-dark rounded-0 w-100" @click="nextStep">
+        <button class="btn btn-lg btn-dark rounded-0 w-100" @click="nextSection">
           <span> Choose a Domain </span>
           <img :src="nextArrowImg" class="next-arrow">
         </button>
@@ -84,7 +84,7 @@ export default {
   },
 
   props: {
-    course: Object,
+    section: Object,
   },
 
   data: function () {
@@ -99,6 +99,7 @@ export default {
       nextArrowImg: nextArrowImg,
       wistiaVideoUrl: '',
       selectedLesson: null,
+      lessons: [],
       tabIndex: '1',
       backgroundImage: backgroundImage,
     }
@@ -117,19 +118,43 @@ export default {
     updateWatchedLesson() {
       if (!this.selectedLesson.attributes.watched) {
         let params = { id: this.selectedLesson.id }
-        this.$http.post(`/courses/${this.course.id}/lessons/watched`, params)
+        this.$http.post(`/courses/1/sections/${this.section.id}/lessons/watched`, params)
           .then(response => {
-            this.$refs.videoRef.updateWatchedLesson();
+            this.updateClientLessonStatus();
           }).catch(error => {
             // this.error = error.response.data.message;
         });
       }
     },
+
+    updateClientLessonStatus() {
+      for(let i=0; i < this.lessons.length; i++) {
+        if(this.lessons[i].id == this.selectedLesson.id){
+          return this.lessons[i].attributes.watched = true;
+        }
+      }
+    },
+
+    nextSection() {
+      this.$emit('nextSection');
+    },
+
+    getLessonSuccessfull(response) {
+      this.lessons = response.data.data;
+      this.selectedLesson = this.lessons[0];
+      this.wistiaVideoUrl = this.selectedLesson.attributes.video;
+    },
+
     ...mapGetters(['getDefaultWistiaVideo']),
   },
 
   created() {
-    this.wistiaVideoUrl = this.getDefaultWistiaVideo();
+    this.$http.get(`/courses/1/sections/${this.section.id}/lessons`,)
+      .then(response => {
+        this.getLessonSuccessfull(response);
+      }).catch(error => {
+        console.log(error);
+    });
   },
 
   mounted() {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_03_140921) do
+ActiveRecord::Schema.define(version: 2021_08_04_144829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 2021_08_03_140921) do
     t.integer "length"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "course_id"
-    t.index ["course_id"], name: "index_lessons_on_course_id"
+    t.bigint "section_id"
+    t.index ["section_id"], name: "index_lessons_on_section_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -63,12 +63,22 @@ ActiveRecord::Schema.define(version: 2021_08_03_140921) do
   end
 
   create_table "resources", force: :cascade do |t|
-    t.bigint "course_id", null: false
     t.string "title"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["course_id"], name: "index_resources_on_course_id"
+    t.bigint "section_id"
+    t.index ["section_id"], name: "index_resources_on_section_id"
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.string "name"
+    t.boolean "active", default: true
+    t.integer "priority", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_sections_on_course_id"
   end
 
   create_table "user_courses", force: :cascade do |t|
@@ -106,10 +116,11 @@ ActiveRecord::Schema.define(version: 2021_08_03_140921) do
   end
 
   add_foreign_key "attachments", "resources"
-  add_foreign_key "lessons", "courses"
+  add_foreign_key "lessons", "sections"
   add_foreign_key "notes", "lessons"
   add_foreign_key "notes", "users"
-  add_foreign_key "resources", "courses"
+  add_foreign_key "resources", "sections"
+  add_foreign_key "sections", "courses"
   add_foreign_key "user_courses", "courses"
   add_foreign_key "user_courses", "users"
   add_foreign_key "user_lessons", "lessons"

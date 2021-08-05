@@ -29,7 +29,7 @@ import watchingVideoIcon from '../../images/watching-icon.png'
 export default {
   props: {
     selectedLesson: Object,
-    course: Object,
+    lessons: Array,
   },
 
   data: function () {
@@ -37,7 +37,6 @@ export default {
       watchedVideoIcon: watchedVideoIcon,
       watchingVideoIcon: watchingVideoIcon,
       error: '',
-      lessons: [],
     }
   },
 
@@ -53,14 +52,6 @@ export default {
       this.$emit('selectLesson', { lesson: lesson });
     },
 
-    updateWatchedLesson() {
-      for(let i=0; i < this.lessons.length; i++) {
-        if(this.lessons[i].id == this.selectedLesson.id){
-          return this.lessons[i].attributes.watched = true;
-        }
-      }
-    },
-
     isWatching(lesson) {
       if (!this.selectedLesson)
         return false;
@@ -69,12 +60,6 @@ export default {
   },
 
   created() {
-    this.$http.get(`/courses/${this.course.id}/lessons`,)
-      .then(response => {
-        this.lessons = response.data.data;
-      }).catch(error => {
-        console.log(error);
-    });
   },
 
   mounted() {

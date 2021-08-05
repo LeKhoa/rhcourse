@@ -49,8 +49,8 @@
           <div class="tab-content w-100 mt-5 px-3 overflow-scroll">
             <Videos v-if="tabList[tabIndex] == 'Videos'" @selectLesson="setVideoUrl" :lessons="lessons" :selectedLesson="selectedLesson"/>
             <Chat v-if="tabList[tabIndex] == 'Chat'"/>
-            <Notes v-if="tabList[tabIndex] == 'Notes'" :section="section" :lesson="selectedLesson" />
-            <Resources v-if="tabList[tabIndex] == 'Resources'" :section="section" />
+            <Notes v-if="tabList[tabIndex] == 'Notes'" :course="course" :section="section" :lesson="selectedLesson" />
+            <Resources v-if="tabList[tabIndex] == 'Resources'" :course="course" :section="section" />
           </div>
         </div>
         <!-- RIGHT -->
@@ -84,6 +84,7 @@ export default {
   },
 
   props: {
+    course: Object,
     section: Object,
   },
 
@@ -118,7 +119,7 @@ export default {
     updateWatchedLesson() {
       if (!this.selectedLesson.attributes.watched) {
         let params = { id: this.selectedLesson.id }
-        this.$http.post(`/courses/1/sections/${this.section.id}/lessons/watched`, params)
+        this.$http.post(`/courses/${this.course.id}/sections/${this.section.id}/lessons/watched`, params)
           .then(response => {
             this.updateClientLessonStatus();
           }).catch(error => {
@@ -149,7 +150,7 @@ export default {
   },
 
   created() {
-    this.$http.get(`/courses/1/sections/${this.section.id}/lessons`,)
+    this.$http.get(`/courses/${this.course.id}/sections/${this.section.id}/lessons`,)
       .then(response => {
         this.getLessonSuccessfull(response);
       }).catch(error => {

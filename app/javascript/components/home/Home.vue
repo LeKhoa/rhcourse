@@ -3,7 +3,7 @@
     <Header />
     <Welcome v-if="step == 0" @continue="nextStep" />
     <div v-if="step == 1" v-for="(section, index) in sections">
-      <Main :section="section" v-if="index == sectionIndex" @nextSection="nextSection"/>
+      <Main :course="my_first_course" :section="section" v-if="index == sectionIndex" @nextSection="nextSection"/>
     </div>
   </div>
 </template>
@@ -27,6 +27,7 @@ export default {
       sections: [],
       sectionIndex: 0,
       error: '',
+      my_first_course: null,
     }
   },
 
@@ -42,9 +43,10 @@ export default {
   },
 
   mounted() {
-    this.$http.get("/courses/1/sections")
+    this.$http.get("/courses/my_first_course")
       .then(response => {
-        this.sections = response.data.data;
+        this.my_first_course = response.data.data;
+        this.sections = this.my_first_course.attributes.sections.data;
       }).catch(error => {
         this.error = error.response;
     });

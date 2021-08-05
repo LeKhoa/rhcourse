@@ -19,6 +19,7 @@
 export default {
 
   props: {
+    course: Object,
     section: Object,
   },
 
@@ -34,7 +35,7 @@ export default {
   },
 
   created() {
-    this.$http.get(`/courses/1/sections/${this.section.id}/resources`,)
+    this.$http.get(`/courses/${this.course.id}/sections/${this.section.id}/resources`,)
       .then(response => {
         this.resources = response.data.data;
       }).catch(error => {

@@ -157,16 +157,6 @@ export default {
   },
 
   mounted() {
-    window._wq = window._wq || [];
-    let context = this;
-    _wq.push({ id: '_all', onReady: function(video) {
-      // video.bind('play', function() {
-      // });
-
-      video.bind('end', function() {
-        context.updateWatchedLesson();
-      });
-    }});
   }
 
 }

@@ -23,9 +23,6 @@ Rails.application.routes.draw do
   }
 
   resources :courses do
-    collection do
-      get 'my_first_course'
-    end
     resources :sections
   end
 

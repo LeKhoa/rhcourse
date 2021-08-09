@@ -9,6 +9,7 @@ import { createApp } from 'vue'
 import axios from 'axios'
 import App from '../components/App.vue'
 import store from './store'
+import router from './router'
 
 let app;
 document.addEventListener('turbolinks:load', () => {
@@ -21,6 +22,7 @@ document.addEventListener('turbolinks:load', () => {
     document.querySelector('meta[name="csrf-token"]').getAttribute('content')
   
   app.use(store)
+  app.use(router)
   app.config.globalProperties.$store=store;
 
   app.mount('#app')

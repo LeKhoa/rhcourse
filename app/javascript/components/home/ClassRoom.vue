@@ -1,48 +1,56 @@
 <template>
   <div id="classroom">
-    <div class="container p-5">
+    <div class="container py-4 px-5">
       <div class="personal row align-items-center justify-content-between">
-        <div class="col-12 col-md-9">
+        <div class="col-12 col-lg-9">
           <div class="row">
-            <div class="col-12 col-md-4">
+            <div class="col-10 col-sm-5 col-md-4 text-center pt-4 pe-4">
               <img :src="userImg" class="w-100">
-              <span class="title"> Aliyah Smith </span>
+              <h1 class="mt-3"> {{currentUser.name}} </h1>
             </div>
-            <div class="col-md-8 col-12 mt-4">
-              <span class="title"> Welcome to Classroom 11</span><br>
+            <div class="col-12 col-sm-7 col-md-8 mt-5">
+              <h1> Welcome to Classroom 11</h1>
               <span class="text-black-50"> Learn together, Create together</span>
 
               <div class="row mt-3">
                 <div class="col-6 col-md-3">
-                  <div class="sub-title"> 45 </div>
-                  <span class=""> Classmates </span>
+                  <h2> 45 </h2>
+                  <span> Classmates </span>
                 </div>
                 <div class="col-6 col-md-2">
-                  <div class="sub-title"> 20 </div>
-                  <span class=""> Cities </span>
+                  <h2> 20 </h2>
+                  <span> Cities </span>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-3">
-          <div class="col-9 float-end">
-            <button class="btn btn-dark rounded-0 w-100">
+        <div class="col-12 col-lg-3 mt-3">
+          <div class="col-9 col-sm-7 col-lg-12 float-end">
+            <button class="btn btn-dark rounded-0 text-start w-100">
               <img :src="fbImg">
-              <span> Join Classmates</span>
+              <span class="ms-2"> Join Classmates</span>
             </button>
           </div>
-          <div class="col-9 mt-2 float-end">
-            <button class="btn btn-dark rounded-0 w-100">
+          <div class="col-9 col-sm-7 col-lg-12 mt-2 float-end">
+            <button class="btn btn-dark rounded-0 text-start w-100">
               <img  :src="callImg" >
-              <span> Join Alumi </span>
+              <span class="ms-2"> Join Alumi </span>
             </button>
           </div>
         </div>
       </div>
       <hr>
-      <div class="classmates">
-        <span class="mt-5 sub-title"> Classmates </span>
+      <div class="classmates mt-3">
+        <h2> Classmates </h2>
+        <div class="mt-3"> </div>
+
+        <div class="d-flex flex-wrap justify-content-between">
+          <div class="col-2 col-md-1 mx-3 mt-3 text-center" v-for="i in 10">
+            <img :src="defaultUserImg" class="w-100">
+            <div class="mt-3">{{currentUser.name}} </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -55,6 +63,8 @@ import userImg from 'images/img.png'
 import fbImg from 'images/fb.png'
 import callImg from 'images/call.png'
 
+import { mapState } from 'vuex'
+
 export default {
   components: {
     Header,
@@ -66,6 +76,7 @@ export default {
       userImg: userImg,
       fbImg: fbImg,
       callImg: callImg,
+      defaultUserImg: userImg,
     }
   },
 
@@ -73,9 +84,13 @@ export default {
 
   },
 
+  computed: {
+    ...mapState(['currentUser']),
+  },
+
   mounted() {
 
-  }
+  },
 }
 </script>
 

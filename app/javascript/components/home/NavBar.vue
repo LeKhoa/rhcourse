@@ -21,7 +21,7 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Workshops</a>
+              <router-link :to="{ name: 'home'}" class="nav-link"> Workshops </router-link>
             </li>
           </ul>
         </div>
@@ -64,7 +64,7 @@
               </a>
 
               <div class="dropdown-menu account-box" aria-labelledby="accountDropdown">
-                <a class="dropdown-item" href="#">Account</a>
+                <router-link to="/" class="dropdown-item"> Account </router-link>
                 <div class="dropdown-divider"></div>
                 <a class='dropdown-item' href='/users/sign_out' data-method="delete"> Logout </a>
               </div>

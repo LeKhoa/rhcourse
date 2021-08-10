@@ -1,6 +1,5 @@
 <template>
-  <Home  v-if="isOnboarded == true"/>
-  <OnBoard v-else/>
+  <router-view />
 </template>
 
 <script>
@@ -46,6 +45,12 @@ export default {
 
   mounted() {
     this.setCurrentUser(this.dataCurrentUser);
+    if (this.isOnboarded) {
+      this.$router.push({ name: 'home' })
+
+    } else {
+      this.$router.push({ name: 'onboard' })
+    }
   }
 }
 </script>

@@ -6,12 +6,7 @@ class ApplicationController < ActionController::Base
 
   def layout_by_resource
     return 'admin' if devise_controller? && resource_name == :admin_user
-
-    if current_user && current_user.settings.present?
-      'home'
-    else
-      'application'
-    end
+    'application'
   end
 
   def render_404

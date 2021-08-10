@@ -90,8 +90,8 @@ export default {
       });
     },
 
-    updateSuccessfull(response) {
-
+    updateSuccessfull(response) {  
+      this.$router.push({ name: 'checkout' });
     },
 
     updateFailed(error) {
@@ -129,10 +129,6 @@ export default {
   .grey-box-flex {
     background: #f1f1f1;
     border-radius: 5px;
-  }
-
-  .bg-green {
-    background-color: #89c731;
   }
 }
 

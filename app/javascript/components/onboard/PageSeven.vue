@@ -88,9 +88,6 @@ export default {
     background: #f1f1f1;
     border-radius: 5px;
   }
-  .bg-green {
-    background-color: #89c731;
-  }
 }
 
 </style>

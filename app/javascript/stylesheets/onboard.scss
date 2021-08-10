@@ -32,8 +32,12 @@
   }
 }
 
-.onboard, .home-page {
+.onboard, .home-page, .payment {
   button > img, button > span {
     vertical-align: middle;
+  }
+
+  .bg-green {
+    background-color: #89c731;
   }
 }

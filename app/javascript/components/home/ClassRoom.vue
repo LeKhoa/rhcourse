@@ -45,7 +45,7 @@
         <h2> Classmates </h2>
         <div class="mt-3"> </div>
 
-        <div class="d-flex flex-wrap justify-content-between">
+        <div class="d-flex flex-wrap justify-content-center">
           <div class="col-2 col-md-1 mx-3 mt-3 text-center" v-for="i in 10">
             <img :src="defaultUserImg" class="w-100">
             <div class="mt-3">{{currentUser.name}} </div>

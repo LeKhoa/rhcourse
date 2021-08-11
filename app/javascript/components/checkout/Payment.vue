@@ -17,13 +17,16 @@
         <label for="card-element">
           Credit Card Details
         </label>
-        <div id="card-element" class="col-12 mt-1 border p-2">
+        <div id="card-element" class="row m-0 align-items-center mt-2 border py-2 px-3">
           <!-- a Stripe Element will be inserted here. -->
         </div>
       </div>
 
       <div class="col-12 mt-4 btn-box">
-        <button class="btn btn-lg rounded-0 bg-green w-100  h-100 text-white" @click="pay"> PAY TO GET STARTED INSTANTLY </button> 
+        <button class="btn btn-lg rounded-0 bg-green w-100  h-100 text-white" @click="pay">
+          <span> PAY TO GET STARTED INSTANTLY </span>
+          <img :src="nextArrowImg" class="next-arrow">
+        </button>
       </div>
 
       <div class="my-4 text-center">
@@ -50,6 +53,7 @@ import cardLogos from 'images/card-logos.png'
 import stripePowered from 'images/stripe-powered.png'
 import secureLogo from 'images/secureLogo@2x.png'
 import secureContent from 'images/secure-content.png'
+import nextArrowImg from '../../images/next-arrow.png'
 
 export default {
   components: {
@@ -62,8 +66,9 @@ export default {
       stripePowered: stripePowered,
       secureLogo: secureLogo,
       secureContent: secureContent,
-      stripe: Stripe("pk_test_51Ipa6tC9SFRSMa9chAYD3g7IEjA6nlOROYUePlY7TdhbU2YpTFCB3K2k9mnALDTUXtwzSowJ9UlW8W2GSMPL3K3W00vD83OB7j"),
+      stripe: Stripe(process.env.STRIPE_PUBLISHABLE_KEY),
       cardElement: null,
+      nextArrowImg: nextArrowImg,
     }
   },
 
@@ -88,15 +93,22 @@ export default {
 
 <style scoped lang="scss">
 .card-box {
+
   .title {
     font-size: 27px;
   }
+
   .sub-title {
     font-size: 12px;
     font-weight: bold;
   }
+
   .btn-box {
     height: 60px;
+  }
+
+  #card-element {
+    height: 50px;
   }
 
 }

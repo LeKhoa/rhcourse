@@ -3,6 +3,7 @@ class Section < ApplicationRecord
 
   has_many :lessons, dependent: :destroy
   has_many :resources, dependent: :destroy
+  has_many :notes, dependent: :destroy
 
   validates_presence_of :name
 

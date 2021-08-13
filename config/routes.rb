@@ -33,10 +33,9 @@ Rails.application.routes.draw do
       end
     end
     resources :resources
-  end
-
-  resources :lessons do
     resources :notes
   end
+
+  resources :lessons
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

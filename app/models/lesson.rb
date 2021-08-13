@@ -4,8 +4,6 @@ class Lesson < ApplicationRecord
   has_many :user_lessons, dependent: :destroy
   has_many :users, through: :user_lessons
 
-  has_many :notes
-
   validates_presence_of :video, :title
 
   def watched_by?(user)

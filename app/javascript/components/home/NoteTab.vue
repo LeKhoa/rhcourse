@@ -1,7 +1,7 @@
 <template>
   <div id="note_tab">
     <div v-if="error" class="text-danger"> {{error}} </div>
-    <textarea id="add_note" class="w-100 mt-3 px-3 py-2" name="add_note" rows="3"
+    <textarea class="w-100 mt-3 px-3 py-2" rows="3"
       placeholder="Add a note..."
       v-model="body"
       @keydown.enter.exact.prevent="addNote"
@@ -20,7 +20,6 @@
 
 export default {
   props: {
-    lesson: Object,
     section: Object,
   },
 
@@ -35,18 +34,11 @@ export default {
   methods: {
     addNote(e) {
       e.preventDefault();
-      if (!this.lesson)
-      {
-        this.error = "Please select a lesson in Videos tab";
-        return;
-      }
-
-      let lesson_id = this.lesson ? this.lesson.id : 0;
       let params = {
         body: this.body,
       };
 
-      this.$http.post(`/lessons/${lesson_id}/notes`, params)
+      this.$http.post(`/sections/${this.section.id}/notes`, params)
         .then(response => {
           this.createNoteSuccessfull(response.data.note);
         }).catch(error => {
@@ -55,7 +47,7 @@ export default {
     },
 
     createNoteSuccessfull(note) {
-      this.notes = [...this.notes, note];
+      this.notes = [note, ...this.notes];
       this.body = '';
     },
 
@@ -69,13 +61,7 @@ export default {
   },
 
   mounted() {
-    if (!this.lesson)
-    {
-      this.error = 'Please select a lesson in Videos tab';
-      return;
-    }
-    let lesson_id = this.lesson ? this.lesson.id : 0;
-    this.$http.get(`/lessons/${lesson_id}/notes`)
+    this.$http.get(`/sections/${this.section.id}/notes`)
       .then(response => {
         this.notes = response.data.notes;
       }).catch(error => {

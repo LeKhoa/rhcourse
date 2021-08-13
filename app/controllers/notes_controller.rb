@@ -1,20 +1,20 @@
 class NotesController < ApplicationController
 
   def index
-    lesson_id = params[:lesson_id].to_i
-    return render json: { message: 'Lesson is not selected' }, status: :unprocessable_entity if lesson_id.zero?
+    section_id = params[:section_id].to_i
+    return render json: { message: 'section is not selected' }, status: :unprocessable_entity if section_id.zero?
     
-    lesson = Lesson.find_by_id(lesson_id)
-    notes = lesson.notes.where(user_id: current_user.id)
+    section = Section.find_by_id(section_id)
+    notes = section.notes.where(user_id: current_user.id).order('created_at DESC')
     render json: { notes: notes }, status: :ok
   end
 
   def create
-    lesson_id = params[:lesson_id].to_i
-    return render json: { message: 'Lesson is not selected' }, status: :unprocessable_entity if lesson_id.zero?
+    section_id = params[:section_id].to_i
+    return render json: { message: 'section is not selected' }, status: :unprocessable_entity if section_id.zero?
 
-    lesson = Lesson.find_by_id(lesson_id)
-    note = lesson.notes.create(note_params.merge({user_id: current_user.id }))
+    section = Section.find_by_id(section_id)
+    note = section.notes.create(note_params.merge({user_id: current_user.id }))
     render json: { note: note }, status: :ok
   end
 

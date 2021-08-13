@@ -49,7 +49,7 @@
           <div class="tab-content w-100 mt-5 px-3 overflow-scroll">
             <Videos v-if="tabList[tabIndex] == 'Videos'" @selectLesson="setVideoUrl" :lessons="lessons" :selectedLesson="selectedLesson"/>
             <Chat v-if="tabList[tabIndex] == 'Chat'"/>
-            <Notes v-if="tabList[tabIndex] == 'Notes'" :section="section" :lesson="selectedLesson" />
+            <Notes v-if="tabList[tabIndex] == 'Notes'" :section="section" />
             <Resources v-if="tabList[tabIndex] == 'Resources'" :section="section" />
           </div>
         </div>

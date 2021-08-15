@@ -23,7 +23,7 @@ class ConverLabsCrypt
     end
 
     def decrypt(str)
-      data = Base64.strict_decode64(str)
+      data = Base64.decode64(str)
       json = JSON.parse(data)
       cipher = OpenSSL::Cipher.new(CIPHER_METHOD)
       cipher.decrypt

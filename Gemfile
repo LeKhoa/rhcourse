@@ -60,3 +60,4 @@ end
 gem 'rollbar'
 gem 'httparty'
 gem 'stripe'
+gem 'php-serialize'

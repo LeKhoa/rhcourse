@@ -221,7 +221,6 @@ export default {
         .then(response => {
           this.msg = 'Set password successfull'
           this.setCurrentUser(response.data.user)
-          console.log(JSON.stringify(response.data.user));
           this.clearPassword();
         }).catch(error => {
           this.error = error.response.data.message;

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SubscriptionServices
+class SubscriptionService < BaseService
   PLAN = ENV['STRIPE_PLAN']
 
   def subscribe(user, course, stripe_token)
@@ -13,9 +13,9 @@ class SubscriptionServices
         { price: PLAN },
       ],
       application_fee_percent: 51.50,
-      transfer_data: [
+      transfer_data: {
         destination: 'acct_14NSJ54iRvIpDejY'
-      ],
+      },
     })
 
     user.subscriptions.create!(
@@ -23,6 +23,9 @@ class SubscriptionServices
       stripe_subscription_id: stripe_subscription.id,
       status: stripe_subscription.status
     )
+  rescue StandardError => e
+    Rollbar.error(e)
+    error!(e.message)
   end
 
   def cancel(user)
@@ -34,14 +37,14 @@ class SubscriptionServices
     customer = Stripe::Customer.create({
       email: user.email,
       source: stripe_token,
-      meta_data: {
+      metadata: {
         user_id: user.id
       },
       name: user.name,
       phone: user.phone
     })
 
-    user.update_column(stripe_customer_id: customer.id)
+    user.update_column(:stripe_customer_id, customer.id)
 
     customer.id
   end

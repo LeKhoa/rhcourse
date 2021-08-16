@@ -52,7 +52,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
       bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
 
       # respond_with resource, location: after_update_path_for(resource)
-      respond_success(resource, 'Setting up successfully', after_update_path_for(resource))
+      service = SubscriptionService.new
+      service.subscribe(resource, resource.courses.first, params[:token])
+      if service.success?
+        respond_success(resource, 'Subscribe successfully', after_update_path_for(resource))
+      else
+        respond_failure(service.error)
+      end
     else
       clean_up_passwords resource
       set_minimum_password_length

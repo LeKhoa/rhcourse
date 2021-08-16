@@ -17,6 +17,7 @@
         <label for="card-element">
           Credit Card Details
         </label>
+        <div v-if="error" class="text-danger mt-3"> {{error}}</div>
         <div id="card-element" class="row m-0 align-items-center mt-2 border py-2 px-3">
           <!-- a Stripe Element will be inserted here. -->
         </div>
@@ -55,6 +56,8 @@ import secureLogo from 'images/secureLogo@2x.png'
 import secureContent from 'images/secure-content.png'
 import nextArrowImg from '../../images/next-arrow.png'
 
+import { mapState } from 'vuex';
+
 export default {
   components: {
 
@@ -68,6 +71,7 @@ export default {
       secureContent: secureContent,
       stripe: Stripe(process.env.STRIPE_PUBLISHABLE_KEY),
       cardElement: null,
+      error: '',
       nextArrowImg: nextArrowImg,
     }
   },
@@ -81,8 +85,54 @@ export default {
     },
 
     pay() {
+      var context = this;
+      this.stripe.createToken(this.cardElement).then(function(result) {
+        if (result.error) {
+          context.error = result.error.message;
+        } else {
+          context.error = '';
+          context.stripeTokenHandler(result.token.id);
+        }
+      });
+      // this.$router.push({ name: 'home' })
+    },
+
+    stripeTokenHandler(token) {
+      console.log(`token: ${token}`);
+
+      let params = this.buildParams();
+      this.$http.put('/users.json', params)
+        .then(response => {
+          this.updateSuccessfull(response);
+        }).catch(error => {
+          this.updateFailed(error);
+      });
+    },
+
+    updateSuccessfull(response) {  
       this.$router.push({ name: 'home' })
-    }
+    },
+
+    updateFailed(error) {
+      this.error = error.response.data.message;
+    },
+
+    buildParams(token) {
+      return {
+        user: {
+          business_status: this.userSettings.businessStatus,
+          challenges: [...this.userSettings.challenges.keys()].filter(i => this.userSettings.challenges[i]),
+          concerns: [...this.userSettings.concerns.keys()].filter(i => this.userSettings.concerns[i]),
+          criterias: [...this.userSettings.criterias.keys()].filter(i => this.userSettings.criterias[i]),
+        },
+        token: token,
+      }
+    },
+
+  },
+
+  computed: {
+    ...mapState(['userSettings']),
   },
 
   mounted() {

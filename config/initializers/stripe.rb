@@ -1,2 +1,7 @@
-require 'stripe'
-Stripe.api_key = ENV['STRIPE_SECRET']
+# config/intializers/stripe.rb
+Rails.configuration.stripe = {
+  publishable_key: ENV['STRIPE_PUBLISHABLE_KEY'],
+  secret_key: ENV['STRIPE_SECRET_KEY']
+}
+
+Stripe.api_key =  ENV['STRIPE_SECRET_KEY']

@@ -30,8 +30,11 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'administrate'
 gem 'jsonapi-serializer'
-
 gem 'cocoon'
+gem 'image_processing'
+gem 'shrine', '~> 3.4'
+gem 'shrine-cloudinary', '~> 1.1', '>= 1.1.1'
+gem 'administrate-field-shrine'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

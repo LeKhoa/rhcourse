@@ -5,7 +5,9 @@
         <div class="col-12 col-lg-9">
           <div class="row">
             <div class="col-10 col-sm-5 col-md-4 text-center pt-4 pe-4">
-              <img :src="userImg" class="w-100">
+              <div class="avatar">
+                <img :src="imageUrl" class="w-100 h-100 rounded-circle">
+              </div>
               <h1 class="mt-3"> {{currentUser.name}} </h1>
             </div>
             <div class="col-12 col-sm-7 col-md-8 mt-5">
@@ -47,7 +49,7 @@
 
         <div class="d-flex flex-wrap justify-content-center">
           <div class="col-2 col-md-1 mx-3 mt-3 text-center" v-for="i in 10">
-            <img :src="defaultUserImg" class="w-100">
+            <img :src="defaultAvatar" class="w-100">
             <div class="mt-3">{{currentUser.name}} </div>
           </div>
         </div>
@@ -59,7 +61,7 @@
 <script>
 
 import Header from '../home/Header.vue'
-import userImg from 'images/img.png'
+import defaultAvatar from 'images/default-avatar.png'
 import fbImg from 'images/fb.png'
 import callImg from 'images/call.png'
 
@@ -73,10 +75,9 @@ export default {
 
   data: function () {
     return {
-      userImg: userImg,
       fbImg: fbImg,
       callImg: callImg,
-      defaultUserImg: userImg,
+      defaultAvatar: defaultAvatar,
     }
   },
 
@@ -86,6 +87,9 @@ export default {
 
   computed: {
     ...mapState(['currentUser']),
+    imageUrl() {
+      return this.currentUser.image_url || this.defaultAvatar;
+    }
   },
 
   mounted() {
@@ -101,6 +105,11 @@ export default {
 
   .sub-title {
     font-size: 25px;
+  }
+
+  .avatar {
+    width: 200px;
+    height: 200px;
   }
 
 </style>

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def update
     if current_user.update(user_params)
-      render json: { user: current_user }, methods: [:image_url], status: :ok 
+      render json: { user: current_user }, methods: [:image_url, :has_password], status: :ok
     else
       render json: { message: current_user.errors.full_messages }, status: :unprocessable_entity
     end
@@ -9,7 +9,17 @@ class UsersController < ApplicationController
 
   def change_password
     if current_user.update_with_password(password_params)
-      render json: { user: current_user }, status: :ok 
+      bypass_sign_in current_user
+      render json: { user: current_user }, methods: [:image_url, :has_password], status: :ok
+    else
+      render json: { message: current_user.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  def set_password
+    if current_user.reset_password(password_params[:password], password_params[:password_confirmation])
+      bypass_sign_in current_user
+      render json: { user: current_user }, methods: [:image_url, :has_password], status: :ok
     else
       render json: { message: current_user.errors.full_messages }, status: :unprocessable_entity
     end

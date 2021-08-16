@@ -16,6 +16,7 @@
 
           <div class="row">
             <div v-if="error" class="text-danger mt-3 sub-title text-center"> {{error}} </div>
+            <div v-else class="text-success mt-3 sub-title text-center"> {{msg}} </div>
 
             <div class="col-12 col-md-6 mt-5">
               <div class="row mt-3 align-items-center">
@@ -51,8 +52,8 @@
               </div>
             </div>
 
-            <!-- Password -->
-            <div class="col-12 col-md-6 mt-5 float-end">
+            <!-- Change password -->
+            <div class="col-12 col-md-6 mt-5 float-end" v-if="hasPassword">
               <div class="row mt-3 align-items-center">
                 <div class="col-5 text-end">
                   <label> Current Password: </label>
@@ -86,6 +87,35 @@
               </div>
             </div>
             <!-- end password -->
+
+            <!-- Set password -->
+            <div class="col-12 col-md-6 mt-5 float-end" v-else>
+              <div class="text-center sub-title text-warning"> Please set your password </div>
+              <div class="row mt-3 align-items-center">
+                <div class="col-5 text-end">
+                  <label> Password: </label>
+                </div>
+                <div class="col-7">
+                  <input v-model="password" class="form-control rounded-0 shadow-none"/>
+                </div>
+              </div>
+
+              <div class="row mt-3 align-items-center">
+                <div class="col-5 text-end">
+                  <label> Password Confirmation: </label>
+                </div>
+                <div class="col-7">
+                  <input v-model="passwordConfirmation" class="form-control rounded-0 shadow-none"/>
+                </div>
+              </div>
+
+              <div class="row mt-4 justify-content-center">
+                <div class="col-10 col-sm-8 col-xl-4">
+                  <button class="btn btn-dark rounded-0 w-100" @click="setPassword"> Set Password </button>
+                </div>
+              </div>
+            </div>
+            <!-- End Set password -->
           </div>
         </form>
       </div>
@@ -124,6 +154,7 @@ export default {
       password: '',
       passwordConfirmation: '',
       error: '',
+      msg: '',
     }
   },
 
@@ -148,6 +179,7 @@ export default {
 
       this.$http.put(`/users/${this.currentUser.id}`, formData)
         .then(response => {
+          this.msg = 'Update account successfull';
           this.updateAccountSuccessfull(response)
         }).catch(error => {
           this.error = error.response.data.message;
@@ -167,7 +199,30 @@ export default {
       }
       this.$http.put(`/users/${this.currentUser.id}/change_password`, params)
         .then(response => {
-          console.log(response.data);
+          this.msg = 'Change password successfull'
+          this.setCurrentUser(response.data.user);
+          this.clearPassword();
+        }).catch(error => {
+          this.error = error.response.data.message;
+      });
+    },
+
+    setPassword(e) {
+      e.preventDefault();
+      this.clearError();
+      let params = {
+        user: {
+          password: this.password,
+          password_confirmation: this.passwordConfirmation,
+        }
+      }
+
+      this.$http.put(`/users/${this.currentUser.id}/set_password`, params)
+        .then(response => {
+          this.msg = 'Set password successfull'
+          this.setCurrentUser(response.data.user)
+          console.log(JSON.stringify(response.data.user));
+          this.clearPassword();
         }).catch(error => {
           this.error = error.response.data.message;
       });
@@ -184,8 +239,15 @@ export default {
       this.phone = this.currentUser.phone;
     },
 
+    clearPassword() {
+      this.password = '';
+      this.currentPassword = '';
+      this.passwordConfirmation = '';
+    },
+
     clearError() {
       this.error = '';
+      this.msg = '';
     }
 
   },
@@ -195,6 +257,10 @@ export default {
 
     imageUrl() {
       return this.currentUser.image_url || this.defaultAvatar;
+    },
+
+    hasPassword() {
+      return this.currentUser.has_password
     }
   },
 

@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
+      put 'set_password'
       put 'change_password'
     end
   end

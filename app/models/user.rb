@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :user_lessons, dependent: :destroy
   has_many :watched_lessons, through: :user_lessons, source: :lesson
 
+  validates :password, confirmation: true
+
   # TBD: for testing purpose, assign user to first course after signed_up
 
   after_create :asign_course
@@ -34,6 +36,10 @@ class User < ApplicationRecord
 
   def watch!(lesson)
     watched_lessons << lesson unless watched?(lesson)
+  end
+
+  def has_password
+    encrypted_password.present?
   end
 
   protected

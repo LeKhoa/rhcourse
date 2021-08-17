@@ -98,9 +98,7 @@ export default {
     },
 
     stripeTokenHandler(token) {
-      console.log(`token: ${token}`);
-
-      let params = this.buildParams();
+      let params = this.buildParams(token);
       this.$http.put('/users.json', params)
         .then(response => {
           this.updateSuccessfull(response);

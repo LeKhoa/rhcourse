@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   has_many :user_lessons, dependent: :destroy
   has_many :watched_lessons, through: :user_lessons, source: :lesson
+  has_many :subscriptions
 
   # TBD: for testing purpose, assign user to first course after signed_up
 

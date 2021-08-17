@@ -52,8 +52,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
 
       # respond_with resource, location: after_update_path_for(resource)
-      service = SubscriptionService.new
-      service.subscribe(resource, resource.courses.first, params[:token])
+      service = SubscriptionService.new(resource, params[:token])
+      service.subscribe(resource.courses.first)
+
       if service.success?
         respond_success(resource, 'Subscribe successfully', after_update_path_for(resource))
       else

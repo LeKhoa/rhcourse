@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_15_163944) do
+ActiveRecord::Schema.define(version: 2021_08_17_075926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,17 @@ ActiveRecord::Schema.define(version: 2021_08_15_163944) do
     t.index ["course_id"], name: "index_sections_on_course_id"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.string "stripe_subscription_id"
+    t.string "status"
+    t.bigint "user_id"
+    t.bigint "course_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_subscriptions_on_course_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
   create_table "user_courses", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "course_id", null: false
@@ -127,6 +138,8 @@ ActiveRecord::Schema.define(version: 2021_08_15_163944) do
   add_foreign_key "notes", "users"
   add_foreign_key "resources", "sections"
   add_foreign_key "sections", "courses"
+  add_foreign_key "subscriptions", "courses"
+  add_foreign_key "subscriptions", "users"
   add_foreign_key "user_courses", "courses"
   add_foreign_key "user_courses", "users"
   add_foreign_key "user_lessons", "lessons"

@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 2021_08_17_075926) do
     t.string "cl_email"
     t.string "cl_password"
     t.boolean "cl_account_created", default: false
+    t.text "image_data"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

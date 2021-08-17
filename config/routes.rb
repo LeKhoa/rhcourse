@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-
-  get 'sections/index'
-  get 'resources/index'
   namespace :admin do
     resources :admin_users
     resources :users
@@ -36,6 +33,11 @@ Rails.application.routes.draw do
     resources :notes
   end
 
-  resources :lessons
+  resources :users do
+    member do
+      put 'set_password'
+      put 'change_password'
+    end
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

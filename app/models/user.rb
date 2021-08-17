@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+
+  include ImageUploader::Attachment(:image)
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -12,6 +14,8 @@ class User < ApplicationRecord
   has_many :user_lessons, dependent: :destroy
   has_many :watched_lessons, through: :user_lessons, source: :lesson
   has_many :subscriptions
+
+  validates :password, confirmation: true
 
   # TBD: for testing purpose, assign user to first course after signed_up
 
@@ -33,6 +37,10 @@ class User < ApplicationRecord
 
   def watch!(lesson)
     watched_lessons << lesson unless watched?(lesson)
+  end
+
+  def has_password
+    encrypted_password.present?
   end
 
   protected

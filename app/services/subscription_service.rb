@@ -52,7 +52,7 @@ class SubscriptionService < BaseService
       transfer_data: {
         destination: 'acct_14NSJ54iRvIpDejY'
       },
-    }) if Rails.env.production?
+    }) if ENV['STRIPE_DESTINATION_CHARGE'] == 'true'
     params
   end
 

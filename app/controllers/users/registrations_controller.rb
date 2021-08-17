@@ -51,19 +51,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
       set_flash_message_for_update(resource, prev_unconfirmed_email)
       bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
 
-      # respond_with resource, location: after_update_path_for(resource)
       service = SubscriptionService.new(resource, params[:token])
       service.subscribe(resource.courses.first)
+      return respond_failure(service.error) unless service.success?
 
-      if service.success?
-        respond_success(resource, 'Subscribe successfully', after_update_path_for(resource))
-      else
-        respond_failure(service.error)
-      end
+      service = CLabsAccountService.new(resource)
+      service.execute
+      return respond_failure(service.error) unless service.success?
+
+      respond_success(resource, 'Subscribe successfully', after_update_path_for(resource))
     else
       clean_up_passwords resource
       set_minimum_password_length
-      # respond_with resource
       respond_failure(resource.errors.full_messages)
     end
   end

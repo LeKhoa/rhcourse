@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+
 require 'openssl'
 require 'base64'
 
-class ConverLabsCrypt
+class CipherService
   PASSWORD = Base64.strict_decode64('EPN1ySFcB5UwzLgBrf58D8YXOGwUsvVmM7/hWTXQqUQ=')
   CIPHER_METHOD = 'AES-256-CBC'
 

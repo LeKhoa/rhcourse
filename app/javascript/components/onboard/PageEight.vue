@@ -30,7 +30,7 @@
 
       <div class="col-8 col-sm-7 col-md-6 col-lg-5 mt-3 mx-auto" >
         <div class="btn-box bg-green text-center mt-2">
-          <button class="btn btn-md rounded-0 w-100 h-100 text-white" :class="{disabled: !isSelected}" @click="pay"> PAY TO GET STARTED INSTANTLY
+          <button class="btn btn-md rounded-0 w-100 h-100 text-white" :class="{disabled: !isSelected}" @click="checkout"> PAY TO GET STARTED INSTANTLY
           </button>
         </div>
 
@@ -72,41 +72,12 @@ export default {
   },
 
   methods: {
-    pay() {
-      this.updateUser();
+    checkout() {
+      this.$router.push({ name: 'checkout' });
     },
 
     bookACall() {
 
-    },
-
-    updateUser() {
-      let params = this.userParams();
-      this.$http.put('/users.json', params)
-        .then(response => {
-          this.updateSuccessfull(response);
-        }).catch(error => {
-          this.updateFailed(error);
-      });
-    },
-
-    updateSuccessfull(response) {  
-      this.$router.push({ name: 'checkout' });
-    },
-
-    updateFailed(error) {
-      this.error = error.response.data.message;
-    },
-
-    userParams() {
-      return {
-        user: {
-          business_status: this.userSettings.businessStatus,
-          challenges: [...this.userSettings.challenges.keys()].filter(i => this.userSettings.challenges[i]),
-          concerns: [...this.userSettings.concerns.keys()].filter(i => this.userSettings.concerns[i]),
-          criterias: [...this.userSettings.criterias.keys()].filter(i => this.userSettings.criterias[i]),
-        }
-      }
     },
 
     ...mapActions({

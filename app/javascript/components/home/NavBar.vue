@@ -34,7 +34,7 @@
                   <img :src="searchIcon" class="search-icon">
                 </span>
               </span>
-              <input class="form-control border-left-none" type="search" placeholder="What do you want to learn today" aria-label="Search">
+              <input class="form-control border-left-none shadow-none" type="search" placeholder="What do you want to learn today" aria-label="Search">
             </div>
           </ul>
         </div>
@@ -60,7 +60,7 @@
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img :src="userIcon" class="rounded-circle user-icon">
+                <img :src="imageUrl" class="rounded-circle user-icon">
               </a>
 
               <div class="dropdown-menu account-box" aria-labelledby="accountDropdown">
@@ -78,8 +78,10 @@
 
 <script>
 import brandImg from 'images/brand.png'
-import userIcon from 'images/user-icon.png'
+import defaultAvatar from 'images/default-avatar.png'
 import searchIcon from 'images/search.png'
+
+import { mapState } from 'vuex'
 
 export default {
   props: {
@@ -89,9 +91,17 @@ export default {
   data: function () {
     return {
       brandImg: brandImg,
-      userIcon: userIcon,
+      defaultAvatar: defaultAvatar,
       searchIcon: searchIcon,
     }
+  },
+
+  computed: {
+    ...mapState(['currentUser']),
+
+    imageUrl() {
+      return this.currentUser.image_url || this.defaultAvatar;
+    },
   }
 }
 </script>

@@ -43,6 +43,11 @@ class User < ApplicationRecord
     encrypted_password.present?
   end
 
+  def active_subscriptions
+    return [] unless stripe_customer_id.present?
+    Stripe::Subscription.list(customer: stripe_customer_id, status: 'active').data
+  end
+
   protected
 
   def password_required?

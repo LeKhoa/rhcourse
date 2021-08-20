@@ -23,8 +23,15 @@
         </div>
       </div>
 
+      <div class="row mt-3 justify-content-center" v-if="isPaying">
+        <div class="spinner">
+          <div class="spinner-blade" v-for="i in 12">
+          </div>
+        </div>
+      </div>
+
       <div class="col-12 mt-4 btn-box">
-        <button class="btn btn-lg rounded-0 bg-green w-100  h-100 text-white" @click="pay">
+        <button class="btn btn-lg rounded-0 bg-green w-100  h-100 text-white" :class="{disabled: isPaying}" @click="pay">
           <span> PAY TO GET STARTED INSTANTLY </span>
           <img :src="nextArrowImg" class="next-arrow">
         </button>
@@ -73,6 +80,7 @@ export default {
       cardElement: null,
       error: '',
       nextArrowImg: nextArrowImg,
+      isPaying: false,
     }
   },
 
@@ -86,15 +94,16 @@ export default {
 
     pay() {
       var context = this;
+      this.isPaying = true;
       this.stripe.createToken(this.cardElement).then(function(result) {
         if (result.error) {
           context.error = result.error.message;
+          context.isPaying = false;
         } else {
           context.error = '';
           context.stripeTokenHandler(result.token.id);
         }
       });
-      // this.$router.push({ name: 'home' })
     },
 
     stripeTokenHandler(token) {
@@ -102,8 +111,10 @@ export default {
       this.$http.put('/users.json', params)
         .then(response => {
           this.updateSuccessfull(response);
+          this.isPaying = false;
         }).catch(error => {
           this.updateFailed(error);
+          this.isPaying = false;
       });
     },
 
@@ -157,6 +168,50 @@ export default {
 
   #card-element {
     height: 50px;
+  }
+
+  $spinner-color: #69717d !default;
+
+  .spinner {
+    font-size: 25px;
+    position: relative;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+  }
+
+  .spinner-blade {
+    position: absolute;
+    left: .4629em;
+    bottom: 0;
+    width: .074em;
+    height: .2777em;
+    border-radius: .5em;
+    background-color: transparent;
+    transform-origin: center -.2222em;
+    animation: spinner-fade 1s infinite linear;
+
+    $animation-delay: 0s;
+    $blade-rotation: 0deg;
+
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        animation-delay: $animation-delay;
+        transform: rotate($blade-rotation);
+        $blade-rotation: $blade-rotation + 30;
+        $animation-delay: $animation-delay + .083;
+      }
+    }
+  }
+
+  @keyframes spinner-fade {
+    0% {
+      background-color: $spinner-color;
+    }
+
+    100% {
+      background-color: transparent;
+    }
   }
 
 }

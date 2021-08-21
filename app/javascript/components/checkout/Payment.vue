@@ -88,7 +88,7 @@ export default {
 
     initStripeElements() {
       var elements = this.stripe.elements()
-      this.cardElement = elements.create('card');
+      this.cardElement = elements.create('card', { hidePostalCode: true });
       this.cardElement.mount('#card-element');        
     },
 

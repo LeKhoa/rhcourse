@@ -1,7 +1,7 @@
 <template>
   <div class="mt-5 col-12 col-md-6 pb-5 border-end">
     <div class="card-box col-11 col-md-10 mt-5">
-      <div class="title text-center"> You are a step away from lorem ipusm! </div>
+      <div class="title text-center"> You’re a step away from a life changing experience</div>
       <div class="row mt-4">
         <div class="col-7 sub-title">
           Let’s Make 2021 Your Best Year Ever

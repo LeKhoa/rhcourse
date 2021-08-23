@@ -8,7 +8,7 @@
           <div class="name"> Ryan Knoll </div>
           <div class="role"> Founder & CEO, Tidy Casa </div>
           <img :src="strikeThroughImg">
-          <div class="sale fw-bold"> OVER $2 MILLION IN SALES </div>
+          <div class="sale fw-bold"> OVER $5 MILLION IN SALES </div>
         </div>
       </div>
       <div class="col-12 col-md-9 col-lg-6 col-xl-7 mt-5 px-0 pt-5 mx-auto text-center">

@@ -36,7 +36,8 @@
 
         <div class="mt-2 text-black-50"> or </div>
         <div class="btn-box">
-          <button class="btn btn-md rounded-0 w-100 h-100 text-muted" :class="{disabled: !isSelected}" @click="bookACall"> BOOK A CALL
+          <button class="btn btn-md rounded-0 w-100 h-100 text-muted"
+            onclick="window.open('https://go.oncehub.com/RohanGilkes','_blank');"> BOOK A CALL
           </button>
         </div>
       </div>
@@ -74,10 +75,6 @@ export default {
   methods: {
     checkout() {
       this.$router.push({ name: 'checkout' });
-    },
-
-    bookACall() {
-
     },
 
     ...mapActions({

@@ -8,7 +8,7 @@
       <p class="px-3 mt-3">
         Every business owner's journey is different. To personalize your recommendations and
         make sure you find what you need to grow your company, Rohan has a few questions to
-        ask. So let's get started! 
+        ask. <br> So let's get started!
       </p>
 
       <div class="col-5 col-sm-5 mx-auto btn-box mt-5">

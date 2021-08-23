@@ -12,6 +12,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="col-12 col-md-3">
           <ul class="navbar-nav">
+            <!--
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="browseDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Browse
@@ -23,11 +24,13 @@
             <li class="nav-item">
               <router-link :to="{ name: 'home'}" class="nav-link"> Workshops </router-link>
             </li>
+            -->
           </ul>
         </div>
 
         <div class="col-12 col-md-5">
           <ul class="navbar-nav">
+            <!--
             <div class="input-group">
               <span class="input-group-append bg-white">
                 <span class="input-group-text bg-transparent">
@@ -36,11 +39,13 @@
               </span>
               <input class="form-control border-left-none shadow-none" type="search" placeholder="What do you want to learn today" aria-label="Search">
             </div>
+            -->
           </ul>
         </div>
 
         <div class="col-12 col-md-4">
           <ul class="navbar-nav navbar-right justify-content-end">
+            <!--
             <li class="nav-item my-auto">
               <router-link to="/classroom" class="nav-link">My Classes</router-link>
             </li>
@@ -57,6 +62,7 @@
                 </div>
               </router-link>
             </li>
+            -->
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

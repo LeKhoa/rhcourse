@@ -1,7 +1,7 @@
 <template>
   <div class="mt-5 col-12 col-md-6 pb-5 border-end">
     <div class="card-box col-11 col-md-10 mt-5">
-      <div class="title text-center"> You are a step away from lorem ipusm! </div>
+      <div class="title text-center"> You’re a step away from a life changing experience</div>
       <div class="row mt-4">
         <div class="col-7 sub-title">
           Let’s Make 2021 Your Best Year Ever
@@ -31,7 +31,7 @@
       </div>
 
       <div class="col-12 mt-4 btn-box">
-        <button class="btn btn-lg rounded-0 bg-green w-100  h-100 text-white" :class="{disabled: isPaying}" @click="pay">
+        <button class="btn rounded-0 bg-green w-100  h-100 text-white" :class="{disabled: isPaying}" @click="pay">
           <span> PAY TO GET STARTED INSTANTLY </span>
           <img :src="nextArrowImg" class="next-arrow">
         </button>

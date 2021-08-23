@@ -9,7 +9,11 @@
       <div class="row align-items-center px-5">
         <!-- Left -->
         <div class="col-12 col-md-10 col-lg-7 mx-auto mt-5">
-          <img :src="thumbnailImg" class="h-100 w-100">
+          <div class="wistia_responsive_padding" style="padding:55.94% 0 0 0;position:relative;">
+            <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+              <iframe :src="wistiaVideoUrl" title="Welcome Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen msallowfullscreen width="100%" height="100%"></iframe>
+            </div>
+          </div>
         </div>
         <!-- Right -->
 
@@ -60,18 +64,19 @@ export default {
       thumbnailImg: thumbnailImg,
       previousArrowImg: previousArrowImg,
       nextArrowImg: nextArrowImg,
+      wistiaVideoUrl: process.env.WISTIA_ONBOARD_VIDEO_URL,
     }
   },
 
   methods: {
-    nextStep: function() {
+    nextStep() {
       this.$emit('next');
     },
 
-    prevStep: function() {
+    prevStep() {
       this.$emit('back');
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div id="page-5">
-    <div class="row justify-content-center">
+    <div class="row mx-0 justify-content-center">
       <div class="elena-wrapper p-3">
         <div class="w-100 h-100 p-3">
           <img :src="elenaImg" class="w-100 h-100"/>

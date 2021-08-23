@@ -1,12 +1,14 @@
 <template>
   <div id="page-6">
-    <div class="row jusity-content-center">
-      <div class="ryan-wrapper col-lg-6 col-xl-5 pe-5 ms-n5">
+    <div class="row mx-0 jusity-content-center">
+      <div class="ryan-wrapper col-lg-6 col-xl-5 col-12 col-md-10 pe-5 ms-n5">
         <img :src="ryanImg" class="w-100 ryanImg"/>
 
-        <div class="col-7 col-sm-5 ryan-detail shadow rounded px-3 py-2 position-relative">
+        <div class="col-6 col-sm-5 ryan-detail shadow rounded px-3 py-2 position-relative">
           <div class="name"> Ryan Knoll </div>
-          <div class="role"> Founder & CEO, Tidy Casa </div>
+          <div class="role">
+            <span>Founder & CEO,</span> <span><u> Tidy Casa </u> </span>
+          </div>
           <img :src="strikeThroughImg">
           <div class="sale fw-bold"> OVER $5 MILLION IN SALES </div>
         </div>
@@ -112,17 +114,26 @@ export default {
 
     .name {
       color: #ff9966;
-      font-size: 18.5px;
+      font-size: 17px;
+      @media only screen and (max-width: 575px) {
+        font-size: 13px;
+      }
     }
 
     .role {
       color: #000000;
-      font-size: 13px;
+      font-size: 12px;
+      @media only screen and (max-width: 575px) {
+        font-size: 9px;
+      }
     }
 
     .sale {
-      font-size: 11px;
+      font-size: 9px;
       color: #000000;
+      @media only screen and (max-width: 575px) {
+        font-size: 8px;
+      }
     }
   }
 }

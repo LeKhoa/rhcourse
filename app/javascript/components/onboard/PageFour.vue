@@ -1,6 +1,6 @@
 <template>
   <div id="page-4">
-    <div class="row justify-content-center">
+    <div class="row mx-0 justify-content-center">
       <div class="col-lg-5 col-md-9 col-12 p-3">
         <img :src="christinaImg" class="w-100 h-100"/>
       </div>

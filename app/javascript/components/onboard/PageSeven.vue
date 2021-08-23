@@ -77,6 +77,10 @@ export default {
       this.$emit('back');
     },
   },
+
+  mounted() {
+    console.log(`video url: ${this.wistiaVideoUrl}`);
+  },
 }
 </script>
 

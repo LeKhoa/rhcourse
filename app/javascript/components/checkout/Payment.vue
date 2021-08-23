@@ -31,7 +31,7 @@
       </div>
 
       <div class="col-12 mt-4 btn-box">
-        <button class="btn btn-lg rounded-0 bg-green w-100  h-100 text-white" :class="{disabled: isPaying}" @click="pay">
+        <button class="btn rounded-0 bg-green w-100  h-100 text-white" :class="{disabled: isPaying}" @click="pay">
           <span> PAY TO GET STARTED INSTANTLY </span>
           <img :src="nextArrowImg" class="next-arrow">
         </button>

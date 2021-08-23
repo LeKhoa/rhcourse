@@ -64,7 +64,7 @@ export default {
       thumbnailImg: thumbnailImg,
       previousArrowImg: previousArrowImg,
       nextArrowImg: nextArrowImg,
-      wistiaVideoUrl: process.env.WISTIA_ONBOARD_VIDEO_URL,
+      wistiaVideoUrl: process.env.VUE_APP_WISTIA_ONBOARD_VIDEO_URL,
     }
   },
 

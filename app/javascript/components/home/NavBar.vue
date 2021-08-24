@@ -45,7 +45,6 @@
 
         <div class="col-12 col-md-4">
           <ul class="navbar-nav navbar-right justify-content-end">
-            <!--
             <li class="nav-item my-auto">
               <router-link to="/classroom" class="nav-link">My Classes</router-link>
             </li>
@@ -62,7 +61,6 @@
                 </div>
               </router-link>
             </li>
-            -->
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

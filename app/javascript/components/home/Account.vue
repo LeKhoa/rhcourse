@@ -6,7 +6,7 @@
           <h1 class="text-center"> Manage your account </h1>
     
           <div class="col-10 col-sm-5 col-md-3 text-center mx-auto mt-5">
-            <div class="avatar">
+            <div class="avatar mx-auto">
               <img :src="imageUrl" class="w-100 h-100 rounded-circle">
             </div>
             <div class="row mx-auto mt-4">

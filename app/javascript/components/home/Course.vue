@@ -1,18 +1,42 @@
 <template>
-  <Welcome v-if="step == 0" @continue="nextStep" />
-  <div v-if="step == 1" v-for="(section, index) in sections">
-    <Main ref="mainRef" :section="section" v-if="index == sectionIndex" @nextSection="nextSection"/>
+  <div id="course">
+    <Welcome v-if="step == 0" @continue="nextStep" />
+    <div v-if="step == 1">
+      <div v-for="(section, index) in sections">
+        <Section
+          ref="mainRef"
+          :section="section"
+          v-if="index == sectionIndex"
+        />
+      </div>
+      <div class="row mx-0 justify-content-center">
+        <div class="col-md-2 col-10 col-sm-5 my-4" v-if="sectionIndex > 0">
+          <button class="btn btn-lg btn-dark rounded-0 w-100" @click="prevSection">
+            <img :src="prevArrowImg">
+            <span> Previous section </span>
+          </button>
+        </div>
+        <div class="col-md-2 col-10 col-sm-5 my-4" v-if="sectionIndex < (sections.length - 1)">
+          <button class="btn btn-lg btn-dark rounded-0 w-100" @click="nextSection">
+            <span> Next section </span>
+            <img :src="nextArrowImg">
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 
 import Welcome from './Welcome.vue'
-import Main from './Main.vue'
+import Section from './Section.vue'
+import prevArrowImg from '../../images/previous-arrow.png'
+import nextArrowImg from '../../images/next-arrow.png'
 
 export default {
   components: {
-    Welcome, Main, 
+    Welcome, Section,
   },
 
   data: function () {
@@ -21,6 +45,8 @@ export default {
       sections: [],
       sectionIndex: 0,
       error: '',
+      prevArrowImg: prevArrowImg,
+      nextArrowImg: nextArrowImg,
     }
   },
 
@@ -32,6 +58,11 @@ export default {
     nextSection() {
       if (this.sectionIndex < this.sections.length - 1)
         this.sectionIndex ++;
+    },
+
+    prevSection() {
+      if (this.sectionIndex > 0)
+        this.sectionIndex --;
     },
 
     registerWistiaEvent() {

@@ -5,7 +5,7 @@
         <div class="col-12 col-lg-9">
           <div class="row">
             <div class="col-10 col-sm-5 col-md-4 text-center pt-4 pe-4">
-              <div class="avatar">
+              <div class="avatar mx-auto">
                 <img :src="imageUrl" class="w-100 h-100 rounded-circle">
               </div>
               <h1 class="mt-3"> {{currentUser.name}} </h1>

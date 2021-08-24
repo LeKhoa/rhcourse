@@ -27,7 +27,7 @@
             </div>
 
             <div class="col-6 btn-box">
-              <button class="btn btn-md btn-dark-50 rounded-0 w-100 h-100" @click="nextStep">
+              <button class="btn btn-md btn-dark rounded-0 w-100 h-100" @click="nextStep">
                 <span class="text-white"> Final step </span>
                 <img :src="nextArrowImg" class="next-arrow">
               </button>

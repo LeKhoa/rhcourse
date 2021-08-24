@@ -55,20 +55,12 @@
         </div>
         <!-- RIGHT -->
       </div>
-      
-      <div class="col-9 col-sm-5 col-md-4 col-lg-3 col-xl-2 mx-auto mt-4">
-        <button class="btn btn-lg btn-dark rounded-0 w-100" @click="nextSection">
-          <span> Choose a Domain </span>
-          <img :src="nextArrowImg" class="next-arrow">
-        </button>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
 import thumbnailImg from '../../images/thumbnail.png'
-import nextArrowImg from '../../images/next-arrow.png'
 import backgroundImage from 'images/video-bg.png'
 
 import Videos from './VideoTab.vue'
@@ -96,7 +88,6 @@ export default {
         '4': "Resources"
       },
       thumbnailImg: thumbnailImg,
-      nextArrowImg: nextArrowImg,
       wistiaVideoUrl: '',
       selectedLesson: null,
       lessons: [],
@@ -132,10 +123,6 @@ export default {
           return this.lessons[i].attributes.watched = true;
         }
       }
-    },
-
-    nextSection() {
-      this.$emit('nextSection');
     },
 
     getLessonSuccessfull(response) {

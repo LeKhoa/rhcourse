@@ -3,11 +3,12 @@
     <div class="card-box col-11 col-md-10 mt-5">
       <div class="title text-center"> You’re a step away from a life changing experience</div>
       <div class="row mt-4">
-        <div class="col-7 sub-title">
+        <div class="col-6 sub-title">
           Let’s Make 2021 Your Best Year Ever
         </div>
-        <div class="col-5 text-end sub-title">
-          $197 per month
+        <div class="col-6 text-end sub-title">
+          <span class="price-cross-line"> $597 per month</span>
+          <span> $197 per month </span>
         </div>
       </div>
 
@@ -212,6 +213,13 @@ export default {
     100% {
       background-color: transparent;
     }
+  }
+
+  .price-cross-line {
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='110' height='7'> <path fill='red' fill-rule='evenodd' d='M.49 5.879L109.898.122l.052.998L.101 6.877l.389-.998z'/></svg>");
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size: 100% 100%, auto;
   }
 
 }

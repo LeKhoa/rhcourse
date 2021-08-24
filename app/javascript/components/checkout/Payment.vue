@@ -159,8 +159,7 @@ export default {
   }
 
   .sub-title {
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 14px;
   }
 
   .btn-box {
@@ -219,7 +218,6 @@ export default {
     background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='110' height='7'> <path fill='red' fill-rule='evenodd' d='M.49 5.879L109.898.122l.052.998L.101 6.877l.389-.998z'/></svg>");
     background-repeat:no-repeat;
     background-position:center center;
-    background-size: 100% 100%, auto;
   }
 
 }

@@ -48,8 +48,10 @@
         <div class="mt-3"> </div>
 
         <div class="d-flex flex-wrap justify-content-center">
-          <div class="col-2 col-md-1 mx-3 mt-3 text-center" v-for="i in 10">
-            <img :src="defaultAvatar" class="w-100">
+          <div class="mx-3 mt-3 text-center" v-for="i in 10">
+            <div class="member-avatar">
+              <img :src="defaultAvatar" class="w-100 h-100 rounded-circle">
+            </div>
             <div class="mt-3">{{currentUser.name}} </div>
           </div>
         </div>
@@ -98,7 +100,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .title {
     font-size: 35px;
   }
@@ -110,6 +112,16 @@ export default {
   .avatar {
     width: 200px;
     height: 200px;
+  }
+
+  .member-avatar {
+    width: 100px;
+    height: 100px;
+
+    @media only screen and (max-width: 575px) {
+      width: 60px;
+      height: 60px;
+    }
   }
 
 </style>

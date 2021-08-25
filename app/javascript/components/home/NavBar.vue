@@ -48,6 +48,7 @@
             <li class="nav-item my-auto" v-if="courses.length">
               <router-link :to="{ name: 'classmates', params: { course: JSON.stringify(courses[0]) } }" class="nav-link">My Classmates</router-link>
             </li>
+            <!--
             <li class="nav-item">
               <router-link to="/" class="nav-link">
                 <div class="notification">
@@ -61,6 +62,7 @@
                 </div>
               </router-link>
             </li>
+            -->
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

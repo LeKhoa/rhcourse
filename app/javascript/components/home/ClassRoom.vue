@@ -30,14 +30,14 @@
         <div class="col-12 col-lg-3 mt-3">
           <div class="col-12 col-sm-7 col-lg-12 float-end">
             <button class="btn btn-dark rounded-0 text-start w-100">
-              <img :src="fbImg">
-              <span class="ms-2"> Join Classmates</span>
+              <img  :src="callImg" >
+              <span class="ms-2"> Join Alumni </span>
             </button>
           </div>
           <div class="col-12 col-sm-7 col-lg-12 mt-2 float-end">
             <button class="btn btn-dark rounded-0 text-start w-100">
-              <img  :src="callImg" >
-              <span class="ms-2"> Join Alumi </span>
+              <img :src="fbImg">
+              <span class="ms-2"> Join Classmates</span>
             </button>
           </div>
         </div>

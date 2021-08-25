@@ -48,11 +48,11 @@
         <div class="mt-3"> </div>
 
         <div class="d-flex flex-wrap justify-content-center">
-          <div class="mx-3 mt-3 text-center" v-for="i in 10">
+          <div class="mx-3 mt-3 text-center" v-for="member in classmates">
             <div class="member-avatar">
-              <img :src="defaultAvatar" class="w-100 h-100 rounded-circle">
+              <img :src="member.attributes.image_url || defaultAvatar" class="w-100 h-100 rounded-circle">
             </div>
-            <div class="mt-3">{{currentUser.name}} </div>
+            <div class="mt-3">{{member.attributes.name}} </div>
           </div>
         </div>
       </div>
@@ -80,6 +80,8 @@ export default {
       fbImg: fbImg,
       callImg: callImg,
       defaultAvatar: defaultAvatar,
+      classmates: [],
+      error: '',
     }
   },
 
@@ -95,7 +97,12 @@ export default {
   },
 
   mounted() {
-
+    this.$http.get(`/courses/${this.$route.params.course_id}/classmates`)
+      .then(response => {
+        this.classmates = response.data.data;
+      }).catch(error => {
+        this.error = error.response;
+    });
   },
 }
 </script>

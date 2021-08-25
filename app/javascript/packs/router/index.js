@@ -21,8 +21,8 @@ const routes = [
         component: Course,
       },
       {
-        path: "/classroom",
-        name: "classroom",
+        path: "/classmates",
+        name: "classmates",
         component: ClassRoom,
       },
       {

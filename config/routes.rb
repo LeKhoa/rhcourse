@@ -21,6 +21,9 @@ Rails.application.routes.draw do
 
   resources :courses do
     resources :sections
+    member do
+      get 'classmates'
+    end
   end
 
   resources :sections do

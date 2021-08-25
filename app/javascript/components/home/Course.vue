@@ -10,14 +10,14 @@
         />
       </div>
       <div class="row mx-0 justify-content-center">
-        <div class="col-md-2 col-10 col-sm-5 my-4" v-if="sectionIndex > 0">
-          <button class="btn btn-lg btn-dark rounded-0 w-100" @click="prevSection">
+        <div class="col-xl-2 col-lg-3 col-md-4 col-8 col-sm-5 my-4 btn-box" v-if="sectionIndex > 0">
+          <button class="btn rounded-0 w-100 h-100" @click="prevSection">
             <img :src="prevArrowImg">
-            <span> Previous section </span>
+            <span> Back </span>
           </button>
         </div>
-        <div class="col-md-2 col-10 col-sm-5 my-4" v-if="sectionIndex < (sections.length - 1)">
-          <button class="btn btn-lg btn-dark rounded-0 w-100" @click="nextSection">
+        <div class="col-xl-2 col-lg-3 col-md-4 col-8 col-sm-5 my-4 btn-box" v-if="sectionIndex < (sections.length - 1)">
+          <button class="btn btn-dark rounded-0 h-100 w-100" @click="nextSection">
             <span> Next section </span>
             <img :src="nextArrowImg">
           </button>

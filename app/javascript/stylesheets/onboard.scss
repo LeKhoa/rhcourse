@@ -1,12 +1,4 @@
 .onboard {
-  .btn-box {
-    height: 60px;
-
-    .btn {
-      border-radius: 0;
-    }
-  }
-
   .selected {
     box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
   }
@@ -39,5 +31,13 @@
 
   .bg-green {
     background-color: #89c731;
+  }
+
+  .btn-box {
+    height: 60px;
+
+    .btn {
+      border-radius: 0;
+    }
   }
 }

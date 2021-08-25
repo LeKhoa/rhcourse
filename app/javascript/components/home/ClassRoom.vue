@@ -11,12 +11,12 @@
               <h1 class="mt-3"> {{currentUser.name}} </h1>
             </div>
             <div class="col-12 col-sm-7 col-md-8 mt-5">
-              <h1> Welcome to Classroom 11</h1>
+              <h1> Welcome to {{course.attributes.name}}</h1>
               <span class="text-black-50"> Learn together, Create together</span>
 
               <div class="row mt-3">
                 <div class="col-6 col-md-3">
-                  <h2> 45 </h2>
+                  <h2> {{classmates.length}} </h2>
                   <span> Classmates </span>
                 </div>
                 <div class="col-6 col-md-2">
@@ -81,6 +81,7 @@ export default {
       callImg: callImg,
       defaultAvatar: defaultAvatar,
       classmates: [],
+      course: JSON.parse(this.$route.params.course),
       error: '',
     }
   },
@@ -97,7 +98,7 @@ export default {
   },
 
   mounted() {
-    this.$http.get(`/courses/${this.$route.params.course_id}/classmates`)
+    this.$http.get(`/courses/${this.course.id}/classmates`)
       .then(response => {
         this.classmates = response.data.data;
       }).catch(error => {

@@ -49,10 +49,12 @@
 
         <div class="d-flex flex-wrap justify-content-center">
           <div class="mx-3 mt-3 text-center" v-for="member in classmates">
-            <div class="member-avatar">
-              <img :src="member.attributes.image_url || defaultAvatar" class="w-100 h-100 rounded-circle">
+            <div class="member-wrapper overflow-hidden">
+              <div class="member-avatar mx-auto">
+                <img :src="member.attributes.image_url || defaultAvatar" class="w-100 h-100 rounded-circle">
+              </div>
+              <div class="mt-3">{{member.attributes.name}} </div>
             </div>
-            <div class="mt-3">{{member.attributes.name}} </div>
           </div>
         </div>
       </div>
@@ -122,13 +124,19 @@ export default {
     height: 200px;
   }
 
-  .member-avatar {
-    width: 100px;
-    height: 100px;
+  .member-wrapper {
+    width: 120px;
 
+    .member-avatar {
+      width: 100px;
+      height: 100px;
+      @media only screen and (max-width: 575px) {
+        width: 60px;
+        height: 60px;
+      }
+    }
     @media only screen and (max-width: 575px) {
-      width: 60px;
-      height: 60px;
+      width: 70px;
     }
   }
 

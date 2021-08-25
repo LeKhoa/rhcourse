@@ -19,14 +19,14 @@
 
         <div class="col-12 col-md-10 col-lg-5 mt-5">
           <div class="row justify-content-center">
-            <div class="col-5 col-xl-4 btn-box">
+            <div class="col-8 col-sm-5 col-xl-4 btn-box">
               <button class="btn back-btn w-100 h-100" @click="prevStep">
                 <img :src="previousArrowImg" class="next-arrow">
                 <span class="text-black-50"> Back </span>
               </button>
             </div>
 
-            <div class="col-6 btn-box">
+            <div class="col-8 col-sm-5 btn-box">
               <button class="btn btn-md btn-dark rounded-0 w-100 h-100" @click="nextStep">
                 <span class="text-white"> Final step </span>
                 <img :src="nextArrowImg" class="next-arrow">

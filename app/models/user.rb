@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :watched_lessons, through: :user_lessons, source: :lesson
   has_many :subscriptions
 
+  validates :name, presence: true
   validates :password, confirmation: true
 
   # TBD: for testing purpose, assign user to first course after signed_up

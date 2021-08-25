@@ -56,6 +56,9 @@ import JoinText from './JoinText.vue'
 
 // Vuex store
 import { mapState, mapActions } from 'vuex';
+import useValidate from '@vuelidate/core'
+import { required, helpers } from '@vuelidate/validators'
+import { isBudgetAvailable } from "../../validators/signup";
 
 export default {
   components: {
@@ -64,6 +67,7 @@ export default {
 
   data: function () {
     return {
+      v$: useValidate(),
       checkedStepImg: checkedStepImg,
       name: '',
       email: '',
@@ -73,17 +77,35 @@ export default {
     }
   },
 
+  validations() {
+    return {
+      budgetType: {
+        required,
+        isBudgetAvailable: helpers.withMessage(
+          'Please select a budget',
+          isBudgetAvailable,
+        )
+      }
+    }
+  },
+
   methods: {
     ...mapActions(['setCurrentUser']),
 
     signUp(e) {
       e.preventDefault();
+      this.v$.$validate();
+      if (this.v$.$error) {
+        this.error = this.v$.budgetType.$errors[0].$message;
+        return;
+      }
+
       let params = this.userParams();
       this.$http.post('/users.json', params)
         .then(response => {
           this.signupSuccessfull(response)
         }).catch(error => {
-          this.signupFailed(error)
+          this.signupFailed(error.response.data.message)
       });
     },
 
@@ -103,7 +125,7 @@ export default {
     },
 
     signupFailed(error) {
-      this.error = error.response.data.message;
+      this.error = error;
       this.setCurrentUser(null)
     },
 

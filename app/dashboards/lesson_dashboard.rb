@@ -12,7 +12,7 @@ class LessonDashboard < Administrate::BaseDashboard
     id: Field::Number,
     video: Field::String,
     title: Field::String,
-    length: Field::Number,
+    length: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze

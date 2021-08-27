@@ -47,4 +47,6 @@ Rails.application.routes.draw do
     get '/verify', to: 'accounts#verify'
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  get '/*path', to: 'home#index', format: false
 end

@@ -9,7 +9,7 @@
       <div class="row align-items-center px-5">
         <!-- Left -->
         <div class="col-12 col-md-10 col-lg-7 mx-auto mt-5">
-          <div class="wistia_responsive_padding" style="padding:55.94% 0 0 0;position:relative;">
+          <div class="wistia_responsive_padding" style="padding:55.94% 0 0 0;position:relative;" v-if="wistiaVideoUrl">
             <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
               <iframe :src="wistiaVideoUrl" title="Welcome Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen msallowfullscreen width="100%" height="100%"></iframe>
             </div>
@@ -64,7 +64,6 @@ export default {
       thumbnailImg: thumbnailImg,
       previousArrowImg: previousArrowImg,
       nextArrowImg: nextArrowImg,
-      wistiaVideoUrl: process.env.VUE_APP_WISTIA_ONBOARD_VIDEO_URL,
     }
   },
 
@@ -81,6 +80,12 @@ export default {
   mounted() {
     console.log(`video url: ${this.wistiaVideoUrl}`);
   },
+
+  computed: {
+    wistiaVideoUrl() {
+      return process.env.VUE_APP_WISTIA_ONBOARD_VIDEO_URL;
+    }
+  }
 }
 </script>
 

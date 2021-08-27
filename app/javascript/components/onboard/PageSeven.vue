@@ -77,10 +77,6 @@ export default {
       this.$emit('back');
     },
   },
-
-  mounted() {
-    console.log(process.env.VUE_APP_WISTIA_ONBOARD_VIDEO_URL);
-  },
 }
 </script>
 

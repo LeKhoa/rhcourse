@@ -58,12 +58,13 @@ export default {
     JoinText, BottomBrand
   },
 
-  data: function () {
+  data () {
     return {
       videoBgImg: videoBgImg,
       thumbnailImg: thumbnailImg,
       previousArrowImg: previousArrowImg,
       nextArrowImg: nextArrowImg,
+      wistiaVideoUrl: process.env.VUE_APP_WISTIA_ONBOARD_VIDEO_URL,
     }
   },
 
@@ -78,14 +79,8 @@ export default {
   },
 
   mounted() {
-    console.log(`video url: ${this.wistiaVideoUrl}`);
+    console.log(process.env.VUE_APP_WISTIA_ONBOARD_VIDEO_URL);
   },
-
-  computed: {
-    wistiaVideoUrl() {
-      return process.env.VUE_APP_WISTIA_ONBOARD_VIDEO_URL;
-    }
-  }
 }
 </script>
 

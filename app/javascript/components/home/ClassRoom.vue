@@ -29,14 +29,20 @@
         </div>
         <div class="col-12 col-lg-3 mt-3">
           <div class="col-12 col-sm-7 col-lg-12 float-end">
-            <button class="btn btn-dark rounded-0 text-start w-100">
-              <img  :src="callImg" >
+            <button class="d-flex align-items-center btn btn-dark rounded-0 text-start w-100"
+              onclick="window.open('https://join.slack.com/t/rohanacademy/shared_invite/zt-upnpmoxj-o69fUFKix9n5bWf0N~_X1A','_blank');" >
+              <div class="social-icon-box">
+                <img  :src="callImg" class="rounded-circle w-100">
+              </div>
               <span class="ms-2"> Join Alumni </span>
             </button>
           </div>
           <div class="col-12 col-sm-7 col-lg-12 mt-2 float-end">
-            <button class="btn btn-dark rounded-0 text-start w-100">
-              <img :src="fbImg">
+            <button class="d-flex align-items-center btn btn-dark rounded-0 text-start w-100"
+              onclick="window.open('https://www.facebook.com/groups/OverThinkAcademy','_blank');" >
+              <div class="social-icon-box">
+                <img :src="fbImg" class="rounded-circle w-100">
+              </div>
               <span class="ms-2"> Join Classmates</span>
             </button>
           </div>
@@ -67,7 +73,7 @@
 import Header from '../home/Header.vue'
 import defaultAvatar from 'images/default-avatar.png'
 import fbImg from 'images/fb.png'
-import callImg from 'images/call.png'
+import callImg from 'images/slack.png'
 
 import { mapState } from 'vuex'
 
@@ -122,6 +128,11 @@ export default {
   .avatar {
     width: 200px;
     height: 200px;
+  }
+
+  .social-icon-box {
+    width: 30px;
+    height: 30px;
   }
 
   .member-wrapper {

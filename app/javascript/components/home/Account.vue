@@ -128,8 +128,6 @@
 
 import Header from '../home/Header.vue'
 import defaultAvatar from 'images/default-avatar.png'
-import fbImg from 'images/fb.png'
-import callImg from 'images/call.png'
 
 import { mapState, mapActions } from 'vuex'
 
@@ -141,8 +139,6 @@ export default {
 
   data: function () {
     return {
-      fbImg: fbImg,
-      callImg: callImg,
       defaultAvatar: defaultAvatar,
 
       name: '',

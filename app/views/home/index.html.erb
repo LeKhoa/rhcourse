@@ -1,5 +1,7 @@
-<%= stylesheet_pack_tag 'app' %>
-<%= javascript_pack_tag 'app', 'data-turbolinks-track': 'reload' %>
+<!-- Move to application -->
+  <%= stylesheet_pack_tag 'app' %>
+  <%= javascript_pack_tag 'app', 'data-turbolinks-track': 'reload' %>
+<!-- End move -->
 
 <div id="app" data-current-user="<%= current_user ? current_user.attributes.merge(
   {

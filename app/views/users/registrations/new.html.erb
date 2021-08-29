@@ -5,7 +5,7 @@
 
     <div class="field mt-3">
       <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control shadow-none rounded-0' %>
     </div>
 
     <div class="field mt-3">
@@ -13,21 +13,21 @@
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control shadow-none rounded-0' %>
     </div>
 
     <div class="field mt-3">
       <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control shadow-none rounded-0' %>
     </div>
 
     <div class="actions mt-3">
       <div class="row align-items-end">
-        <div class="col-md-6">
+        <div class="col-6">
           <%= f.submit "Sign up", class: 'btn btn-dark rounded-0' %>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-6">
           <%= render "users/shared/links" %>
         </div>
       </div>

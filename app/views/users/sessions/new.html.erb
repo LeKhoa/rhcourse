@@ -4,12 +4,12 @@
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field mt-3">
       <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control shadow-none rounded-0' %>
     </div>
 
     <div class="field mt-3">
       <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+      <%= f.password_field :password, autocomplete: "current-password", class: 'form-control shadow-none rounded-0' %>
     </div>
 
     <% if devise_mapping.rememberable? %>
@@ -19,10 +19,18 @@
       </div>
     <% end %>
 
-    <div class="actions mt-3">
-      <%= f.submit "Log in", class: 'btn btn-dark rounded-0'%>
+    <div class="row align-items-end">
+      <div class="col-6 actions mt-3">
+        <%= f.submit "Log in", class: 'btn btn-dark rounded-0'%>
+      </div>
+
+      <div class="col-6">
+        <%= link_to "Sign up", root_path %><br />
+      </div>
     </div>
   <% end %>
 
+  <!--
   <%= render "users/shared/links" %>
+  -->
 </div>

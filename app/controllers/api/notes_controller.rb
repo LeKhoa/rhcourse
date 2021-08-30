@@ -1,4 +1,4 @@
-class NotesController < ApplicationController
+class Api::NotesController < ApplicationController
 
   def index
     section_id = params[:section_id].to_i

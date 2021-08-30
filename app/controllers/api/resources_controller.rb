@@ -1,4 +1,4 @@
-class ResourcesController < ApplicationController
+class Api::ResourcesController < ApplicationController
 
   def index
     section = Section.find_by_id(params[:section_id])

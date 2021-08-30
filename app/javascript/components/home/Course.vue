@@ -39,7 +39,7 @@ export default {
     Welcome, Section,
   },
 
-  data: function () {
+  data () {
     return {
       step: 0,
       sections: [],
@@ -47,6 +47,7 @@ export default {
       error: '',
       prevArrowImg: prevArrowImg,
       nextArrowImg: nextArrowImg,
+      course_id: this.$route.params.id,
     }
   },
 
@@ -80,7 +81,7 @@ export default {
   },
 
   mounted() {
-    this.$http.get(`/courses/${this.$route.params.course_id}/sections`)
+    this.$http.get(`/api/courses/${this.course_id}/sections`)
       .then(response => {
         this.sections = response.data.data;
         this.registerWistiaEvent();

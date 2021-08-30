@@ -113,7 +113,7 @@ export default {
 
     updateWatchedLesson() {
       if (!this.selectedLesson.attributes.watched) {
-        this.$http.post(`/sections/${this.section.id}/lessons/${this.selectedLesson.id}/watched`)
+        this.$http.post(`/api/sections/${this.section.id}/lessons/${this.selectedLesson.id}/watched`)
           .then(response => {
             this.updateClientLessonStatus();
           }).catch(error => {
@@ -140,7 +140,7 @@ export default {
   },
 
   created() {
-    this.$http.get(`/sections/${this.section.id}/lessons`)
+    this.$http.get(`/api/sections/${this.section.id}/lessons`)
       .then(response => {
         this.getLessonSuccessfull(response);
       }).catch(error => {
@@ -150,7 +150,6 @@ export default {
 
   mounted() {
   }
-
 }
 </script>
 

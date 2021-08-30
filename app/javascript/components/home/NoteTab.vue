@@ -38,7 +38,7 @@ export default {
         body: this.body,
       };
 
-      this.$http.post(`/sections/${this.section.id}/notes`, params)
+      this.$http.post(`/api/sections/${this.section.id}/notes`, params)
         .then(response => {
           this.createNoteSuccessfull(response.data.note);
         }).catch(error => {
@@ -61,7 +61,7 @@ export default {
   },
 
   mounted() {
-    this.$http.get(`/sections/${this.section.id}/notes`)
+    this.$http.get(`/api/sections/${this.section.id}/notes`)
       .then(response => {
         this.notes = response.data.notes;
       }).catch(error => {

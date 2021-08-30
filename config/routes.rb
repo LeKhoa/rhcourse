@@ -19,27 +19,29 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :courses do
-    resources :sections
-    member do
-      get 'classmates'
-    end
-  end
-
-  resources :sections do
-    resources :lessons do
+  namespace :api, defaults: { format: :json } do
+    resources :courses do
+      resources :sections
       member do
-        post 'watched'
+        get 'classmates'
       end
     end
-    resources :resources
-    resources :notes
-  end
 
-  resources :users do
-    member do
-      put 'set_password'
-      put 'change_password'
+    resources :sections do
+      resources :lessons do
+        member do
+          post 'watched'
+        end
+      end
+      resources :resources
+      resources :notes
+    end
+
+    resources :users do
+      member do
+        put 'set_password'
+        put 'change_password'
+      end
     end
   end
 

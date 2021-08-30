@@ -1,4 +1,4 @@
-class SectionsController < ApplicationController
+class Api::SectionsController < ApplicationController
 
   def index
     course = Course.find_by_id(params[:course_id])

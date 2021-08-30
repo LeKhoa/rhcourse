@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Api::UsersController < ApplicationController
   def update
     if current_user.update(user_params)
       render json: { user: current_user }, methods: [:image_url, :has_password], status: :ok

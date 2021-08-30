@@ -173,7 +173,7 @@ export default {
         formData.append('user[image]', this.imageFile);
       }
 
-      this.$http.put(`/users/${this.currentUser.id}`, formData)
+      this.$http.put(`/api/users/${this.currentUser.id}`, formData)
         .then(response => {
           this.msg = 'Update account successfull';
           this.updateAccountSuccessfull(response)
@@ -193,7 +193,7 @@ export default {
           password_confirmation: this.passwordConfirmation,
         }
       }
-      this.$http.put(`/users/${this.currentUser.id}/change_password`, params)
+      this.$http.put(`/api/users/${this.currentUser.id}/change_password`, params)
         .then(response => {
           this.msg = 'Change password successfull'
           this.setCurrentUser(response.data.user);
@@ -213,7 +213,7 @@ export default {
         }
       }
 
-      this.$http.put(`/users/${this.currentUser.id}/set_password`, params)
+      this.$http.put(`/api/users/${this.currentUser.id}/set_password`, params)
         .then(response => {
           this.msg = 'Set password successfull'
           this.setCurrentUser(response.data.user)

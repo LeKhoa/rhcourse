@@ -28,13 +28,12 @@ export default {
   },
 
   mounted() {
-    this.$http.get("/courses")
+    this.$http.get('/api/courses')
       .then(response => {
         this.courses = response.data.data;
         this.$router.replace({
           name: 'courses',
-          params: { course_id: this.courses[0].id },
-          query: { course_id: this.courses[0].id }
+          params: { id: this.courses[0].id },
         })
       }).catch(error => {
         this.error = error.response;

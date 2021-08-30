@@ -106,7 +106,7 @@ export default {
   },
 
   mounted() {
-    this.$http.get(`/courses/${this.course.id}/classmates`)
+    this.$http.get(`/api/courses/${this.course.id}/classmates`)
       .then(response => {
         this.classmates = response.data.data;
       }).catch(error => {

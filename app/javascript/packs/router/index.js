@@ -11,37 +11,37 @@ import Checkout from '../../components/checkout/Checkout.vue';
 const routes = [
 
   {
-    path: "/",
-    name: "home",
+    path: '/',
+    name: 'home',
     component: Home,
     children: [
       {
-        path: "/courses/:id",
-        name: "courses",
+        path: '/courses/:id',
+        name: 'courses',
         component: Course,
       },
       {
-        path: "/classmates",
-        name: "classmates",
+        path: '/courses/:id/classmates',
+        name: 'classmates',
         component: ClassRoom,
       },
       {
-        path: "/account",
-        name: "account",
+        path: '/account',
+        name: 'account',
         component: Account,
       },
     ]
   },
 
   {
-    path: "/onboard",
-    name: "onboard",
+    path: '/onboard',
+    name: 'onboard',
     component: Onboard,
   },
 
   {
-    path: "/checkout",
-    name: "checkout",
+    path: '/checkout',
+    name: 'checkout',
     component: Checkout,
   },
 ];

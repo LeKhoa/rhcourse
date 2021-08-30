@@ -46,7 +46,7 @@
         <div class="col-12 col-md-4">
           <ul class="navbar-nav navbar-right justify-content-end">
             <li class="nav-item my-auto" v-if="courses.length">
-              <router-link :to="{ name: 'classmates', params: { course: JSON.stringify(courses[0]) } }" class="nav-link">My Classmates</router-link>
+              <router-link :to="{ name: 'classmates', params: { id: courses[0].id, course: JSON.stringify(courses[0]) } }" class="nav-link">My Classmates</router-link>
             </li>
             <!--
             <li class="nav-item">

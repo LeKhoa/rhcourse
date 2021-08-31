@@ -1,6 +1,6 @@
-module AuthenticationHelper
+module AuthorizationHelper
   
-  def authenticate
+  def authorize
     render json: unauthorized_error, status: :unauthorized unless valid?(params[:secret_key])
   end
 

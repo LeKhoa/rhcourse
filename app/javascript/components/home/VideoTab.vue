@@ -10,7 +10,7 @@
         @click="selectLesson(index, lesson)">
 
         <div class="col-9">
-          <span class="title"> {{index}}.{{lesson.attributes.title}} </span>
+          <span class="title"> {{index+1}}. {{lesson.attributes.title}} </span>
         </div>
         <div class="col-3 d-flex align-items-center justify-content-end">
           <img :src="videoIcon(lesson)">
@@ -65,6 +65,11 @@ export default {
         totalMin += parseInt(min) || 0;
         totalSec += parseInt(sec) || 0;
       })
+      if (totalSec >= 60) {
+        totalMin += Math.floor(totalSec / 60);
+        totalSec = totalSec % 60;
+      }
+
       return `${totalMin}m ${totalSec}s`;
     }
   },

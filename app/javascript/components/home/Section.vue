@@ -215,7 +215,7 @@ export default {
 
   .tab-content {
     position: absolute;
-    height: 100%;
+    height: 85%;
     @media only screen and (max-width: 767px) {
       height: unset;
       position: unset;

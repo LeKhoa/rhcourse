@@ -135,8 +135,6 @@ export default {
       this.selectedLesson = this.lessons[0];
       this.wistiaVideoUrl = this.setVideoUrl(this.selectedLesson.attributes.video);
     },
-
-    ...mapGetters(['getDefaultWistiaVideo']),
   },
 
   created() {

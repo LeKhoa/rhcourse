@@ -1,7 +1,7 @@
 <template>
   <div class="video-container">
     <div class="mt-3 text-danger" v-if="error">{{ error }} </div>
-    <span class="video-label"> {{lessons.length}} Lessons (30m) </span>
+    <span class="video-label"> {{lessons.length}} Lessons ({{totalLength()}}) </span>
 
     <ul class="video-list mt-3">
       <li class="row mt-1"
@@ -9,10 +9,10 @@
         v-for="(lesson, index) in lessons"
         @click="selectLesson(index, lesson)">
 
-        <div class="col-8">
+        <div class="col-9">
           <span class="title"> {{index}}.{{lesson.attributes.title}} </span>
         </div>
-        <div class="col-4 d-flex align-items-center justify-content-end">
+        <div class="col-3 d-flex align-items-center justify-content-end">
           <img :src="videoIcon(lesson)">
           <span class="ms-2"> {{lesson.attributes.length}} </span>
         </div>
@@ -56,6 +56,16 @@ export default {
       if (!this.selectedLesson)
         return false;
       return lesson.id == this.selectedLesson.id;
+    },
+
+    totalLength() {
+      let totalMin = 0, totalSec = 0;
+      this.lessons.forEach(lesson => {
+        let [min , sec] = lesson.attributes.length.split(':');
+        totalMin += parseInt(min) || 0;
+        totalSec += parseInt(sec) || 0;
+      })
+      return `${totalMin}m ${totalSec}s`;
     }
   },
 

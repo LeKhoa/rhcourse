@@ -5,7 +5,7 @@
     </div>
 
     <div class="position-absolute page-content col-11 text-center mx-auto">
-      <div class="col-12 col-md-10 col-xl-6 title mx-auto title mx-auto"> Watch this 5 minute video and then proceed to the final step </div>
+      <div class="col-12 col-md-10 col-xl-6 title mx-auto title mx-auto"> Watch this 60 second video and then proceed to the final step </div>
       <div class="row align-items-center px-5">
         <!-- Left -->
         <div class="col-12 col-md-10 col-lg-7 mx-auto mt-5">

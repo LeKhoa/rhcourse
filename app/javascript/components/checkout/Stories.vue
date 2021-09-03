@@ -78,20 +78,44 @@ export default {
       storiesLabelImg: storiesLabelImg,
       wistiaVideos: [
         {
-          url: 'https://fast.wistia.net/embed/iframe/g5pnf59ala',
-          title: 'Christina - Multiple 6 figure business and travels the world'
+          url: 'https://fast.wistia.net/embed/iframe/w6tgedxzui',
+          title: 'Multiple 6 figure business and travels the world'
         },
         {
-          url: 'https://fast.wistia.net/embed/iframe/avk9twrrbn',
-          title: 'Ryan - $1 million in the first 24 months after trying everything'
+          url: 'https://fast.wistia.net/embed/iframe/djp6ezhwos',
+          title: 'Ilya built a multiple 6 figure business'
         },
         {
-          url: 'https://fast.wistia.net/embed/iframe/pukozq6xf0',
-          title: 'Elena - 600,000 in the first 18 months as an immigrant'
+          url: 'https://fast.wistia.net/embed/iframe/iaocphlyet',
+          title: 'Michael hit $40,000 per month and quit his finance job'
         },
         {
-          url: 'https://fast.wistia.net/embed/iframe/j38ihh83m5',
-          title: 'Toria - $150,000 in the first 12 months with zero experience'
+          url: 'https://fast.wistia.net/embed/iframe/wf8zura4aj',
+          title: 'Stephanie hit $13,000 per month and quit her corporate job'
+        },
+        {
+          url: 'https://fast.wistia.net/embed/iframe/7554yozbbj',
+          title: 'Nathan\'s now at $500,000 per year in year 2.'
+        },
+        {
+          url: 'https://fast.wistia.net/embed/iframe/e6frd9jtfd',
+          title: 'Multiple 6 figure business and travels the world [Archived on May 23, 2019]'
+        },
+        {
+          url: 'https://fast.wistia.net/embed/iframe/udihcs6k09',
+          title: '$150,000 in the first 12 months'
+        },
+        {
+          url: 'https://fast.wistia.net/embed/iframe/c769vpupkf',
+          title: '$1 million in the first 24 months'
+        },
+        {
+          url: 'https://fast.wistia.net/embed/iframe/3427ci9xhb',
+          title: '$600,000 in the first 18 months'
+        },
+        {
+          url: 'https://fast.wistia.net/embed/iframe/xgfkiksfkh',
+          title: '$8,000 in the first 5 weeks'
         },
       ],
       index: 0,

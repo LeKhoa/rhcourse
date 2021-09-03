@@ -47,7 +47,7 @@ class SubscriptionService < BaseService
       ],
     }
 
-    params.merge({
+    params.merge!({
       application_fee_percent: 51.50,
       transfer_data: {
         destination: 'acct_14NSJ54iRvIpDejY'

@@ -2,7 +2,7 @@
   <div class="home-page">
     <NavBar :courses="courses"/>
     <Header />
-    <router-view />
+    <router-view :courses="courses"/>
   </div>
 </template>
 
@@ -31,10 +31,7 @@ export default {
     this.$http.get('/api/courses')
       .then(response => {
         this.courses = response.data.data;
-        this.$router.replace({
-          name: 'courses',
-          params: { id: this.courses[0].id },
-        })
+        this.$router.replace({ name: 'welcome',})
       }).catch(error => {
         this.error = error.response;
     });

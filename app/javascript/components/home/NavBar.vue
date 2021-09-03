@@ -1,9 +1,9 @@
 <template>
   <nav class="top-nav navbar navbar-expand-lg navbar-light" style="background-color: #1d1d1d;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">
+      <router-link v-if="courses.length" :to="{ name: 'welcome' }" class="navbar-brand">
         <img :src="brandImg" class="brand">
-      </a>
+      </router-link>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -12,6 +12,11 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="col-12 col-md-3">
           <ul class="navbar-nav">
+            <li class="nav-item">
+              <router-link v-if="courses.length"
+                :to="{ name: 'courses', params: { id: courses[0].id } }" class="nav-link"> Course
+              </router-link>
+            </li>
             <!--
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="browseDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -10,8 +10,6 @@ const store = createStore({
       concerns: [false, false, false, false, false, false],
       criterias: [false, false, false, false],
     },
-
-    defaultWistiaVideo: "https://fast.wistia.com/embed/medias/lhr14k41n2",
   },
 
   getters: {
@@ -33,10 +31,6 @@ const store = createStore({
 
     getConcerns(state) {
       return state.concerns;
-    },
-
-    getDefaultWistiaVideo(state) {
-      return state.defaultWistiaVideo;
     },
 
   },

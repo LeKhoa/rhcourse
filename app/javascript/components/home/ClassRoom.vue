@@ -32,9 +32,9 @@
             <button class="d-flex align-items-center btn btn-dark rounded-0 text-start w-100"
               onclick="window.open('https://join.slack.com/t/rohanacademy/shared_invite/zt-upnpmoxj-o69fUFKix9n5bWf0N~_X1A','_blank');" >
               <div class="social-icon-box">
-                <img  :src="callImg" class="rounded-circle w-100">
+                <img  :src="slackImg" class="rounded-circle w-100">
               </div>
-              <span class="ms-2"> Join Alumni </span>
+              <span class="ms-2"> Join Classmates </span>
             </button>
           </div>
           <div class="col-12 col-sm-7 col-lg-12 mt-2 float-end">
@@ -43,7 +43,7 @@
               <div class="social-icon-box">
                 <img :src="fbImg" class="rounded-circle w-100">
               </div>
-              <span class="ms-2"> Join Classmates</span>
+              <span class="ms-2"> Join Alumni</span>
             </button>
           </div>
         </div>
@@ -73,7 +73,7 @@
 import Header from '../home/Header.vue'
 import defaultAvatar from 'images/default-avatar.png'
 import fbImg from 'images/fb.png'
-import callImg from 'images/slack.png'
+import slackImg from 'images/slack.png'
 
 import { mapState } from 'vuex'
 
@@ -86,7 +86,7 @@ export default {
   data: function () {
     return {
       fbImg: fbImg,
-      callImg: callImg,
+      slackImg: slackImg,
       defaultAvatar: defaultAvatar,
       classmates: [],
       course: JSON.parse(this.$route.params.course),

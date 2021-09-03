@@ -85,6 +85,7 @@ export default {
 
       span.title {
         padding-left: 20px;
+        font-size: 13.5px;
       }
     }
 

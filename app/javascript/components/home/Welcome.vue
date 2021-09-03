@@ -41,6 +41,10 @@ import welcomeImg2 from 'images/welcome-bg.png'
 import { mapState, mapActions } from 'vuex';
 
 export default {
+  props: {
+    courses: Array,
+  },
+
   components: {
   },
 
@@ -53,7 +57,10 @@ export default {
   },
   methods: { 
     nextStep: function() {
-      this.$emit('continue');
+      this.$router.replace({
+        name: 'courses',
+        params: { id: this.courses[0].id }
+      })
     }
   },
 

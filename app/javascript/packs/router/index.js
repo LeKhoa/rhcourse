@@ -1,5 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Home from '../../components/home/Home.vue';
+
+import Welcome from '../../components/home/Welcome.vue';
 import Course from '../../components/home/Course.vue';
 import ClassRoom from '../../components/home/ClassRoom.vue';
 import Account from '../../components/home/Account.vue';
@@ -15,6 +17,11 @@ const routes = [
     name: 'home',
     component: Home,
     children: [
+      {
+        path: '/',
+        name: 'welcome',
+        component: Welcome,
+      },
       {
         path: '/courses/:id',
         name: 'courses',

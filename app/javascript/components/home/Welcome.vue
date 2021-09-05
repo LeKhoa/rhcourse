@@ -53,10 +53,10 @@ export default {
       nextArrowImg: nextArrowImg,
       welcomeImg1: welcomeImg1,
       welcomeImg2: welcomeImg2,
-      wistiaWelcomeVideo: process.env.VUE_APP_WISTIA_WELCOME_VIDEO_URL || 'https://fast.wistia.net/embed/iframe/udihcs6k09',
+      wistiaWelcomeVideo: process.env.VUE_APP_WISTIA_WELCOME_VIDEO_URL || 'https://fast.wistia.net/embed/iframe/2t0aesntyr',
     }
   },
-  methods: { 
+  methods: {
     nextStep: function() {
       this.$router.replace({
         name: 'courses',
@@ -64,7 +64,7 @@ export default {
       })
     }
   },
-  
+
 }
 </script>
 

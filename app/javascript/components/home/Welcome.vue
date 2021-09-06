@@ -53,7 +53,7 @@ export default {
       nextArrowImg: nextArrowImg,
       welcomeImg1: welcomeImg1,
       welcomeImg2: welcomeImg2,
-      wistiaWelcomeVideo: process.env.VUE_APP_WISTIA_WELCOME_VIDEO_URL || 'https://fast.wistia.net/embed/iframe/2t0aesntyr',
+      wistiaWelcomeVideo: process.env.VUE_APP_WISTIA_WELCOME_VIDEO_URL,
     }
   },
   methods: {

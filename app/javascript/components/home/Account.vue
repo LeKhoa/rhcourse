@@ -52,7 +52,43 @@
               </div>
             </div>
 
-            <!-- Change password -->
+            <div class="col-12 col-md-6 mt-5 float-end">
+              <div class="row mt-4 justify-content-center">
+                <div class="col-10 col-sm-8 col-xl-4">
+                  <button class="btn rounded-0 w-100"
+                    onclick="window.open('https://convertlabs.io','_blank');" >
+                    <img :src="clabImg" class="w-100"/>
+                  </button>
+                </div>
+              </div>
+              <div class="row mt-3 align-items-center">
+                <div class="col-6 text-end">
+                  <label> Email: </label>
+                </div>
+                <div class="col-6">
+                  <span class="fw-bold"> {{email}} </span>
+                </div>
+              </div>
+              <div class="row mt-3 align-items-center">
+                <div class="col-6 text-end">
+                  <label> Password: </label>
+                </div>
+                <div class="col-6">
+                  <span class="fw-bold"> {{password}} </span>
+                </div>
+              </div>
+
+              <div class="row mt-3 align-items-center">
+                <div class="col-6 text-end">
+                  <label> Password for Rohan Academy: </label>
+                </div>
+                <div class="col-6">
+                  <span class="fw-bold"> {{password}} </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Change password
             <div class="col-12 col-md-6 mt-5 float-end" v-if="hasPassword">
               <div class="row mt-3 align-items-center">
                 <div class="col-5 text-end">
@@ -86,9 +122,9 @@
                 </div>
               </div>
             </div>
-            <!-- end password -->
+            end password
 
-            <!-- Set password -->
+            Set password
             <div class="col-12 col-md-6 mt-5 float-end" v-else>
               <div class="text-center sub-title text-warning"> Please set your password </div>
               <div class="row mt-3 align-items-center">
@@ -115,7 +151,7 @@
                 </div>
               </div>
             </div>
-            <!-- End Set password -->
+            End Set password -->
           </div>
         </form>
       </div>
@@ -127,7 +163,9 @@
 <script>
 
 import Header from '../home/Header.vue'
+
 import defaultAvatar from 'images/default-avatar.png'
+import clabImg from 'images/clab.png'
 
 import { mapState, mapActions } from 'vuex'
 
@@ -151,6 +189,8 @@ export default {
       passwordConfirmation: '',
       error: '',
       msg: '',
+
+      clabImg: clabImg,
     }
   },
 
@@ -232,6 +272,7 @@ export default {
       this.name = this.currentUser.name;
       this.email = this.currentUser.email;
       this.phone = this.currentUser.phone;
+      this.password = this.currentUser.cl_password;
     },
 
     clearPassword() {

@@ -48,7 +48,7 @@ export default {
   components: {
   },
 
-  data: function () {
+  data () {
     return {
       nextArrowImg: nextArrowImg,
       welcomeImg1: welcomeImg1,

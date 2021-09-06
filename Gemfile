@@ -35,6 +35,7 @@ gem 'image_processing'
 gem 'shrine', '~> 3.4'
 gem 'shrine-cloudinary', '~> 1.1', '>= 1.1.1'
 gem 'administrate-field-shrine'
+gem 'administrate-field-enum'
 
 group :development, :test do
   gem 'pry-rails'

@@ -2,7 +2,7 @@
   <div id="classroom">
     <div class="container py-4 px-5">
       <div class="personal row align-items-center justify-content-between">
-        <form enctype="multipart/form-data">
+        <form enctype="multipart/form-data" @submit.prevent>
           <h1 class="text-center"> Manage your account </h1>
     
           <div class="col-10 col-sm-5 col-md-3 text-center mx-auto mt-5">

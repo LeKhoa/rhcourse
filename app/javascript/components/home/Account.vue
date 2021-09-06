@@ -2,7 +2,7 @@
   <div id="classroom">
     <div class="container py-4 px-5">
       <div class="personal row align-items-center justify-content-between">
-        <form enctype="multipart/form-data">
+        <form enctype="multipart/form-data" @submit.prevent>
           <h1 class="text-center"> Manage your account </h1>
     
           <div class="col-10 col-sm-5 col-md-3 text-center mx-auto mt-5">
@@ -55,12 +55,9 @@
             <div class="col-12 col-md-6 mt-5 float-end">
               <div class="row mt-4 justify-content-center">
                 <div class="col-10 col-sm-8 col-xl-4">
-                  <button class="d-flex align-items-center btn btn-dark rounded-0 text-start w-100"
+                  <button class="btn rounded-0 w-100"
                     onclick="window.open('https://convertlabs.io','_blank');" >
-                    <div class="social-icon-box">
-                      <img  :src="slackImg" class="rounded-circle w-100">
-                    </div>
-                    <span class="ms-2"> Join Classmates </span>
+                    <img :src="clabImg" class="w-100"/>
                   </button>
                 </div>
               </div>

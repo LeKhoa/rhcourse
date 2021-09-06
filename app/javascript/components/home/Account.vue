@@ -55,9 +55,12 @@
             <div class="col-12 col-md-6 mt-5 float-end">
               <div class="row mt-4 justify-content-center">
                 <div class="col-10 col-sm-8 col-xl-4">
-                  <button class="btn rounded-0 w-100"
+                  <button class="d-flex align-items-center btn btn-dark rounded-0 text-start w-100"
                     onclick="window.open('https://convertlabs.io','_blank');" >
-                    <img :src="clabImg" class="w-100"/>
+                    <div class="social-icon-box">
+                      <img  :src="slackImg" class="rounded-circle w-100">
+                    </div>
+                    <span class="ms-2"> Join Classmates </span>
                   </button>
                 </div>
               </div>

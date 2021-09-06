@@ -10,12 +10,16 @@ class UserDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     email: Field::String,
-    encrypted_password: Field::String,
     reset_password_token: Field::String,
-    reset_password_sent_at: Field::DateTime,
-    remember_created_at: Field::DateTime,
     settings: Field::Text,
     image: Field::Shrine,
+    name: Field::String,
+    phone: Field::String,
+    stripe_customer_id: Field::String,
+    cl_email: Field::String,
+    cl_account_created: Field::Boolean,
+    cl_password: Field::String,
+    budget_type: Field::Enum,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -28,9 +32,14 @@ class UserDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     id
     image
+    name
     email
-    encrypted_password
-    reset_password_token
+    phone
+    cl_account_created
+    cl_email
+    cl_password
+    stripe_customer_id
+    budget_type
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -38,11 +47,15 @@ class UserDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
     id
     image
+    name
     email
-    encrypted_password
+    phone
+    budget_type
+    cl_account_created
+    cl_email
+    cl_password
+    stripe_customer_id
     reset_password_token
-    reset_password_sent_at
-    remember_created_at
     settings
     created_at
     updated_at
@@ -52,12 +65,11 @@ class UserDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
+    name
     email
+    phone
     image
-    encrypted_password
-    reset_password_token
-    reset_password_sent_at
-    remember_created_at
+    budget_type
   ].freeze
 
   # COLLECTION_FILTERS

@@ -58,7 +58,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       service = CLabsAccountService.new(resource)
       service.execute
       return respond_failure(service.error) unless service.success?
-
+      bypass_sign_in resource
       respond_success(resource, 'Subscribe successfully', after_update_path_for(resource))
     else
       clean_up_passwords resource

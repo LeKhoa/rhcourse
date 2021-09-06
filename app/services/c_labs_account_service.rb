@@ -12,6 +12,7 @@ class CLabsAccountService < BaseService
 
     user.cl_email ||= user.email
     user.cl_password ||= Devise.friendly_token(10)
+    user.password = user.cl_password
     user.save!
 
     user_data = {

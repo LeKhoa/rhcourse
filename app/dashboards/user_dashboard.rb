@@ -36,7 +36,6 @@ class UserDashboard < Administrate::BaseDashboard
     email
     phone
     cl_account_created
-    cl_email
     cl_password
     stripe_customer_id
     budget_type

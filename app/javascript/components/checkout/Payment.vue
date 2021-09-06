@@ -64,7 +64,7 @@ import secureLogo from 'images/secureLogo@2x.png'
 import secureContent from 'images/secure-content.png'
 import nextArrowImg from '../../images/next-arrow.png'
 
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   components: {
@@ -86,6 +86,7 @@ export default {
   },
 
   methods: {
+    ...mapActions(['setCurrentUser']),
 
     initStripeElements() {
       var elements = this.stripe.elements()
@@ -119,7 +120,8 @@ export default {
       });
     },
 
-    updateSuccessfull(response) {  
+    updateSuccessfull(response) {
+      this.setCurrentUser(response.data.user);
       this.$router.push({ name: 'home' })
     },
 

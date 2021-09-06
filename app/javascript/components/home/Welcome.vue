@@ -38,8 +38,6 @@ import nextArrowImg from '../../images/next-arrow.png'
 import welcomeImg1 from '../../images/welcome.png'
 import welcomeImg2 from 'images/welcome-bg.png'
 
-import { mapState, mapActions } from 'vuex';
-
 export default {
   props: {
     courses: Array,
@@ -56,6 +54,7 @@ export default {
       wistiaWelcomeVideo: process.env.VUE_APP_WISTIA_WELCOME_VIDEO_URL,
     }
   },
+
   methods: {
     nextStep: function() {
       this.$router.replace({

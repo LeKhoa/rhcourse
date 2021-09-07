@@ -8,7 +8,7 @@ class UserNotifierService < BaseService
   end
 
   def send_welcome_email
-    UserMailer.welcome(user).deliver
+    UserMailer.welcome(user).deliver_now
   rescue StandardError => e
     Rollbar.error(e)
     error!(e.message)

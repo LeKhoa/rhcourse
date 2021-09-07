@@ -6,10 +6,11 @@
   <body>
     <h3>Welcome to Rohan Academy, <%= @user.name %>! </h3>
     <p>
-      You have successfully signed up to <%= new_user_session_url %> with below credentials
+      You have successfully registered to Rohan Academy.
+
+      You could sign in to Rohan Academy (<%= new_user_session_url %>) with the credentials:
     </p>
     <p>
-      Username: <%= @user.name %><br>
       Email: <%= @user.email %><br>
       Password: <%= @user.cl_password %><br>
     </p>

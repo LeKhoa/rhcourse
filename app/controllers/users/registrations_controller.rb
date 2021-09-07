@@ -58,6 +58,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
       service = CLabsAccountService.new(resource)
       service.execute
       return respond_failure(service.error) unless service.success?
+
+      if Rails.env.production?
+        service = UserNotifierService.new(resource)
+        service.send_welcome_email
+        return respond_failure(service.error) unless service.success?
+      end
+
       bypass_sign_in resource
       respond_success(resource, 'Subscribe successfully', after_update_path_for(resource))
     else

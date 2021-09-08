@@ -1,6 +1,8 @@
 <div class="devise-form col-10 col-sm-8 col-md-6 col-lg-4 p-3 mx-auto mt-5">
   <h2>Log in</h2>
 
+  <%= render 'shared/flash' %>
+
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field mt-3">
       <%= f.label :email %><br />
@@ -19,18 +21,19 @@
       </div>
     <% end %>
 
-    <div class="row align-items-end">
-      <div class="col-6 actions mt-3">
+    <div class="row actions mt-3 align-items-end">
+      <div class="col-6 ">
         <%= f.submit "Log in", class: 'btn btn-dark rounded-0'%>
       </div>
 
       <div class="col-6">
         <%= link_to "Sign up", root_path %><br />
+        <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
       </div>
     </div>
   <% end %>
 
   <!--
-  <%= render "users/shared/links" %>
+    <%= render "users/shared/links" %>
   -->
 </div>

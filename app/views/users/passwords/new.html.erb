@@ -1,4 +1,5 @@
-<div class="devise-form col-10 col-sm-8 col-md-6 col-lg-4 p-3 mx-auto mt-5">
+
+<div class="devise-form col-11 col-sm-7 col-md-6 col-lg-5 col-xl-4 p-3 mx-auto mt-5">
   <h2>Forgot your password?</h2>
 
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
@@ -6,13 +7,22 @@
 
     <div class="field mt-3">
       <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control shadow-none rounded-0' %>
     </div>
 
-    <div class="actions mt-3">
-      <%= f.submit "Send me reset password instructions", class: 'btn btn-dark rounded-0' %>
+    <div class="row actions mt-4 align-items-end">
+      <div class="col-md-12 col-lg-8">
+        <%= f.submit "Send me reset password instructions", class: 'btn btn-dark rounded-0 w-100' %>
+      </div>
+      <div class="col-lg-4">
+        <%= link_to "Log in", new_session_path(resource_name) %><br />
+        <%= link_to "Sign up", root_path %><br />
+      </div>
     </div>
+
   <% end %>
 
-  <%= render "users/shared/links" %>
+  <!--
+    <%= render "users/shared/links" %>
+  -->
 </div>

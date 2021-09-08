@@ -1,8 +1,8 @@
 <template>
   <div class="home-page">
-    <NavBar :courses="courses"/>
+    <NavBar :courses="courses" :storedSectionIndex="storedSectionIndex"/>
     <Header />
-    <router-view :courses="courses"/>
+    <router-view :courses="courses" @updateStoredSection="updateStoredSection"/>
   </div>
 </template>
 
@@ -20,10 +20,14 @@ export default {
     return {
       courses: [],
       error: '',
+      storedSectionIndex: parseInt(localStorage.getItem('storedSectionIndex')) || 0,
     }
   },
 
   methods: {
+    updateStoredSection() {
+      this.storedSectionIndex = parseInt(localStorage.getItem('storedSectionIndex'));
+    }
 
   },
 

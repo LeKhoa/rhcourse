@@ -59,7 +59,10 @@ export default {
     nextStep: function() {
       this.$router.replace({
         name: 'courses',
-        params: { id: this.courses[0].id }
+        params: {
+          course_id: this.courses[0].id,
+          section_id: 0,
+        }
       })
     }
   },

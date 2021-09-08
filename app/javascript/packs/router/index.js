@@ -23,7 +23,7 @@ const routes = [
         component: Welcome,
       },
       {
-        path: '/courses/:id',
+        path: '/courses/:course_id/sections/:section_id',
         name: 'courses',
         component: Course,
       },

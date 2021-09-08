@@ -41,19 +41,15 @@ export default {
     return {
       step: 0,
       sections: [],
-      sectionIndex: this.lastSectionIndex() || 0,
+      sectionIndex: this.$route.params.section_id,
       error: '',
       prevArrowImg: prevArrowImg,
       nextArrowImg: nextArrowImg,
-      courseId: this.$route.params.id,
+      courseId: this.$route.params.course_id,
     }
   },
 
   methods: {
-
-    lastSectionIndex() {
-      return localStorage.getItem('lastSectionIndex');
-    },
 
     nextSection() {
       if (this.sectionIndex < this.sections.length - 1)
@@ -78,11 +74,17 @@ export default {
       }});
     },
 
+    updateStorageAndUrl(val) {
+      localStorage.setItem('storedSectionIndex', val);
+      this.$emit('updateStoredSection');
+      history.replaceState({}, null, parseInt(val) + 1);
+    }
+
   },
 
   watch: {
     sectionIndex: function(val) {
-      localStorage.setItem('lastSectionIndex', val);
+      this.updateStorageAndUrl(val);
     }
   },
 
@@ -94,6 +96,7 @@ export default {
       }).catch(error => {
         this.error = error.response;
     });
+    history.replaceState({}, null, parseInt(this.sectionIndex) + 1);
   }
 }
 </script>

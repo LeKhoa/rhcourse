@@ -47,7 +47,7 @@
           <ul class="navbar-nav navbar-right justify-content-end">
             <li class="nav-item my-auto">
               <router-link v-if="courses.length"
-                :to="{ name: 'courses', params: { id: courses[0].id } }" class="nav-link"> My Course
+                :to="{ name: 'courses', params: { course_id: courses[0].id, section_id:  storedSectionIndex } }" class="nav-link"> My Course
               </router-link>
             </li>
             <li class="nav-item my-auto" v-if="courses.length">
@@ -97,6 +97,7 @@ import { mapState } from 'vuex'
 export default {
   props: {
     courses: Array,
+    storedSectionIndex: Number,
   },
 
   data: function () {

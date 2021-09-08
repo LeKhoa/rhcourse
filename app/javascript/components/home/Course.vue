@@ -4,17 +4,17 @@
       <Section
         ref="mainRef"
         :section="section"
-        v-if="index == sectionIndex"
+        v-if="(index + 1) == sectionIndex"
       />
     </div>
     <div class="row mx-0 justify-content-center">
-      <div class="col-xl-2 col-lg-3 col-md-4 col-8 col-sm-5 my-4 btn-box" v-if="sectionIndex > 0">
+      <div class="col-xl-2 col-lg-3 col-md-4 col-8 col-sm-5 my-4 btn-box" v-if="sectionIndex > 1">
         <button class="btn rounded-0 w-100 h-100" @click="prevSection">
           <img :src="prevArrowImg">
           <span> Back </span>
         </button>
       </div>
-      <div class="col-xl-2 col-lg-3 col-md-4 col-8 col-sm-5 my-4 btn-box" v-if="sectionIndex < (sections.length - 1)">
+      <div class="col-xl-2 col-lg-3 col-md-4 col-8 col-sm-5 my-4 btn-box" v-if="sectionIndex < sections.length">
         <button class="btn btn-dark rounded-0 h-100 w-100" @click="nextSection">
           <span> Next section </span>
           <img :src="nextArrowImg">
@@ -52,12 +52,12 @@ export default {
   methods: {
 
     nextSection() {
-      if (this.sectionIndex < this.sections.length - 1)
+      if (this.sectionIndex < this.sections.length)
         this.sectionIndex ++;
     },
 
     prevSection() {
-      if (this.sectionIndex > 0)
+      if (this.sectionIndex > 1)
         this.sectionIndex --;
     },
 
@@ -77,7 +77,7 @@ export default {
     updateStorageAndUrl(val) {
       localStorage.setItem('storedSectionIndex', val);
       this.$emit('updateStoredSection');
-      history.replaceState({}, null, parseInt(val) + 1);
+      history.replaceState({}, null, parseInt(val));
     }
 
   },
@@ -89,6 +89,7 @@ export default {
   },
 
   mounted() {
+    console.log(`sectionId: ${this.sectionIndex}`);
     this.$http.get(`/api/courses/${this.courseId}/sections`)
       .then(response => {
         this.sections = response.data.data;
@@ -96,7 +97,7 @@ export default {
       }).catch(error => {
         this.error = error.response;
     });
-    history.replaceState({}, null, parseInt(this.sectionIndex) + 1);
+    history.replaceState({}, null, parseInt(this.sectionIndex));
   }
 }
 </script>

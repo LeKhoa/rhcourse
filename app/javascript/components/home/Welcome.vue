@@ -61,7 +61,7 @@ export default {
         name: 'courses',
         params: {
           course_id: this.courses[0].id,
-          section_id: 0,
+          section_id: 1,
         }
       })
     }

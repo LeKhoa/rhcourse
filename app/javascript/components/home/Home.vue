@@ -20,7 +20,7 @@ export default {
     return {
       courses: [],
       error: '',
-      storedSectionIndex: parseInt(localStorage.getItem('storedSectionIndex')) || 0,
+      storedSectionIndex: parseInt(localStorage.getItem('storedSectionIndex')) || 1,
     }
   },
 

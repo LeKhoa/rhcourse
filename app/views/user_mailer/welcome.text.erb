@@ -1,13 +1,11 @@
-Welcome to example.com, <%= @user.name %>
-===============================================
+Welcome to example.com, <%= @user.name %>!
 
-You have successfully registered to Rohan Academy.
+You could sign in to Rohan Academy with the credentials:
 
-You could sign in to Rohan Academy (<%= new_user_session_url %>) with the credentials:
+Username: <%= @user.name %>
+Email: <%= @user.email %>
+Password: <%= @user.cl_password %>
 
-Email: <%= @user.email %><br>
-Password: <%= @user.cl_password %><br>
-
-To login to ConvertLabs site, just follow this link: https://convertlabs.io/ and use the same email/password.
+You could also use these email, password to login to ConvertLabs(https://convertlabs.io)
 
 Thanks for joining and have a great day!

@@ -89,7 +89,6 @@ export default {
   },
 
   mounted() {
-    console.log(`sectionId: ${this.sectionIndex}`);
     this.$http.get(`/api/courses/${this.courseId}/sections`)
       .then(response => {
         this.sections = response.data.data;

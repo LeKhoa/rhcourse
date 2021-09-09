@@ -2,7 +2,7 @@
   <div class="home-page">
     <NavBar :courses="courses" :storedSectionIndex="storedSectionIndex"/>
     <Header />
-    <router-view :courses="courses" @updateStoredSection="updateStoredSection"/>
+    <router-view :courses="courses" :key="$route.fullPath" @updateStoredSection="updateStoredSection"/>
   </div>
 </template>
 

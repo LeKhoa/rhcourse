@@ -18,22 +18,22 @@ const routes = [
     component: Home,
     children: [
       {
-        path: '/',
+        path: '',
         name: 'welcome',
         component: Welcome,
       },
       {
-        path: '/courses/:course_id/sections/:section_id',
+        path: 'courses/:course_id/sections/:section_id',
         name: 'courses',
         component: Course,
       },
       {
-        path: '/courses/:id/classmates',
+        path: 'courses/:id/classmates',
         name: 'classmates',
         component: ClassRoom,
       },
       {
-        path: '/account',
+        path: 'account',
         name: 'account',
         component: Account,
       },

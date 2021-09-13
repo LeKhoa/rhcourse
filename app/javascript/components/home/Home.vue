@@ -35,7 +35,6 @@ export default {
     this.$http.get('/api/courses')
       .then(response => {
         this.courses = response.data.data;
-        this.$router.replace({ name: 'welcome',})
       }).catch(error => {
         this.error = error.response;
     });

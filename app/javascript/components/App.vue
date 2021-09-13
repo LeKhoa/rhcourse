@@ -45,10 +45,7 @@ export default {
 
   mounted() {
     this.setCurrentUser(this.dataCurrentUser);
-    if (this.isOnboarded) {
-      this.$router.push({ name: 'home' })
-
-    } else {
+    if (!this.isOnboarded) {
       this.$router.push({ name: 'onboard' })
     }
   }

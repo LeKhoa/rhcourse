@@ -18,6 +18,10 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :password, confirmation: true
 
+  before_destroy :can_destroy?, prepend: true do
+    throw(:abort) if errors.present?
+  end
+
   # TBD: for testing purpose, assign user to first course after signed_up
 
   after_create :asign_course
@@ -62,5 +66,11 @@ class User < ApplicationRecord
 
   def asign_course
     Course.first.users << self if Course.first.present?
+  end
+
+  def can_destroy?
+    return true if !subscriptions.present?
+    errors.add(:base, I18n.t('user.validation.has_subscriptions'))
+    false
   end
 end

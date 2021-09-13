@@ -11,7 +11,7 @@
               <h1 class="mt-3"> {{currentUser.name}} </h1>
             </div>
             <div class="col-12 col-sm-7 col-md-8 mt-5">
-              <h1> Welcome to {{course.attributes.name}}</h1>
+              <h1 v-if="course"> Welcome to {{course.attributes.name}}</h1>
               <span class="text-black-50"> Learn together, Create together</span>
 
               <div class="row mt-3">
@@ -89,7 +89,8 @@ export default {
       slackImg: slackImg,
       defaultAvatar: defaultAvatar,
       classmates: [],
-      course: JSON.parse(this.$route.params.course),
+      course_id: JSON.parse(this.$route.params.id),
+      course: null,
       error: '',
     }
   },
@@ -106,9 +107,18 @@ export default {
   },
 
   mounted() {
-    this.$http.get(`/api/courses/${this.course.id}/classmates`)
+
+    this.$http.get(`/api/courses/${this.course_id}`)
       .then(response => {
-        this.classmates = response.data.data;
+        this.course = response.data.data;
+
+        this.$http.get(`/api/courses/${this.course.id}/classmates`)
+          .then(response => {
+            this.classmates = response.data.data;
+          }).catch(error => {
+            this.error = error.response;
+        });
+
       }).catch(error => {
         this.error = error.response;
     });

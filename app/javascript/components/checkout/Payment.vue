@@ -122,7 +122,7 @@ export default {
 
     updateSuccessfull(response) {
       this.setCurrentUser(response.data.user);
-      this.$router.push({ name: 'home' })
+      this.$router.push({ name: 'welcome' })
     },
 
     updateFailed(error) {

@@ -36,3 +36,7 @@ en:
     label:
       user:
         budget_type: "Budget"
+
+  user:
+    validation:
+      has_subscriptions: Cann't destroy user who has subscriptions

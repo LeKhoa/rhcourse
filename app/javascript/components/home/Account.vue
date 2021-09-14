@@ -56,7 +56,7 @@
               <div class="row mt-4 justify-content-center">
                 <div class="col-10 col-sm-8 col-xl-4">
                   <button class="btn rounded-0 w-100"
-                    onclick="window.open('https://convertlabs.io','_blank');" >
+                    onclick="window.open('https://convertlabs.io/login','_blank');" >
                     <img :src="clabImg" class="w-100"/>
                   </button>
                 </div>
@@ -84,6 +84,31 @@
                 </div>
                 <div class="col-6">
                   <span class="fw-bold"> {{password}} </span>
+                </div>
+              </div>
+              <!-- Nerdpilots -->
+              <div class="row mt-4 justify-content-center">
+                <div class="col-10 col-sm-8 col-xl-4">
+                  <button class="btn rounded-0 w-100"
+                    onclick="window.open('https://app.nerdpilots.com','_blank');" >
+                    <img :src="npilotsImg" class="w-100"/>
+                  </button>
+                </div>
+              </div>
+              <div class="row mt-3 align-items-center">
+                <div class="col-6 text-end">
+                  <label> Email: </label>
+                </div>
+                <div class="col-6">
+                  <span v-if="currentUser.np_account_created" class="fw-bold"> {{email}} </span>
+                </div>
+              </div>
+              <div class="row mt-3 align-items-center">
+                <div class="col-6 text-end">
+                  <label> Password: </label>
+                </div>
+                <div class="col-6">
+                  <span v-if="currentUser.np_account_created" class="fw-bold"> {{password}} </span>
                 </div>
               </div>
             </div>
@@ -166,6 +191,7 @@ import Header from '../home/Header.vue'
 
 import defaultAvatar from 'images/default-avatar.png'
 import clabImg from 'images/clab.png'
+import npilotsImg from 'images/npilots.png'
 
 import { mapState, mapActions } from 'vuex'
 
@@ -189,8 +215,8 @@ export default {
       passwordConfirmation: '',
       error: '',
       msg: '',
-
       clabImg: clabImg,
+      npilotsImg: npilotsImg,
     }
   },
 

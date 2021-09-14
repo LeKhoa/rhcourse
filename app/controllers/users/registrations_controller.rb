@@ -59,6 +59,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       service.execute
       return respond_failure(service.error) unless service.success?
 
+      service = NPilotsAccountService.new(resource)
+      service.execute
+      return respond_failure(service.error) unless service.success?
+
       if Rails.env.production?
         service = UserNotifierService.new(resource)
         service.send_welcome_email

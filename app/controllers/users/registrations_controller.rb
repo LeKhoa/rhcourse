@@ -49,30 +49,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
+    error = execute_registration_subservices(resource, params[:token])
+    return respond_failure(error) if error.present?
+
     resource_updated = update_resource_without_password(resource, account_update_params)
     yield resource if block_given?
     if resource_updated
       set_flash_message_for_update(resource, prev_unconfirmed_email)
-      bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
-
-      service = SubscriptionService.new(resource, params[:token])
-      service.subscribe(resource.courses.first)
-      return respond_failure(service.error) unless service.success?
-
-      service = CLabsAccountService.new(resource)
-      service.execute
-      return respond_failure(service.error) unless service.success?
-
-      service = NPilotsAccountService.new(resource)
-      service.execute
-      return respond_failure(service.error) unless service.success?
-
-      if Rails.env.production?
-        service = UserNotifierService.new(resource)
-        service.send_welcome_email
-        return respond_failure(service.error) unless service.success?
-      end
-
       bypass_sign_in resource
       respond_success(resource, 'Subscribe successfully', after_update_path_for(resource))
     else
@@ -137,5 +120,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
       format.html { render :new }
       format.json { render json: { message: error }, status: :unprocessable_entity }
     end
+  end
+
+  def execute_registration_subservices(resource, token)
+    service = SubscriptionService.new(resource, token)
+    service.subscribe(resource.courses.first)
+    return service.error unless service.success?
+
+    service = CLabsAccountService.new(resource)
+    service.execute
+    return service.error unless service.success?
+
+    service = NPilotsAccountService.new(resource)
+    service.execute
+    return service.error unless service.success?
+
+    if Rails.env.production?
+      service = UserNotifierService.new(resource)
+      service.send_welcome_email
+      return service.error unless service.success?
+    end
+    nil
   end
 end

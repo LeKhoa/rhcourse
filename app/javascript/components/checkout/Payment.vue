@@ -71,7 +71,7 @@ export default {
 
   },
 
-  data: function () {
+  data () {
     return {
       cardLogos: cardLogos,
       stripePowered: stripePowered,

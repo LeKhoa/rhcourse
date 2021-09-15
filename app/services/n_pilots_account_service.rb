@@ -12,7 +12,7 @@ class NPilotsAccountService < BaseService
   def execute
     return if user.np_account_created?
     if user.reload.subscriptions.blank?
-      raise ArgumentError, 'User has no active subscriptions.'
+      raise ArgumentError, "User #{user.email} has no active subscriptions."
     end
 
     user_data = {

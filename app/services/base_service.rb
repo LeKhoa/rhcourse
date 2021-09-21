@@ -12,4 +12,14 @@ class BaseService
   def error!(error)
     self.error = error
   end
+
+  def response_error!(response)
+    Rollbar.error(response.to_s)
+    error!(response.to_s)
+  end
+
+  def execute_error!(e)
+    Rollbar.error(e)
+    error!(e.message)
+  end
 end

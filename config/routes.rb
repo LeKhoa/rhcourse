@@ -47,6 +47,10 @@ Rails.application.routes.draw do
     namespace :c_labs do
       get '/verify', to: 'accounts#verify'
     end
+
+    namespace :n_pilots do
+      post '/create_task', to: 'tasks#create'
+    end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

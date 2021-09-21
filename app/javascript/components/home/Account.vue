@@ -111,6 +111,13 @@
                   <span v-if="currentUser.np_account_created" class="fw-bold"> {{password}} </span>
                 </div>
               </div>
+              <div class="row mt-3 justify-content-center">
+                <div class="col-10 col-sm-8 col-xl-4">
+                  <button class="btn btn-dark rounded-0 shadow-none w-100"
+                    :class="{ disabled: creatingTask }"
+                    @click="getNPilotsSupport"> Get NerdPilots support</button>
+                </div>
+              </div>
             </div>
 
             <!-- Change password
@@ -217,6 +224,7 @@ export default {
       msg: '',
       clabImg: clabImg,
       npilotsImg: npilotsImg,
+      creatingTask: false,
     }
   },
 
@@ -244,6 +252,18 @@ export default {
           this.msg = 'Update account successfull';
           this.updateAccountSuccessfull(response)
         }).catch(error => {
+          this.error = error.response.data.message;
+      });
+    },
+
+    getNPilotsSupport() {
+      this.creatingTask = true;
+      this.$http.post(`/api/n_pilots/create_task`)
+        .then(response => {
+          this.creatingTask = false;
+          this.msg = response.data.message;
+        }).catch(error => {
+          this.creatingTask = false;
           this.error = error.response.data.message;
       });
     },

@@ -4,7 +4,7 @@ namespace :nerdpilots do
 
     User.where(np_account_created: false, cl_account_created: true).each do |user|
       next if user.cl_password.nil?
-      service = NPilotsAccountService.new(user)
+      service = NPilots::AccountService.new(user)
       service.execute
       if service.success?
         puts "SUCCESS: Create Nerdpilots account for user: #{user.email}"

@@ -131,7 +131,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     service.execute
     return service.error unless service.success?
 
-    service = NPilotsAccountService.new(resource)
+    service = NPilots::AccountService.new(resource)
     service.execute
     return service.error unless service.success?
 

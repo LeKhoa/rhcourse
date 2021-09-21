@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module NPilots
   class ApiService < BaseService
 

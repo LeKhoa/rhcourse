@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module NPilots
   class AccountService < BaseService
     USER_BUNDLE_SETUP_ENDPOINT = 'https://app.nerdpilots.com/api/ra/user_bundle_setup'

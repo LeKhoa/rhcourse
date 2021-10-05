@@ -77,6 +77,8 @@
               <div class="dropdown-menu account-box" aria-labelledby="accountDropdown">
                 <router-link to="/account" class="dropdown-item"> Account </router-link>
                 <div class="dropdown-divider"></div>
+                <router-link to="/billing" class="dropdown-item"> Billing </router-link>
+                <div class="dropdown-divider"></div>
                 <a class='dropdown-item' href='/users/sign_out' data-method="delete"> Logout </a>
               </div>
             </li>

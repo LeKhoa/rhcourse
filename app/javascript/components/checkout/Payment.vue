@@ -172,50 +172,6 @@ export default {
     height: 50px;
   }
 
-  $spinner-color: #69717d !default;
-
-  .spinner {
-    font-size: 25px;
-    position: relative;
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-  }
-
-  .spinner-blade {
-    position: absolute;
-    left: .4629em;
-    bottom: 0;
-    width: .074em;
-    height: .2777em;
-    border-radius: .5em;
-    background-color: transparent;
-    transform-origin: center -.2222em;
-    animation: spinner-fade 1s infinite linear;
-
-    $animation-delay: 0s;
-    $blade-rotation: 0deg;
-
-    @for $i from 1 through 12 {
-      &:nth-child(#{$i}) {
-        animation-delay: $animation-delay;
-        transform: rotate($blade-rotation);
-        $blade-rotation: $blade-rotation + 30;
-        $animation-delay: $animation-delay + .083;
-      }
-    }
-  }
-
-  @keyframes spinner-fade {
-    0% {
-      background-color: $spinner-color;
-    }
-
-    100% {
-      background-color: transparent;
-    }
-  }
-
   .price-cross-line {
     background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='110' height='7'> <path fill='red' fill-rule='evenodd' d='M.49 5.879L109.898.122l.052.998L.101 6.877l.389-.998z'/></svg>");
     background-repeat:no-repeat;

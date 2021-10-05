@@ -34,9 +34,10 @@
 
 <script>
 import nextArrowImg from '../../images/next-arrow.png'
-
 import welcomeImg1 from '../../images/welcome.png'
 import welcomeImg2 from 'images/welcome-bg.png'
+
+import { mapState, mapActions } from 'vuex';
 
 export default {
   props: {
@@ -64,9 +65,23 @@ export default {
           section_id: 1,
         }
       })
+    },
+
+    inactiveSub(status) {
+      if(status && status != 'active' && status != 'virtual_active')
+        return true;
+      return false;
     }
   },
 
+  computed: {
+    ...mapState(['currentUser']),
+  },
+
+  mounted() {
+    if(this.inactiveSub(this.currentUser.sub_status))
+      this.$router.push({ name: 'billing' })
+  },
 }
 </script>
 

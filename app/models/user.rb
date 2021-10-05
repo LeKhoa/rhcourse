@@ -53,6 +53,21 @@ class User < ApplicationRecord
     Stripe::Subscription.list(customer: stripe_customer_id, status: 'active').data
   end
 
+  def sub_status
+    if stripe_subscription.nil?
+      return if settings.blank?
+      return 'virtual_active'
+    end
+    stripe_subscription.status
+  end
+
+  def stripe_subscription
+    return nil unless stripe_customer_id.present?
+    Stripe::Subscription.list(customer: stripe_customer_id, price: ENV['STRIPE_PLAN'], status: 'all').data.first
+  rescue Stripe::InvalidRequestError => e
+    nil
+  end
+
   protected
 
   def password_required?

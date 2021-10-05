@@ -42,6 +42,12 @@ Rails.application.routes.draw do
         put 'set_password'
         put 'change_password'
       end
+
+      collection do
+        get 'retrieve_card'
+        put 'update_card'
+        put 'resubcribe'
+      end
     end
 
     namespace :c_labs do

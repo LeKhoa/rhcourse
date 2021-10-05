@@ -32,6 +32,16 @@ class SubscriptionService < BaseService
     error!(e.message)
   end
 
+  def retrieve_card
+    default_source = Stripe::Customer.list({ email: user.email }).first&.default_source
+    return error!('Card is empty') if default_source.blank?
+
+    card = Stripe::Customer.retrieve_source(user.stripe_customer_id, default_source)
+  rescue => e
+    Rollbar.error "Stripe error while updating card: #{e.message}"
+    error!(e.message)
+  end
+
   def cancel
   end
 

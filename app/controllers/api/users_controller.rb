@@ -27,10 +27,10 @@ class Api::UsersController < ApplicationController
   end
 
   def retrieve_card
-    default_source = Stripe::Customer.list({ email: current_user.email }).first&.default_source
-    return render json: { message: 'Card is empty' }, status: :unprocessable_entity if default_source.blank?
-
-    card = Stripe::Customer.retrieve_source(current_user.stripe_customer_id, default_source)
+    service = SubscriptionService.new(current_user, params[:token])
+    card = service.retrieve_card
+    return render json: { message: service.error }, status: :unprocessable_entity \
+      unless service.success?
     render json: { card: card }, status: :ok
   end
 
@@ -49,7 +49,6 @@ class Api::UsersController < ApplicationController
     return render json: { message: service.error }, status: :unprocessable_entity \
       unless service.success?
 
-    service = SubscriptionService.new(current_user, params[:token])
     service.subscribe(current_user.courses.first)
     return render json: { message:  service.error }, status: :unprocessable_entity unless service.success?
 

@@ -38,7 +38,7 @@ class SubscriptionService < BaseService
 
     card = Stripe::Customer.retrieve_source(user.stripe_customer_id, default_source)
   rescue => e
-    Rollbar.error "Stripe error while updating card: #{e.message}"
+    Rollbar.error "Stripe error while retrieving card: #{e.message}"
     error!(e.message)
   end
 

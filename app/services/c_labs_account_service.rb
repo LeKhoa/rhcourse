@@ -9,9 +9,6 @@ class CLabsAccountService < BaseService
 
   def execute
     return if user.cl_account_created?
-    if user.reload.subscriptions.blank?
-      raise ArgumentError, 'User has no active subscriptions.'
-    end
 
     user.cl_email ||= user.email
     user.cl_password ||= Devise.friendly_token(10)

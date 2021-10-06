@@ -71,7 +71,7 @@ class User < ApplicationRecord
   protected
 
   def password_required?
-    return false if skip_password_validation
+    # return false if skip_password_validation
     super
   end
 

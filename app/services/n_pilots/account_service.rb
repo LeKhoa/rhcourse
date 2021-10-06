@@ -12,9 +12,6 @@ module NPilots
 
     def execute
       return if user.np_account_created?
-      if user.reload.subscriptions.blank?
-        raise ArgumentError, "User #{user.email} has no active subscriptions."
-      end
 
       user_data = {
         name: user.name,

@@ -10,7 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  def create
+  def old_create
     resource = User.where(email: sign_up_params[:email]).first
     if resource
       return respond_failure('This email already has subscriptions, please visit login link to login Rohan Academy') \
@@ -21,6 +21,38 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource = build_resource(sign_up_params)
 
     resource.save
+    yield resource if block_given?
+    if resource.persisted?
+      if resource.active_for_authentication?
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
+        respond_success(resource, 'Signed up successfully', after_sign_up_path_for(resource))
+      else
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+        respond_success(resource, "Signed up successfully, #{resource.inactive_message}")
+      end
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      respond_failure(resource.errors.full_messages)
+    end
+  end
+
+  def create
+    resource = build_resource(sign_up_params)
+    error = nil
+
+    User.transaction do
+      resource.save
+      return respond_failure(resource.errors.full_messages) if resource.errors.full_messages.present?
+
+      error = execute_subservices(resource, params[:token])
+      raise ActiveRecord::Rollback if error.present?
+    end
+
+    return respond_failure(error) if error.present?
+
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
@@ -122,13 +154,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def execute_registration_subservices(resource, token)
+  def execute_subservices(resource, token)
     service = SubscriptionService.new(resource, token)
     service.subscribe(resource.courses.first)
     return service.error unless service.success?
 
     service = CLabsAccountService.new(resource)
-    service.execute
+    service.execute(sign_up_params[:password])
     return service.error unless service.success?
 
     service = NPilots::AccountService.new(resource)

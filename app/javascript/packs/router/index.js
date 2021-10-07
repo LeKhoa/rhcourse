@@ -9,6 +9,7 @@ import Billing from '../../components/home/Billing.vue';
 
 import Onboard from '../../components/onboard/Onboard.vue';
 import Checkout from '../../components/checkout/Checkout.vue';
+import SignUp from '../../components/sign_up/SignUp.vue';
 
 const routes = [
 
@@ -55,6 +56,12 @@ const routes = [
     path: '/checkout',
     name: 'checkout',
     component: Checkout,
+  },
+
+  {
+    path: '/sign_up',
+    name: 'sign_up',
+    component: SignUp,
   },
 ];
 

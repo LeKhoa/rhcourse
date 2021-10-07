@@ -36,17 +36,20 @@ export default {
   computed: {
     ...mapState(['currentUser','userSettings', 'concerns']),
 
-    isOnboarded() {
+    subscribed() {
       if (this.currentUser === null)
         return false;
+      if(this.currentUser.sub_status)
+        return true;
+
       return Object.keys(this.currentUser.settings).length != 0
     }
   },
 
   mounted() {
     this.setCurrentUser(this.dataCurrentUser);
-    if (!this.isOnboarded) {
-      this.$router.push({ name: 'onboard' })
+    if (!this.subscribed) {
+      this.$router.push({ name: 'sign_up' })
     }
   }
 }

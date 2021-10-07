@@ -7,12 +7,11 @@ class CLabsAccountService < BaseService
     @user = user
   end
 
-  def execute
+  def execute(password)
     return if user.cl_account_created?
 
     user.cl_email ||= user.email
-    user.cl_password ||= Devise.friendly_token(10)
-    user.password = user.cl_password
+    user.cl_password ||= password
     user.save!
 
     user_data = {

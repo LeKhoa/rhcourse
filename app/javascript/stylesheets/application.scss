@@ -3,7 +3,8 @@ $font-family-base: $font-futura;
 $headings-font-family: $font-futura;
 $font-size-base: 0.9rem;
 $enable-negative-margins: true;
-$input-focus-box-shadow: 0 0 0 0.25rem rgb(138, 200, 50);
+//$input-focus-box-shadow: 0 0 0 0.25rem rgb(138, 200, 50);
+$input-focus-box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
 $btn-focus-box-shadow: none;
 
 @import '~bootstrap/scss/bootstrap';

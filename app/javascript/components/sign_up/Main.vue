@@ -1,6 +1,6 @@
 <template>
-  <div class="main">
-    <div class="row m-0">
+  <div class="main p-5 pb-0">
+    <div class="bg-white border rounded-top row m-0">
       <div class="col-md-8 border-end p-5">
         <Left />
       </div>
@@ -42,6 +42,12 @@ export default {
 
 <style scoped lang="scss">
   .main {
-    
+    background-color: #f3f3f3;
+
+    @media only screen and (max-width: 575px) {
+      padding: 0 !important;
+    }
   }
+
+
 </style>

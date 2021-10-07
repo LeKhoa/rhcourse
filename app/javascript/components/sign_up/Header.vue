@@ -10,7 +10,7 @@
       <div class="col-md-7">
         <div class="row align-items-center">
           <div class="col-md-6">
-            <span> Offer Automatically Expires 10/06/2021 </span>
+            <span> Offer Automatically Expires After </span>
           </div>
 
           <div class="col-md-6">
@@ -19,17 +19,17 @@
               <div class="counting col-md-8">
                 <div class="row">
                   <div class="col-3 px-0 hours text-center">
-                    <div class="count-box py-2"> 2 </div>
+                    <div class="count-box py-2"> 00 </div>
                     <span> HOURS </span>
                   </div>
 
                   <div class="col-3 px-0 minutes text-center">
-                    <div class="count-box py-2"> 14 </div>
+                    <div class="count-box py-2"> {{minutes}} </div>
                     <span> MINUTES </span>
                   </div>
 
                   <div class="col-3 px-0 seconds text-center">
-                    <div class="count-box py-2"> 4 </div>
+                    <div class="count-box py-2"> {{seconds}} </div>
                     <span> SECONDS </span>
                   </div>
                 </div>
@@ -59,21 +59,53 @@ export default {
 
   },
 
-  data: function () {
+  data () {
     return {
+      interval: null,
       overthinkImg: overthinkImg,
+      minutes: '00',
+      seconds: '00',
     }
   },
 
   methods: {
+    startCounter() {
+      var countDownTime = parseInt(localStorage.getItem('countDownTime'));
+      if (!countDownTime) {
+        countDownTime = new Date(new Date().getTime() + 15 * 60000).getTime();
+        localStorage.setItem('countDownTime', countDownTime);
+      }
+      var context = this;
 
+      this.interval = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownTime - now;
+
+        context.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        context.minutes = context.minutes < 10 ? '0' + context.minutes : context.minutes
+        context.seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        context.seconds = context.seconds < 10 ? '0' + context.seconds : context.seconds
+        if (distance < 0) {
+          context.minutes = '00';
+          context.seconds = '00';
+          localStorage.removeItem('countDownTime');
+          clearInterval(this.interval);
+        }
+      }, 1000);
+    }
   },
 
   computed: {
+
   },
 
   mounted() {
+    this.startCounter();
+  },
 
+  unmounted() {
+    if(interval)
+      clearInterval(this.interval);
   }
 }
 </script>

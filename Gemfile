@@ -37,6 +37,7 @@ gem 'shrine-cloudinary', '~> 1.1', '>= 1.1.1'
 gem 'administrate-field-shrine'
 gem 'administrate-field-enum'
 gem 'mailgun-ruby', '~> 1.2', '>= 1.2.5'
+gem 'aasm', '~> 5.2'
 
 group :development, :test do
   gem 'pry-rails'

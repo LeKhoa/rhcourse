@@ -164,7 +164,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     return service.error unless service.success?
 
     service = NPilots::AccountService.new(resource)
-    service.execute
+    service.execute(sign_up_params[:password])
     return service.error unless service.success?
 
     if Rails.env.production?

@@ -104,7 +104,7 @@ export default {
   },
 
   unmounted() {
-    if(interval)
+    if(this.interval)
       clearInterval(this.interval);
   }
 }

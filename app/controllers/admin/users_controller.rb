@@ -42,5 +42,37 @@ module Admin
 
     # See https://administrate-prototype.herokuapp.com/customizing_controller_actions
     # for more information
+
+    def create
+      user = User.new(resource_params)
+      if user.save
+        error = create_convertlabs_account(user) if params[:create_cl_account] == "true"
+        raise StandardError, error if error
+
+        error = create_nerdpilots_account(user) if params[:create_np_account] == "true"
+        raise StandardError, error if error
+
+        redirect_to admin_user_path(user), notice: translate_with_resource('create.success')
+      else
+        render :new, locals: { page: Administrate::Page::Form.new(dashboard, user),}
+      end
+    rescue => e
+      Rollbar.error(e)
+      redirect_to new_admin_user_path, alert: e.message
+    end
+
+    private
+
+    def create_convertlabs_account(user)
+      service = CLabsAccountService.new(user)
+      service.execute(params[:user][:password])
+      service.error
+    end
+
+    def create_nerdpilots_account(user)
+      service = NPilots::AccountService.new(user)
+      service.execute
+      service.error
+    end
   end
 end

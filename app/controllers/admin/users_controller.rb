@@ -71,7 +71,7 @@ module Admin
 
     def create_nerdpilots_account(user)
       service = NPilots::AccountService.new(user)
-      service.execute
+      service.execute(params[:user][:password])
       service.error
     end
   end

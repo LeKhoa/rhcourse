@@ -10,14 +10,14 @@ module NPilots
       @user = user
     end
 
-    def execute
+    def execute(password)
       return if user.np_account_created?
 
       user_data = {
         name: user.name,
         email: user.email,
         phone: user.phone,
-        password: user.cl_password
+        password: password,
       }
 
       data = CipherService.encrypt(PHP.serialize(user_data))

@@ -42,8 +42,17 @@ as well as a link to its edit page.
       ) %>
       </dt>
 
-      <dd class="attribute-data attribute-data--<%=attribute.html_class%>"
-          ><%= render_field attribute, page: page %></dd>
+      <% if attribute.name != 'status' %>
+        <dd class="attribute-data attribute-data--<%=attribute.html_class%>">
+          <%= render_field attribute, page: page %>
+        </dd>
+      <% else %>
+        <dd class="attribute-data attribute-data--<%=attribute.html_class%>">
+          <div class="status_tag <%= page.resource.status %>">
+            <%= render_field attribute, page: page %>
+          </div>
+        </dd>
+      <% end %>
     <% end %>
 
     <div id="subscription-cancel-btn">

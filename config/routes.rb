@@ -7,6 +7,11 @@ Rails.application.routes.draw do
     resources :lessons
     resources :resources
     resources :attachments
+    resources :subscriptions do
+      member do
+        patch 'cancel'
+      end
+    end
 
     root to: "courses#index"
   end

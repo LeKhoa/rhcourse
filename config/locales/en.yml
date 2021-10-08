@@ -40,3 +40,10 @@ en:
   user:
     validation:
       has_subscriptions: Cann't destroy user who has subscriptions
+  administrate:
+    subscriptions:
+      message:
+        no_stripe_subscription: This subscription doesn't have stripe subscription
+        cancel_success: Cancelled successfull
+      actions:
+        cancel: Cancel Subscription

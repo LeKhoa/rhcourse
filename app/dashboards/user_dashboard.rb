@@ -10,6 +10,7 @@ class UserDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     email: Field::String,
+    password: Field::String,
     reset_password_token: Field::String,
     settings: Field::Text,
     image: Field::Shrine,
@@ -68,6 +69,7 @@ class UserDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     name
     email
+    password
     phone
     image
     budget_type

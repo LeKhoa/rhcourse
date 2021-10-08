@@ -5,10 +5,10 @@ class Subscription < ApplicationRecord
   include AASM
   aasm column: :status do
     state :active, initial: true
-    state :cancelled
+    state :canceled
 
     event :cancel do
-      transitions from: :active, to: :cancelled
+      transitions from: :active, to: :canceled
     end
   end
 end

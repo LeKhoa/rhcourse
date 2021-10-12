@@ -43,7 +43,7 @@
         <hr>
       </div>
       
-      <div class="mt-3" v-if="inactive"> 
+      <div class="mt-3">
         <label class="text-success fw-bold"> Update card information </label>
         <div id="card-element" class="row m-0 align-items-center mt-2 border py-2 px-3">
           <!-- a Stripe Element will be inserted here. -->
@@ -194,9 +194,7 @@ export default {
   },
 
   mounted() {
-    if (this.inactive) {
-      this.initStripeElements();
-    }
+    this.initStripeElements();
     this.$http.get(`/api/users/retrieve_card`)
       .then(response => {
         this.card = response.data.card;

@@ -33,7 +33,7 @@ class SubscriptionService < BaseService
   end
 
   def retrieve_card
-    default_source = Stripe::Customer.list({ email: user.email }).first&.default_source
+    default_source = Stripe::Customer.retrieve(user.stripe_customer_id).default_source
     return error!('Card is empty') if default_source.blank?
 
     card = Stripe::Customer.retrieve_source(user.stripe_customer_id, default_source)

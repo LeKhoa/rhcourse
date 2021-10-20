@@ -10,15 +10,11 @@ class CLabsAccountService < BaseService
   def execute(password)
     return if user.cl_account_created?
 
-    user.cl_email ||= user.email
-    user.cl_password ||= password
-    user.save!
-
     user_data = {
       name: user.name,
-      email: user.cl_email,
+      email: user.email,
       phone: user.phone,
-      password: user.cl_password
+      password: password
     }
 
     data = CipherService.encrypt(PHP.serialize(user_data))
@@ -33,7 +29,7 @@ class CLabsAccountService < BaseService
     response = HTTParty.post('https://convertlabs.io/api/ota/user_bundle_setup', options)
 
     if response.code == 200 && response['success'] == 'success'
-      user.update_column(:cl_account_created, true)
+      user.update!(cl_account_created: true, cl_email: user.email, cl_password: password)
     else
       Rollbar.error('Could not create ConvertLabs account', user_id: user.id,
         response: response)

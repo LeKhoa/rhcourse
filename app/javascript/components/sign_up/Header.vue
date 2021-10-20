@@ -3,7 +3,7 @@
     <div class="row m-0 justify-content-between align-items-center px-5 py-3">
       <div class="col-md-5">
         <a href="#">
-          <img :src="overthinkImg" class="brand-img"/>
+          <img :src="brandImg" class="brand-img"/>
         </a>
       </div>
 
@@ -52,7 +52,7 @@
 <script>
 
 import { mapState, mapActions } from 'vuex'
-import overthinkImg from 'images/overthink.svg'
+import brandImg from 'images/brand.png'
 
 export default {
   components: {
@@ -62,7 +62,7 @@ export default {
   data () {
     return {
       interval: null,
-      overthinkImg: overthinkImg,
+      brandImg: brandImg,
       minutes: '00',
       seconds: '00',
     }
@@ -117,10 +117,10 @@ export default {
     color: white;
 
     .brand-img {
-      width: 25%;
+      width: 20%;
 
       @media only screen and (max-width: 575px) {
-        width: 100%;
+        width: 50%;
       }
     }
 

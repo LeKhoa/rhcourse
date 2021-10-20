@@ -47,11 +47,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
       resource.save
       return respond_failure(resource.errors.full_messages) if resource.errors.full_messages.present?
 
-      error = execute_subservices(resource, params[:token])
+      error = subscribe(resource, params[:token])
       raise ActiveRecord::Rollback if error.present?
     end
-
     return respond_failure(error) if error.present?
+
+    create_cl_np_account(resource)
+    send_email(resource)
 
     yield resource if block_given?
     if resource.persisted?
@@ -154,24 +156,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def execute_subservices(resource, token)
+  def subscribe(resource, token)
     service = SubscriptionService.new(resource, token)
     service.subscribe(resource.courses.first)
-    return service.error unless service.success?
+    service.error
+  end
 
-    service = CLabsAccountService.new(resource)
-    service.execute(sign_up_params[:password])
-    return service.error unless service.success?
-
-    service = NPilots::AccountService.new(resource)
-    service.execute(sign_up_params[:password])
-    return service.error unless service.success?
-
+  def send_email(resource)
     if Rails.env.production?
       service = UserNotifierService.new(resource)
       service.send_welcome_email
-      return service.error unless service.success?
     end
-    nil
+  end
+
+  def create_cl_np_account(resource)
+    service = CLabsAccountService.new(resource)
+    service.execute(sign_up_params[:password])
+
+    service = NPilots::AccountService.new(resource)
+    service.execute(sign_up_params[:password])
   end
 end
